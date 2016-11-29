@@ -16,12 +16,9 @@
 
         return api;
 
-        function  createUser(user) {
+        function  createUser(_user) {
             var url = '/api/user';
-            var user = {
-                username: user.username,
-                password: user.password
-            };
+            var user = _user;
             return $http.post(url, user);
         }
 

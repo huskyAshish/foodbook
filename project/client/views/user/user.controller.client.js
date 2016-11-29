@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("Foodbook")
+        .module("FoodbookApp")
         .controller("LoginController", LoginController)
         .controller("RegisterController", RegisterController)
         .controller("ProfileController", ProfileController);
