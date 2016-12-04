@@ -1,16 +1,14 @@
-body{
-    padding-top: 65px;
-    padding-bottom: 65px;
-    overflow: hidden;
-}
-
 .scroll-overflow{
     overflow: scroll;
 }
 
-input.form-control {
-    margin-bottom: 5px;
+.logo img {
+    margin-top:10px;
+    overflow: hidden;
+    height: 100%;
 }
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 .navbar-default {
     background-color: #337ab7;
@@ -36,46 +34,4 @@ input.form-control {
     font-size: 18px;
     line-height: 25px;
     display: inline-block;
-}
-
-.divider-right {
-    border-right: 1px solid lightgray;
-    -webkit-border-vertical-spacing: 20px;
-    margin-top: -45px;
-    height: 100vh;
-}
-
-a:hover {
-    text-decoration: none;
-}
-
-.list-group-item{
-    border: none;
-}
-
-.relative-position{
-    position: relative;
-}
-.absolute-position {
-    position: absolute;
-}
-.list-element-menu {
-    top: 0;
-    right: 0;
-    z-index: 10;
-    background-color: white;
-    position: absolute;
-}
-.zero-right-padding {
-    padding-right: 0;
-}
-
-.glyphicon-ok,
-.glyphicon-user{
-    margin-right: 15px;
-    color: white;
-}
-
-.white {
-    background: white !important;
 }

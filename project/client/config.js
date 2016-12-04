@@ -5,6 +5,11 @@
 
     function  Config($routeProvider) {
         $routeProvider
+            .when("/home", {
+                templateUrl: "views/home/landing.view.client.html",
+                controller: "LandingController",
+                controllerAs: "model"
+            })
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
                 controller: "LoginController",
@@ -21,7 +26,7 @@
                 controllerAs: "model"
             })
             .otherwise({
-                redirectTo: "/login"
+                redirectTo: "/home"
             });
     }
 })();

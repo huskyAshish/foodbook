@@ -1,0 +1,84 @@
+<body>
+<!-- Header Section Start -->
+<div class="header">
+    <nav class="navbar navbar-default main-navigation" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand logo" href="index.html"><img src="../../img/logo.png" alt=""></a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/login"><i class="lnr lnr-enter"></i> Login</a></li>
+                    <li><a href="#/register"><i class="lnr lnr-user"></i> Signup</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- Header Section End -->
+<section id="intro" class="section-intro">
+    <div class="overlay">
+        <div class="container">
+            <div class="main-text">
+                <h1 class="intro-title">Welcome To <span style="color: #3498DB">Foodbook</span></h1>
+                <p class="sub-title">The ultimate guide to best restaurant recommendations for foodies</p>
+
+                <!-- Start Search box -->
+                <div class="row search-bar">
+                    <div class="advanced-search">
+                        <form class="search-form" method="get">
+                            <div class="col-md-3 col-sm-6 search-col">
+                                <!-- Category Dropdown -->
+                                <div class="btn-group" uib-dropdown>
+                                    <button id="btn-append-to-body1" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                                        {{model.cuisine}}<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body1">
+                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('All Cuisines')">All Cuisines</a></li>
+                                        <li class="divider"></li>
+                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('Italian')">Italian</a></li>
+                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('Mexican')">Mexican</a></li>
+                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('Indian')">Indian</a></li>
+                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('Turkish')">Turkish</a></li>
+                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('American')">American</a></li>
+                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('Thai')">Thai</a></li>
+                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('Pizza')">Pizza</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 search-col">
+                                <!-- Location Dropdown -->
+                                <div class="btn-group" uib-dropdown>
+                                    <button id="btn-append-to-body2" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                                        {{model.location}}<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body2">
+                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('Boston')">Boston</a></li>
+                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('New York')">New York</a></li>
+                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('Chicago')">Chicago</a></li>
+                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('San Francisco')">San Francisco</a></li>
+                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('Seattle')">Seattle</a></li>
+                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('Los Angeles')">Los Angeles</a></li>
+                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('Austin')">Austin</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 search-col">
+                                <input class="form-control keyword" name="keyword" value="" placeholder="Enter Keyword" type="text">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <div class="col-md-3 col-sm-6 search-col">
+                                <button class="btn btn-common btn-search btn-block"><strong>Search</strong></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- End Search box -->
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<!-- Footer Section Start -->
+
+<!-- Footer area End -->

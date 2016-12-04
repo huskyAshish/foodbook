@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('FoodbookApp', ['ngRoute']);
+        .module('FoodbookApp', ['ngRoute', 'ui.bootstrap']);
 })();
 
 
