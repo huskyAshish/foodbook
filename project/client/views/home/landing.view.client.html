@@ -29,46 +29,26 @@
                         <form class="search-form" method="get">
                             <div class="col-md-3 col-sm-6 search-col">
                                 <!-- Category Dropdown -->
-                                <div class="btn-group" uib-dropdown>
-                                    <button id="btn-append-to-body1" type="button" class="btn btn-primary" uib-dropdown-toggle>
-                                        {{model.cuisine}}<span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body1">
-                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('All Cuisines')">All Cuisines</a></li>
-                                        <li class="divider"></li>
-                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('Italian')">Italian</a></li>
-                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('Mexican')">Mexican</a></li>
-                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('Indian')">Indian</a></li>
-                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('Turkish')">Turkish</a></li>
-                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('American')">American</a></li>
-                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('Thai')">Thai</a></li>
-                                        <li role="menuitem"><a href="#" ng-click="model.selectCuisine('Pizza')">Pizza</a></li>
-                                    </ul>
+                                <div layout="column" layout-align="center center">
+                                    <md-select placeholder="Select Cuisine" ng-model="cuisine" md-on-open="loadCuisines()" style="min-width: 200px;">
+                                        <md-option ng-value="cuisine" ng-repeat="cuisine in cuisines">{{cuisine.name}}</md-option>
+                                    </md-select>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 search-col">
                                 <!-- Location Dropdown -->
-                                <div class="btn-group" uib-dropdown>
-                                    <button id="btn-append-to-body2" type="button" class="btn btn-primary" uib-dropdown-toggle>
-                                        {{model.location}}<span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body2">
-                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('Boston')">Boston</a></li>
-                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('New York')">New York</a></li>
-                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('Chicago')">Chicago</a></li>
-                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('San Francisco')">San Francisco</a></li>
-                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('Seattle')">Seattle</a></li>
-                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('Los Angeles')">Los Angeles</a></li>
-                                        <li role="menuitem"><a href="#" ng-click="model.selectLocation('Austin')">Austin</a></li>
-                                    </ul>
+                                <div layout="column" layout-align="center center">
+                                    <md-select placeholder="Select Location" ng-model="location" md-on-open="loadLocations()" style="min-width: 200px;">
+                                        <md-option ng-value="location" ng-repeat="location in locations">{{location.name}}</md-option>
+                                    </md-select>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 search-col">
-                                <input class="form-control keyword" name="keyword" value="" placeholder="Enter Keyword" type="text">
+                                <input class="form-control keyword" ng-model="model.keyword" name="keyword" value="" placeholder="Enter Keyword" type="text">
                                 <i class="fa fa-search"></i>
                             </div>
                             <div class="col-md-3 col-sm-6 search-col">
-                                <button class="btn btn-common btn-search btn-block"><strong>Search</strong></button>
+                                <button ng-click="model.search(model.keyword)" class="btn btn-common btn-search btn-block"><strong>Search</strong></button>
                             </div>
                         </form>
                     </div>
