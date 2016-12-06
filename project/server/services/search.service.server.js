@@ -6,8 +6,9 @@ module.exports = function (app, Models) {
 
     function searchRestaurants(req, res) {
         var cuisine = req.query.cuisine;
-        var location = req.query.location;
+        var search_location = req.query.location;
         var keyword = req.query.keyword;
+        
         var n = require('nonce')();
         var oauthSignature = require('oauth-signature');
         var request = require('request');
@@ -17,33 +18,44 @@ module.exports = function (app, Models) {
         var url = "http://api.yelp.com/v2/search?callback=JSON_CALLBACK";
         var params;
 
+        if (cuisine == undefined || cuisine == null)
+        {
+            cuisine = "";
+        }
+        if (search_location == undefined || search_location == null)
+        {
+            search_location = "";
+        }
+        if (keyword == undefined || keyword == null)
+        {
+            keyword = "";
+        }
+
         params = {
-            //location: location,
-            //limit: 10,
-            //category_filter: cuisine,
-            oauth_consumer_key: process.env.oauth_consumer_key,
-            oauth_token: process.env.oauth_token,
-            oauth_signature_method: "HMAC-SHA1",
-            oauth_timestamp: n().toString().substr(0,10),
-            oauth_nonce: n(),
-            oauth_version: '1.0',
-            //term: keyword,
-            location: 'San+Francisco',
-            sort: '2'
-        };
-        var consumerSecret = 'FuU7sJ0dS_ZTNG69McOkuL8sYFU';
-        var tokenSecret = 'UVdhhUSqgX2WWLzc2e5by6bfXSM';
+                callback: 'angular.callbacks._0',
+                location: search_location,
+                limit: 10,
+                oauth_consumer_key: process.env.OAUTH_CONSUMER_KEY,
+                oauth_token: process.env.OAUTH_TOKEN,
+                oauth_signature_method: "HMAC-SHA1",
+                oauth_timestamp: new Date().getTime(),
+                oauth_nonce: n(),
+                term: keyword,
+            };
+
+        var consumerSecret = process.env.CONSUMER_SECRET;
+        var tokenSecret = process.env.TOKEN_SECRET;
         var signature = oauthSignature.generate(method, url, params, consumerSecret, tokenSecret, {
             encodeSignature: false
         });
 
         //put signature in params
         params.oauth_signature = signature;
-
         var paramUrl = qs.stringify(params);
 
-        var finalUrl = url+'?'+paramUrl;
-
+        var finalUrl = url+'&'+ qs.stringify(params);
+        console.log(finalUrl);
+        
         request(finalUrl,
             function(error, response, body){
                 console.log(body);
