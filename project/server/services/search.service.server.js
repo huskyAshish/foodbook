@@ -35,16 +35,16 @@ module.exports = function (app, Models) {
                 callback: 'angular.callbacks._0',
                 location: search_location,
                 limit: 10,
-                oauth_consumer_key: process.env.OAUTH_CONSUMER_KEY,
-                oauth_token: process.env.OAUTH_TOKEN,
+                oauth_consumer_key: process.env.YELP_OAUTH_CONSUMER_KEY,
+                oauth_token: process.env.YELP_OAUTH_TOKEN,
                 oauth_signature_method: "HMAC-SHA1",
                 oauth_timestamp: new Date().getTime(),
                 oauth_nonce: n(),
                 term: keyword,
             };
 
-        var consumerSecret = process.env.CONSUMER_SECRET;
-        var tokenSecret = process.env.TOKEN_SECRET;
+        var consumerSecret = process.env.YELP_CONSUMER_SECRET;
+        var tokenSecret = process.env.YELP_TOKEN_SECRET;
         var signature = oauthSignature.generate(method, url, params, consumerSecret, tokenSecret, {
             encodeSignature: false
         });
