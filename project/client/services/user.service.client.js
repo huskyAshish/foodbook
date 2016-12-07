@@ -11,7 +11,12 @@
             findUserByUsername : findUserByUsername,
             findUserByCredentials : findUserByCredentials,
             updateUser : updateUser,
-            deleteUser : deleteUser
+            deleteUser : deleteUser,
+            login: login,
+            logout: logout,
+            checkLoggedin: checkLoggedin,
+            register: register,
+            findCurrentUser: findCurrentUser
         };
 
         return api;
@@ -47,6 +52,25 @@
             return $http.delete(url);
         }
 
+        function login(user) {
+            return $http.post("/api/login", user);
+        }
+
+        function logout() {
+            return $http.post("/api/logout");
+        }
+
+        function checkLoggedin() {
+            return $http.post("/api/loggedin");
+        }
+
+        function register(user) {
+            return $http.post("/api/register", user);
+        }
+
+        function findCurrentUser() {
+            return $http.get("/api/user");
+        }
     }
 
 })();

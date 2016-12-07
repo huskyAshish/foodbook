@@ -15,7 +15,7 @@
                 vm.error = "Please enter username and password!"
 
             UserService
-                .findUserByCredentials(user.username, user.password)
+                .login(user)
                 .success(function(user){
                     if(user === '0') {
                         vm.error = "Unable to login!";
@@ -23,8 +23,10 @@
                         $location.url("/user/" + user._id);
                     }
                 })
-                .error(function () {
-
+                .error(function (error) {
+                    if (error == "Unauthorized") {
+                        vm.error = "Invalid username and password combination";
+                    }
                 });
         }
     }
@@ -40,7 +42,7 @@
 
                 if(user.password == user.verify){
                     UserService
-                        .createUser(user)
+                        .register(user)
                         .success(function (user) {
                             $location.url("/user/" + user._id);
                         })
@@ -57,13 +59,15 @@
 
     function ProfileController($routeParams, UserService) {
         var vm = this;
-        var userId = $routeParams['uid'];
+        vm.deleteUser = deleteUser;
+        vm.logout = logout;
 
         UserService
-            .findUserById(userId)
+            .findCurrentUser()
             .success(function(user){
                 if(user != '0'){
                     vm.user = user;
+                    vm.userId = user._id;
                 }
             })
             .error(function () {
@@ -74,7 +78,7 @@
 
         function updateUser(user) {
             UserService
-                .updateUser(userId, user)
+                .updateUser(vm.userId, user)
                 .success(function(user){
 
                 })
@@ -83,6 +87,28 @@
                 });
         }
 
+        function logout() {
+            UserService
+                .logout()
+                .success(function () {
+                    $location.url("/login");
+                })
+                .error(function (err) {
+                    console.log("Error logging out user");
+                    console.log(err);
+                });
+        }
+
+        function deleteUser() {
+            UserService
+                .deleteUser(vm.userId)
+                .success(function () {
+                    $location.url("/login");
+                })
+                .error(function (error) {
+                    console.error(error);
+                })
+        }
     }
 
 })();
