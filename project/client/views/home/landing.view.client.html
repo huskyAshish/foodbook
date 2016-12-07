@@ -58,6 +58,25 @@
         </div>
     </div>
 </section>
+<section id="search-result">
+    <div class="container-fluid">
+        <div class="panel-group">
+            <div ng-repeat="restaurant in model.restaurants" class="panel panel-info">
+                <div class="panel-heading"><h3>{{restaurant.name}}</h3></div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <h3>{{restaurant.rating}}</h3>
+                            <h3>{{restaurant.phone}}</h3>
+                            <img src="{{restaurant.image_url}}">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 </body>
 <!-- Footer Section Start -->
 

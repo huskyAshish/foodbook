@@ -46,6 +46,7 @@
             SearchService
                 .getSearchResults(chosenCuisine, chosenLocation, keyword)
                 .success(function (response) {
+                        vm.restaurants = response;
                         console.log(response);
                     }
                 )

@@ -15,7 +15,7 @@ module.exports = function (app, Models) {
         var qs = require('querystring');
 
         var method = "GET";
-        var url = "http://api.yelp.com/v2/search?callback=JSON_CALLBACK";
+        var url = "http://api.yelp.com/v2/search?";
         var params;
 
         if (cuisine == undefined || cuisine == null)
@@ -32,7 +32,6 @@ module.exports = function (app, Models) {
         }
 
         params = {
-                callback: 'angular.callbacks._0',
                 location: search_location,
                 limit: 10,
                 oauth_consumer_key: process.env.YELP_OAUTH_CONSUMER_KEY,
@@ -58,25 +57,15 @@ module.exports = function (app, Models) {
         
         request(finalUrl,
             function(error, response, body){
-                var data = JSON.parse(body);
-                //console.log(data.businesses);
-                res.send(data.businesses);
+            if (error) {
+                res.statusCode(400).send(error);
+                return;
+            }
+            var data = JSON.parse(body);
+            //console.log(data.businesses);
+            res.send(data.businesses);
             }
         );
-
-        /*$http.jsonp(url, {
-            params: params
-        }).success(function(response) {
-            if(response != null) {
-                console.log(response);
-                if(response.total === 0)
-                    res.statusCode(400).send();
-                var trimmedResponse = trimResponse(response);
-                res.send(trimmedResponse);
-            }
-        }).error(function(err) {
-            res.statusCode(400).send(err);
-        });*/
     }
 
 };
