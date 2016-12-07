@@ -58,8 +58,9 @@ module.exports = function (app, Models) {
         
         request(finalUrl,
             function(error, response, body){
-                console.log(body);
-                res.send(response);
+                var data = JSON.parse(body);
+                //console.log(data.businesses);
+                res.send(data.businesses);
             }
         );
 
