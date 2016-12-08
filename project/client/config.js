@@ -23,10 +23,36 @@
             .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            })
+            .when("/user", {
+                templateUrl: "views/user/profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
             })
             .otherwise({
                 redirectTo: "/home"
             });
+
+        function checkLoggedin($q, UserService, $location) {
+            var deferred = $q.defer();
+            UserService
+                .checkLoggedin()
+                .success(function (user) {
+                    if(user != '0') {
+                        deferred.resolve();
+                    } else {
+                        deferred.reject();
+                        $location.url("/login");
+                    }
+                });
+            return deferred.promise;
+        }
     }
 })();

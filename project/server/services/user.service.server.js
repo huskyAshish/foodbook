@@ -9,15 +9,15 @@ module.exports = function (app, Models) {
     var FacebookStrategy = require('passport-facebook').Strategy;
 
     var facebookConfig = {
-        clientID     : process.env.FACEBOOK_CLIENT_ID,
-        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+        clientID     : process.env.PROJECT_FACEBOOK_CLIENT_ID,
+        clientSecret : process.env.PROJECT_FACEBOOK_CLIENT_SECRET,
+        callbackURL  : process.env.PROJECT_FACEBOOK_CALLBACK_URL
     };
 
     var googleConfig = {
-        clientID        : process.env.GOOGLE_CLIENT_ID,
-        clientSecret    : process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL     : process.env.GOOGLE_CALLBACK_URL
+        clientID        : process.env.PROJECT_GOOGLE_CLIENT_ID,
+        clientSecret    : process.env.PROJECT_GOOGLE_CLIENT_SECRET,
+        callbackURL     : process.env.PROJECT_GOOGLE_CALLBACK_URL
     };
 
     passport.use(new LocalStrategy(localStrategy));
@@ -39,15 +39,15 @@ module.exports = function (app, Models) {
     app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: '/assignment/#/user',
-            failureRedirect: '/assignment/#/login'
+            successRedirect: '/#/user',
+            failureRedirect: '/#/login'
         }));
 
     app.get   ('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get   ('/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect: '/assignment/#/user',
-            failureRedirect: '/assignment/#/login'
+            successRedirect: '/#/user',
+            failureRedirect: '/#/login'
         }));
 
 
@@ -238,6 +238,8 @@ module.exports = function (app, Models) {
             findUserByCredentials(req, res);
         }else if(query.username) {
             findUserByUsername(req, res);
+        } else {
+            res.json(req.user);
         }
     }
 

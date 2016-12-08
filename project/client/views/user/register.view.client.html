@@ -10,28 +10,32 @@
             <input type="text"
                    ng-model="model.user.firstName"
                    class="form-control"
-                   id="firstName"/>
+                   id="firstName"
+                   placeholder="First Name"/>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
             <input type="text"
                    ng-model="model.user.lastName"
                    class="form-control"
-                   id="lastName"/>
+                   id="lastName"
+                   placeholder="Last Name"/>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email"
                    ng-model="model.user.email"
                    class="form-control"
-                   id="email"/>
+                   id="email"
+                   placeholder="Email"/>
         </div>
         <div class="form-group">
             <label for="phone">Phone</label>
             <input type="text"
                    ng-model="model.user.phone"
                    class="form-control"
-                   id="phone"/>
+                   id="phone"
+                   placeholder="Phone"/>
         </div>
 
         <div class="form-group">
@@ -39,21 +43,24 @@
             <input type="text"
                    ng-model="model.user.username"
                    class="form-control"
-                   id="username"/>
+                   id="username"
+                   placeholder="Username"/>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password"
                    ng-model="model.user.password"
                    class="form-control"
-                   id="password"/>
+                   id="password"
+                   placeholder="Password"/>
         </div>
         <div class="form-group">
             <label for="password2">Verify Password</label>
             <input type="password"
                    ng-model="model.user.verify"
                    class="form-control"
-                   id="password2"/>
+                   id="password2"
+                   placeholder="Verify Password"/>
         </div>
         <a ng-click="model.register(model.user)" class="btn btn-primary btn-block">Register</a>
         <a class="btn btn-danger btn-block" href="#/login">Cancel</a>

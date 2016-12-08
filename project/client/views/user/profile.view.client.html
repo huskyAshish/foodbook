@@ -4,7 +4,11 @@
             <li class=""><a class="navbar-font">Profile</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right pull-right">
-            <li><a class="navbar-font" ng-click="model.updateUser(model.user)" href=""><span class="glyphicon glyphicon-ok"></span></a></li>
+            <li>
+                <a class="navbar-font" ng-click="model.updateUser(model.user)" href="">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -16,42 +20,50 @@
             <input type="text"
                    ng-model="model.user.username"
                    class="form-control"
-                   id="username">
+                   id="username"
+                   placeholder="Username"/>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email"
                    ng-model="model.user.email"
                    class="form-control"
-                   id="email">
+                   id="email"
+                   placeholder="Email"/>
         </div>
         <div class="form-group">
             <label for="firstName">First Name</label>
             <input type="text"
                    ng-model="model.user.firstName"
                    class="form-control"
-                   id="firstName">
+                   id="firstName"
+                   placeholder="First Name"/>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
             <input type="text"
                    ng-model="model.user.lastName"
                    class="form-control"
-                   id="lastName">
+                   id="lastName"
+                   placeholder="Last Name"/>
         </div>
         <div class="form-group">
             <label for="phone">Phone</label>
             <input type="text"
                    ng-model="model.user.phone"
                    class="form-control"
-                   id="phone">
+                   id="phone"
+                   placeholder="Phone"/>
         </div>
     </form>
 
     <a class="btn btn-primary btn-block"
        href="#">Bucketlist</a>
     <a class="btn btn-danger  btn-block"
-       href="#/login">Logout</a>
+       ng-click="model.logout()">Logout</a>
+    <a class="btn btn-warning btn-block"
+       ng-click="model.deleteUser()">Unregister</a>
+
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">

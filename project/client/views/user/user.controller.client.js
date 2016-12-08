@@ -10,14 +10,15 @@
         vm.login = login;
 
         function login(user) {
-
-            if(user == null)
-                vm.error = "Please enter username and password!"
+            if (!(user && user.username && user.password)) {
+                vm.error = "Please enter username and password.";
+                return;
+            }
 
             UserService
                 .login(user)
-                .success(function(user){
-                    if(user === '0') {
+                .success(function (user) {
+                    if (user === '0') {
                         vm.error = "Unable to login!";
                     } else {
                         $location.url("/user/" + user._id);
@@ -27,6 +28,7 @@
                     if (error == "Unauthorized") {
                         vm.error = "Invalid username and password combination";
                     }
+                    console.log(error);
                 });
         }
     }
@@ -36,55 +38,58 @@
         vm.register = register;
 
         function register(user) {
-            if(user == null || user.username == null){
-                vm.error = "Enter valid name !";
-            }else{
-
-                if(user.password == user.verify){
+            if (!(user && user.username)) {
+                vm.error = "Enter valid username!";
+                return;
+            } else if (!user.password) {
+                vm.error = "Enter valid password!";
+                return;
+            } else {
+                if (user.password === user.verify) {
                     UserService
                         .register(user)
                         .success(function (user) {
                             $location.url("/user/" + user._id);
                         })
-                        .error(function () {
-
+                        .error(function (error) {
+                            console.log(error);
                         });
 
-                }else{
-                    vm.error = "Passwords do not match !"
+                } else {
+                    vm.error = "Passwords do not match!";
+                    return;
                 }
             }
         }
     }
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($location, UserService) {
         var vm = this;
+        vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
         vm.logout = logout;
 
-        UserService
-            .findCurrentUser()
-            .success(function(user){
-                if(user != '0'){
-                    vm.user = user;
-                    vm.userId = user._id;
-                }
-            })
-            .error(function () {
-
-            });
-
-        vm.updateUser = updateUser;
+        function init() {
+            UserService
+                .findCurrentUser()
+                .success(function (user) {
+                    if(user !== '0'){
+                        vm.user = user;
+                        vm.userId = user._id;
+                    }
+                })
+                .error(function (error) {
+                    console.log(error);
+                });
+        }
+        init();
 
         function updateUser(user) {
-            UserService
-                .updateUser(vm.userId, user)
-                .success(function(user){
-
-                })
-                .error(function () {
-
-                });
+            if (user.username) {
+                UserService.updateUser(vm.userId, user);
+            } else {
+                vm.error = "Username cannot be empty!";
+            }
         }
 
         function logout() {
@@ -107,8 +112,7 @@
                 })
                 .error(function (error) {
                     console.error(error);
-                })
+                });
         }
     }
-
 })();

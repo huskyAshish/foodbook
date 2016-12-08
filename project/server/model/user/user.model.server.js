@@ -35,11 +35,11 @@ module.exports = function () {
     }
 
     function findUserByFacebookId(facebookId) {
-        return UserModel.findOne({'facebook.id': facebookId});
+        return User.findOne({'facebook.id': facebookId});
     }
 
     function findUserByGoogleId(googleId) {
-        return UserModel.findOne({'google.id': googleId});
+        return User.findOne({'google.id': googleId});
     }
 
     function updateUser(userId, user) {
