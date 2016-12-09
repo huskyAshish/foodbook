@@ -57,6 +57,14 @@
         </div>
     </form>
 
+    <div class="form-group">
+        <form action="/api/foodbook/user/upload" method="post" enctype="multipart/form-data">
+            <input name="myFile" type="file" class="form-control"/>
+            <input name="userId" value="{{model.user._id}}" style="display: none"/>
+            <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+        </form>
+    </div>
+
     <a class="btn btn-primary btn-block"
        href="#">Bucketlist</a>
     <a class="btn btn-danger  btn-block"

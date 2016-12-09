@@ -1,6 +1,6 @@
-module.exports = function (app, Models) {
+module.exports = function (app, models) {
 
-    var UserModel = Models.userModel;
+    var UserModel = models.userModel;
 
     var bcrypt = require("bcrypt-nodejs");
     var passport      = require('passport');
@@ -49,7 +49,7 @@ module.exports = function (app, Models) {
     app.get('/api/foodbook/user/:uid', findUserById);
     app.put('/api/foodbook/user/:uid', updateUser);
     app.delete('/api/foodbook/user/:uid', deleteUser);
-    app.post ('/api/user/upload', upload.single('myFile'), uploadImage);
+    app.post ('/api/foodbook/user/upload', upload.single('myFile'), uploadImage);
 
     app.get("/api/foodbook/user/:userId/review", findAllReviewsForUser);
 
