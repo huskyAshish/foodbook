@@ -11,8 +11,8 @@
 
         return api;
 
-        function getSearchResults(cuisine, location, keyword) {
-            return $http.get("/api/project/search?cuisine=" + cuisine + "&location=" + location + "&keyword=" + keyword);
+        function getSearchResults(location, keyword) {
+            return $http.get("/api/project/search?location=" + location + "&keyword=" + keyword);
         }
 
         function getRestaurantById(restaurantId) {
