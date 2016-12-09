@@ -26,25 +26,25 @@ module.exports = function (app, Models) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-    app.post('/api/login', passport.authenticate('local'), login);
-    app.post('/api/logout', logout);
-    app.post('/api/loggedin', loggedin);
-    app.post ('/api/register', register);
-    app.get('/api/user', findUser);
-    app.post('/api/user', createUser);
-    app.get('/api/user/:uid', findUserById);
-    app.put('/api/user/:uid', updateUser);
-    app.delete('/api/user/:uid', deleteUser);
+    app.post('/api/foodbook/login', passport.authenticate('local'), login);
+    app.post('/api/foodbook/logout', logout);
+    app.post('/api/foodbook/loggedin', loggedin);
+    app.post ('/api/foodbook/register', register);
+    app.get('/api/foodbook/user', findUser);
+    app.post('/api/foodbook/user', createUser);
+    app.get('/api/foodbook/user/:uid', findUserById);
+    app.put('/api/foodbook/user/:uid', updateUser);
+    app.delete('/api/foodbook/user/:uid', deleteUser);
 
-    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-    app.get('/auth/facebook/callback',
+    app.get('/project/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get('/project/auth/facebook/callback',
         passport.authenticate('facebook', {
             successRedirect: '/#/user',
             failureRedirect: '/#/login'
         }));
 
-    app.get   ('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-    app.get   ('/auth/google/callback',
+    app.get('/project/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/project/auth/google/callback',
         passport.authenticate('google', {
             successRedirect: '/#/user',
             failureRedirect: '/#/login'

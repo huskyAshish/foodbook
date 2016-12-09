@@ -36,16 +36,25 @@
                     loggedin: checkLoggedin
                 }
             })
+            .when("/social", {
+                templateUrl: "views/social/social.view.client.html",
+                controller: "SocialController",
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            })
             .otherwise({
                 redirectTo: "/home"
             });
 
-        function checkLoggedin($q, UserService, $location) {
+        function checkLoggedin($q, UserService, $location, $rootScope) {
             var deferred = $q.defer();
             UserService
                 .checkLoggedin()
                 .success(function (user) {
                     if(user != '0') {
+                        $rootScope.currentUser = user;
                         deferred.resolve();
                     } else {
                         deferred.reject();

@@ -14,7 +14,8 @@ module.exports = function () {
         findUserByFacebookId: findUserByFacebookId,
         findUserByGoogleId: findUserByGoogleId,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        findAllUsers: findAllUsers
     };
     return api;
 
@@ -55,5 +56,9 @@ module.exports = function () {
 
     function setModels(_models) {
         models = _models;
+    }
+
+    function findAllUsers() {
+        return User.find();
     }
 };
