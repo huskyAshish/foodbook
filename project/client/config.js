@@ -41,9 +41,9 @@
                     loggedin: checkLoggedin
                 }
             })
-            .when("/social", {
-                templateUrl: "views/social/social.view.client.html",
-                controller: "SocialController",
+            .when("/community", {
+                templateUrl: "views/community/community.view.client.html",
+                controller: "CommunityController",
                 controllerAs: "model",
                 resolve: {
                     loggedin: checkLoggedin

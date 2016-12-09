@@ -1,0 +1,79 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div ng-show="model.message" class="alert alert-success" role="alert">
+        {{model.message}}
+    </div>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+    <div>
+        <h2>Suggested People</h2>
+        <h3 ng-if = "model.suggestedUsers.length >= 1">
+            Hey {{currentUser.firstName ? currentUser.firstName : currentUser.username}}, make some new friends here:
+        </h3>
+        <br>
+        <ul class="thumbnails list-inline">
+            <li ng-repeat="user in model.suggestedUsers">
+                <div class="thumbnail">
+                    <a href="#">
+                        <img ng-src="{{user.profile_pic_url}}" width="120px" height="120px">
+                        <h4><p align="center">{{user.firstName ? user.firstName : user.username}}</p></h4>
+                    </a>
+                    <a ng-click="model.addFollowing(user)" width="100%"
+                       class="btn btn-primary btn-block" role="button">
+                        Add Friend
+                    </a>
+                </div>
+            </li>
+        </ul>
+        <div ng-if = "(model.suggestedUsers.length < 1) && (model.following.length < 1)" class="text-center more-button" >
+            <h3>No other users yet :(</h3>
+        </div>
+        <div ng-if = "(model.suggestedUsers.length < 1) && (model.following.length >= 1)" class="text-center more-button" >
+            <h3>No new users to make friends yet :)</h3>
+        </div>
+        <br>
+    </div>
+    <div>
+        <h2>You are Following:</h2>
+        <br>
+        <ul class="thumbnails list-inline">
+            <li ng-repeat="f in model.following">
+                <div class="thumbnail ">
+                    <img ng-src="{{f.profile_pic_url}}">
+                    <a href="#">
+                        <h4>
+                            <p align="center">{{f.firstName ? f.firstName : f.username}}</p>
+                        </h4>
+                    </a>
+                    <a ng-click = "model.removeFriend(f)" width="100%"
+                       class="btn btn-primary btn-block" role="button">
+                        Remove friend
+                    </a>
+                </div>
+            </li>
+        </ul>
+
+        <div ng-if = "model.following.length < 1" class="text-center more-button" >
+            <h3>Uh ho! You don't have any friends yet :(</h3>
+        </div>
+        <br>
+    </div>
+    <div>
+        <h2>Your Followers:</h2>
+        <br>
+        <ul class="thumbnails list-inline">
+            <li ng-repeat="follower in model.followers">
+                <div class="thumbnail">
+                    <a href = "#">
+                        <img ng-src="{{follower.profile_pic_url}}">
+                        <h4><p align="center">{{follower.firstName ? follower.firstName : follower.username}}</p></h4></a>
+                </div>
+            </li>
+        </ul>
+
+        <div ng-if = "model.followers.length < 1" class="text-center more-button" >
+            <h3>No Follower's yet :(</h3>
+        </div>
+    </div>
+    <br>
+</div>

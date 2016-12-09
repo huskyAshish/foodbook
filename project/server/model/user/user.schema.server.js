@@ -17,7 +17,7 @@ module.exports = function () {
         phone: String,
         gender: {type: String, enum: ['MALE', 'FEMALE', 'UNKNOWN']},
         location: String,
-        profile_pic_url: String,
+        profile_pic_url: {type: String, default: "http://placehold.it/120x120"},
         reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'ReviewModel'}],
         favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'RestaurantModel'}],
         following: [{type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'}],

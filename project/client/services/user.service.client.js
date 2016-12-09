@@ -17,7 +17,11 @@
             checkLoggedin: checkLoggedin,
             register: register,
             findCurrentUser: findCurrentUser,
-            findAllUsers: findAllUsers
+            addFollowing: addFollowing,
+            findFollowing: findFollowing,
+            findFollowers: findFollowers,
+            removeFollowing: removeFollowing,
+            findSuggestedUsers: findSuggestedUsers
         };
 
         return api;
@@ -72,9 +76,31 @@
         function findCurrentUser() {
             return $http.get("/api/foodbook/user");
         }
-        
-        function findAllUsers() {
-            
+
+        function addFollowing(userId, _following) {
+            var url = "/api/foodbook/user/" + userId + "/community";
+            var following = _following;
+            return $http.post(url, following);
+        }
+
+        function findFollowing(userId) {
+            var url = "/api/foodbook/user/" + userId + "/following";
+            return $http.get(url);
+        }
+
+        function findFollowers(userId) {
+            var url = "/api/foodbook/user/" + userId + "/followers";
+            return $http.get(url);
+        }
+
+        function findSuggestedUsers(userId) {
+            var url = "/api/foodbook/user/" + userId + "/community";
+            return $http.get(url);
+        }
+
+        function  removeFollowing(userId, followingId) {
+            var url = "/api/foodbook/user/" + userId + "/following/" + followingId;
+            return $http.delete(url);
         }
     }
 })();

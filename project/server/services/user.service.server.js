@@ -57,10 +57,10 @@ module.exports = function (app, models) {
     app.get("/api/foodbook/user/:userId/fav",findAllFavoritesForUser);
     app.delete("/api/foodbook/user/:userId/fav/:restaurantId",removeFavoriteRestaurant);
     
-    app.post("/api/foodbook/user/:userId/community/:followingId", addFollowing);
+    app.post("/api/foodbook/user/:userId/community", addFollowing);
     app.get("/api/foodbook/user/:userId/following", findFollowing);
     app.get("/api/foodbook/user/:userId/followers", findFollowers);
-    app.delete("/api/foodbook/:userId/following/:followingId", removeFollowing);
+    app.delete("/api/foodbook/user/:userId/following/:followingId", removeFollowing);
     app.get("/api/foodbook/user/:userId/community", findSuggestedUsers);
 
 
