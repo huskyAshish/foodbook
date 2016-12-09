@@ -4977,3 +4977,50 @@ footer p {
     background-color: #d9edf7;
     border-color: #bce8f1;
 }
+
+.width-full-screen {
+    width: 100vw;
+}
+
+.border-restaurant {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+
+.polaroid {
+    margin-top: -30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    position: relative;
+    width: 500px;
+    max-width: 90vw;
+}
+
+.polaroid img {
+    padding: 0px 0px;
+    border: 15px solid #fff;
+    border-bottom: 45px solid #fff;
+    -webkit-box-shadow: 3px 3px 3px #777;
+    -moz-box-shadow: 3px 3px 3px #777;
+    box-shadow: 3px 3px 3px #777;
+}
+
+.polaroid h2 {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 0px;
+    font-size: 28px;
+    color: #2390bb;
+}
+
+.restaurant-font {
+    color: #31708f;
+    margin-left: 15px;
+}
+
+.restaurant-rating {
+    max-width: 100px;
+}

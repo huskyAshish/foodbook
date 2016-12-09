@@ -21,11 +21,11 @@ module.exports = function (app, Models) {
     };
 
     passport.use(new LocalStrategy(localStrategy));
-    //passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
-    //passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
-
+    
     app.post('/api/foodbook/login', passport.authenticate('local'), login);
     app.post('/api/foodbook/logout', logout);
     app.post('/api/foodbook/loggedin', loggedin);
@@ -35,6 +35,19 @@ module.exports = function (app, Models) {
     app.get('/api/foodbook/user/:uid', findUserById);
     app.put('/api/foodbook/user/:uid', updateUser);
     app.delete('/api/foodbook/user/:uid', deleteUser);
+
+    app.get("/api/foodbook/user/:userId/review", findAllReviewsForUser);
+
+    app.post("/api/foodbook/user/:userId/fav/new",addFavoriteRestaurant);
+    app.get("/api/foodbook/user/:userId/fav",findAllFavoritesForUser);
+    app.delete("/api/foodbook/user/:userId/fav/:restaurantId",removeFavoriteRestaurant);
+    
+    app.post("/api/foodbook/user/:userId/community/:followingId", addFollowing);
+    app.get("/api/foodbook/user/:userId/following", findFollowing);
+    app.get("/api/foodbook/user/:userId/followers", findFollowers);
+    app.delete("/api/foodbook/:userId/following/:followingId", removeFollowing);
+    app.get("/api/foodbook/user/:userId/community", findSuggestedUsers);
+
 
     app.get('/project/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/project/auth/facebook/callback',
@@ -319,5 +332,181 @@ module.exports = function (app, Models) {
                     res.statusCode(500).send(error);
                 }
             )
+    }
+
+    function findAllReviewsForUser(req, res) {
+        var userId = req.params.userId;
+        models
+            .userModel
+            .findAllReviewsForUser(userId)
+            .then(
+                function (user) {
+                    res.send(user.reviews);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
+                }
+            );
+    }
+
+    function addFavoriteRestaurant(req, res) {
+        var userId = req.params.userId;
+        var restaurant = req.body;
+
+        models
+            .restaurantModel
+            .findById(restaurant._id)
+            .then(
+                function (restaurant) {
+                    if (!restaurant) {
+                        models
+                            .restaurantModel
+                            .createRestaurant(restaurant)
+                            .then(
+                                function (newRestaurant) {
+                                    models
+                                        .userModel
+                                        .addFavoriteRestaurant(userId, newRestaurant)
+                                        .then(
+                                            function (user) {
+                                                res.send(user);
+                                                return;
+                                            },
+                                            function (error) {
+                                                res.sendStatus(400).send(error);
+                                            }
+                                        );
+                                },
+                                function (error) {
+                                    res.sendStatus(400).send(error);
+                                }
+                            )
+                    } else {
+                        models
+                            .userModel
+                            .addFavoriteRestaurant(userId, newRestaurant)
+                            .then(
+                                function (user) {
+                                    res.send(user);
+                                    return;
+                                },
+                                function (error) {
+                                    res.sendStatus(400).send(error);
+                                }
+                            );
+                    }
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
+    }
+
+    function findAllFavoritesForUser(req, res) {
+        var userId = req.params.userId;
+        models
+            .userModel
+            .findAllFavoritesForUser(userId)
+            .then(
+                function (user) {
+                    res.send(user.favorites);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
+                }
+            );
+    }
+
+    function removeFavoriteRestaurant(req, res) {
+        var restaurantId = req.params.restaurantId;
+        var userId = req.params.userId;
+        models
+            .userModel
+            .removeFavoriteRestaurant(userId, restaurantId)
+            .then(
+                function (status) {
+                    res.sendStatus(200);
+                },
+                function (err) {
+                    res.sendStatus(400).send(err);
+                }
+            );
+    }
+
+    function addFollowing(req, res) {
+        var following = req.body;
+        var userId = req.params.userId;
+        models
+            .userModel
+            .addFollowing(userId, following)
+            .then(
+                function (user) {
+                    res.send(user);
+                },
+                function (err) {
+                    res.sendStatus(400).send(err);
+                }
+            );
+    }
+
+    function findFollowing(req, res) {
+        var userId = req.params.userId;
+        models
+            .userModel
+            .findFollowing(userId)
+            .then(
+                function (user) {
+                    res.send(user.following);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
+                }
+            );
+    }
+    
+    function removeFollowing(req, res) {
+        var followingId = req.params.followingId;
+        var userId = req.params.userId;
+        models
+            .userModel
+            .removeFollowing(userId, followingId)
+            .then(
+                function (status) {
+                    res.sendStatus(200);
+                },
+                function (err) {
+                    res.sendStatus(400).send(err);
+                }
+            );
+    }
+
+    function findFollowers(req, res) {
+        var userId = req.params.userId;
+        models
+            .userModel
+            .findFollowers(userId)
+            .then(
+                function (followers) {
+                    res.send(followers);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
+                }
+            );
+    }
+    
+    function findSuggestedUsers(req, res) {
+        var userId = req.params.userId;
+        models
+            .userModel
+            .findSuggestedUsers(userId)
+            .then(
+                function (users) {
+                    res.send(users);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
+                }
+            );
     }
 };
