@@ -1,6 +1,5 @@
-<body>
 <!-- Header Section Start -->
-<div class="header">
+<!--<div class="header">
     <nav class="navbar navbar-default main-navigation" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -14,21 +13,40 @@
             </div>
         </div>
     </nav>
-</div>
+</div>-->
+
+
+
+
 <!-- Header Section End -->
 <section id="intro" class="section-intro">
     <div class="overlay">
         <div class="container">
             <div class="main-text">
-                <h1 class="intro-title">Welcome To <span style="color: #3498DB">Foodbook</span></h1>
+                <h1 class="header-intro-title">Welcome To <span style="color: #3498DB">Foodbook</span></h1>
                 <p class="sub-title">The ultimate guide to best restaurant recommendations for foodies</p>
 
+                <div class="form-group">
+                    <input type="text" ng-model="model.location" class="form-control" id="location" placeholder="Location: Boston, New York">
+                </div>
+
+                <!--<div class="form-group">
+                    <input type="text" ng-model="model.cuisine" class="form-control" id="cuisine" placeholder="Cuisine (Optional): Indian, Chinese, etc">
+                </div>-->
+
+                <div class="form-group">
+                    <input type="text" ng-model="model.keyword" class="form-control" id="keyword" placeholder="Food Keyword (Optional): sushi, pizza, burger...">
+                </div>
+
+                <div class="form-group">
+                    <button ng-click="model.search(model.keyword, model.location, model.cuisine)" class="btn btn-primary btn-block"><strong>Search</strong></button>
+                </div>
+
                 <!-- Start Search box -->
-                <div class="row search-bar">
+                <!--<div class="row search-bar">
                     <div class="advanced-search">
                         <form class="search-form" method="get">
-                            <div class="col-md-3 col-sm-6 search-col">
-                                <!-- Category Dropdown -->
+                           <div class="col-md-3 col-sm-6 search-col">
                                 <div layout="column" layout-align="center center">
                                     <md-select placeholder="Select Cuisine" ng-model="cuisine" md-on-open="loadCuisines()" style="min-width: 200px;">
                                         <md-option ng-value="cuisine" ng-repeat="cuisine in cuisines">{{cuisine.name}}</md-option>
@@ -37,7 +55,7 @@
                             </div>
                             <div class="col-md-3 col-sm-6 search-col">
                                 <!-- Location Dropdown -->
-                                <div layout="column" layout-align="center center">
+                    <!--            <div layout="column" layout-align="center center">
                                     <md-select placeholder="Select Location" ng-model="location" md-on-open="loadLocations()" style="min-width: 200px;">
                                         <md-option ng-value="location" ng-repeat="location in locations">{{location.name}}</md-option>
                                     </md-select>
@@ -58,26 +76,120 @@
         </div>
     </div>
 </section>
+<br>
 <section id="search-result">
-    <div class="container-fluid">
+    <div class="container">
         <div class="panel-group">
             <div ng-repeat="restaurant in model.restaurants" class="panel panel-info">
                 <div class="panel-heading"><h3>{{restaurant.name}}</h3></div>
-                <div class="panel-body">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <h3>{{restaurant.rating}}</h3>
-                            <h3>{{restaurant.phone}}</h3>
-                            <img src="{{restaurant.image_url}}">
-                        </li>
-                    </ul>
-                </div>
+                <ul class="list-group panel-body">
+                    <div class="row container text-center">
+                        <div class="col-sm-3">
+                            <img class="img-responsive center-block" src="{{restaurant.image_url}}">
+                        </div>
+                        <div class="col-sm-3">
+                            <h4>Rating:</h4>
+                            <h5>{{restaurant.rating}}</h5>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4>Address:</h4>
+                            <h5>{{restaurant.location.address[0]}}</h5>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4>Contact:</h4>
+                            <h5>{{restaurant.phone}}</h5>
+                        </div>
+                    </div>
+                    <!--<li class="list-group-item">
+                        <h3>{{restaurant.rating}}</h3>
+                        <h3>{{restaurant.phone}}</h3>
+                        <img src="{{restaurant.image_url}}">
+                    </li>-->
+                </ul>
             </div>
         </div>
     </div>
 </section>
 
-</body>
-<!-- Footer Section Start -->
+<!--- screw here-- >
 
-<!-- Footer area End -->
+<!-- Header Section Start -->
+<!--<div class="header">
+    <nav class="navbar navbar-default main-navigation" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand logo" href="index.html"><img src="../../img/logo.png" alt=""></a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/login"><i class="lnr lnr-enter"></i> Login</a></li>
+                    <li><a href="#/register"><i class="lnr lnr-user"></i> Signup</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>-->
+
+
+
+
+<!-- Header Section End -->
+<!--<section id="intro" class="section-intro">
+    <div class="overlay">
+        <div class="container">
+            <div class="main-text">
+                <h1 class="intro-title">Welcome To <span style="color: #3498DB">Foodbook</span></h1>
+                <p class="sub-title">The ultimate guide to best restaurant recommendations for foodies</p>
+
+                <!-- Start Search box -->
+<!--                <div class="row search-bar">
+                    <div class="advanced-search">
+                        <form class="search-form" method="get">
+                            <div class="col-md-3 col-sm-6 search-col">
+                                <!-- Category Dropdown -->
+<!--                                <div layout="column" layout-align="center center">
+                                    <md-select placeholder="Select Cuisine" ng-model="cuisine" md-on-open="loadCuisines()" style="min-width: 200px;">
+                                        <md-option ng-value="cuisine" ng-repeat="cuisine in cuisines">{{cuisine.name}}</md-option>
+                                    </md-select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 search-col">
+                                <!-- Location Dropdown -->
+<!--                                <div layout="column" layout-align="center center">
+                                    <md-select placeholder="Select Location" ng-model="location" md-on-open="loadLocations()" style="min-width: 200px;">
+                                        <md-option ng-value="location" ng-repeat="location in locations">{{location.name}}</md-option>
+                                    </md-select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 search-col">
+                                <input class="form-control keyword" ng-model="model.keyword" name="keyword" value="" placeholder="Enter Keyword" type="text">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <div class="col-md-3 col-sm-6 search-col">
+                                <button ng-click="model.search(model.keyword)" class="btn btn-common btn-search btn-block"><strong>Search</strong></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- End Search box -->
+<!--            </div>
+        </div>
+    </div>
+</section>
+<br>
+<section id="search-result">
+    <div class="container">
+        <div class="panel-group">
+            <div ng-repeat="restaurant in model.restaurants" class="panel panel-info">
+                <div class="panel-heading"><h3>{{restaurant.name}}</h3></div>
+                <ul class="list-group panel-body">
+                    <li class="list-group-item">
+                        <h3>{{restaurant.rating}}</h3>
+                        <h3>{{restaurant.phone}}</h3>
+                        <img src="{{restaurant.image_url}}">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('FoodbookApp', ['ngRoute', 'ngMaterial']);
+        .module('FoodbookApp', ['ngRoute']);
 })();
 
 

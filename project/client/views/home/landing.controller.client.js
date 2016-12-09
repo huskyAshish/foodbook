@@ -36,15 +36,12 @@
                 ];
         };
 
-        function search(keyword) {
+        function search(keyword, location, cuisine) {
 
-            var chosenCuisine = $scope.cuisine == null ? null : $scope.cuisine.name;
-            var chosenLocation = $scope.location == null ? null : $scope.location.name;
-
-            console.log("Cuisine " + chosenCuisine + ", Location " + chosenLocation + ", Keyword: " + keyword);
+            console.log("Cuisine " + cuisine + ", Location " + location + ", Keyword: " + keyword);
 
             SearchService
-                .getSearchResults(chosenCuisine, chosenLocation, keyword)
+                .getSearchResults(cuisine, location, keyword)
                 .success(function (response) {
                         vm.restaurants = response;
                         console.log(response);
@@ -56,5 +53,4 @@
                 )
         }
     }
-
 })();

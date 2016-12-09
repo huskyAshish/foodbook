@@ -18,9 +18,8 @@ module.exports = function (app, Models) {
         var url = "http://api.yelp.com/v2/search?";
         var params;
 
-        if (cuisine == undefined || cuisine == null)
-        {
-            cuisine = "";
+        if (cuisine == undefined || cuisine == null) {
+            cuisine = "restaurants,All"
         }
         if (search_location == undefined || search_location == null)
         {
@@ -33,13 +32,13 @@ module.exports = function (app, Models) {
 
         params = {
                 location: search_location,
-                limit: 10,
+                limit: 20,
                 oauth_consumer_key: process.env.YELP_OAUTH_CONSUMER_KEY,
                 oauth_token: process.env.YELP_OAUTH_TOKEN,
                 oauth_signature_method: "HMAC-SHA1",
                 oauth_timestamp: new Date().getTime(),
                 oauth_nonce: n(),
-                term: keyword,
+                term: keyword
             };
 
         var consumerSecret = process.env.YELP_CONSUMER_SECRET;
