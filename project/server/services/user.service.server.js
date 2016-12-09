@@ -25,7 +25,21 @@ module.exports = function (app, Models) {
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
-    
+
+    var mime = require('mime');
+    var multer = require('multer');
+
+    // Saving image with extension
+    var storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, __dirname+'/../../public/project/uploads')
+        },
+        filename: function (req, file, cb) {
+            cb(null, file.fieldname + '-' + Date.now() + '.' + mime.extension(file.mimetype));
+        }
+    });
+    var upload = multer({ storage: storage });
+
     app.post('/api/foodbook/login', passport.authenticate('local'), login);
     app.post('/api/foodbook/logout', logout);
     app.post('/api/foodbook/loggedin', loggedin);
@@ -35,6 +49,7 @@ module.exports = function (app, Models) {
     app.get('/api/foodbook/user/:uid', findUserById);
     app.put('/api/foodbook/user/:uid', updateUser);
     app.delete('/api/foodbook/user/:uid', deleteUser);
+    app.post ('/api/user/upload', upload.single('myFile'), uploadImage);
 
     app.get("/api/foodbook/user/:userId/review", findAllReviewsForUser);
 
@@ -332,6 +347,40 @@ module.exports = function (app, Models) {
                     res.statusCode(500).send(error);
                 }
             )
+    }
+
+    function uploadImage(req, res) {
+        var userId        = req.body.userId;
+        var myFile        = req.file;
+
+        if (!myFile) {
+            res.redirect("/#/user/");
+            return;
+        }
+
+        var originalname  = myFile.originalname; // file name on user's computer
+        var filename      = myFile.filename;     // new file name in upload folder
+        var path          = myFile.path;         // full path of uploaded file
+        var destination   = myFile.destination;  // folder where file is saved to
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+
+        var url = "/project/uploads/" + filename;
+
+        var user = {};
+        user._id = userId;
+        // user._name = originalname;
+        user.profile_pic_url = url;
+
+        models
+            .userModel
+            .updateUser(userId, user)
+            .then(function (status) {
+                    res.redirect("/#/user/");
+                },
+                function (err) {
+                    res.sendStatus(400).send(err);
+                });
     }
 
     function findAllReviewsForUser(req, res) {
