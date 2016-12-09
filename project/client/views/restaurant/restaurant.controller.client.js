@@ -21,6 +21,7 @@
                 .getRestaurantById(restaurantId)
                 .success(function (response) {
                         vm.restaurant = response;
+                        vm.restaurant.image_url = vm.restaurant.image_url.replace("ms.jpg", "o.jpg");
                         console.log(response);
                     }
                 )

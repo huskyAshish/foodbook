@@ -1,11 +1,33 @@
 <!-- Header Section End -->
 
-<div class ="banner">
-    <!--<ng-map class ="map-prop" center = "[{{model.location.latitude}}, {{searchDetail.location.longitude}}]" >
-        <marker position="[{{searchDetail.location.latitude}},{{searchDetail.location.longitude}}]" title="{{searchDetail.name}}" animation="Animation.BOUNCE" centered="true"></marker>
-    </ng-map>-->
+<div class="">
+    <ng-map class="map-prop"
+            center="[{{model.restaurant.location.coordinate.latitude}}, {{model.restaurant.location.coordinate.longitude}}]" >
+        <marker position="[{{model.restaurant.location.coordinate.latitude}}, {{model.restaurant.location.coordinate.longitude}}]"
+                title="{{restaurant.name}}" animation="Animation.BOUNCE" centered="true"></marker>
+    </ng-map>
 </div>
 
+<div class="border-restaurant">
+    <div class="row">
+        <div class="col-md-6 polaroid">
+            <img class="container img-responsive center-block"
+                 src="{{model.restaurant.image_url}}">
+        </div>
+        <div class="col-md-6 container-fluid restaurant-font">
+            <h3>{{model.restaurant.name}}</h3>
+            <img class="image-responsive restaurant-rating"
+                 src="{{model.restaurant.rating_img_url}}">
+            <h4><u>Rating:</u> {{model.restaurant.rating}}</h4>
+            <h4><u>Contact:</u> {{model.restaurant.display_phone}}</h4>
+            <h4><u>Address:</u> {{model.restaurant.location.address[0]}}</h4>
+            <h4><u>Categories:</u><span ng-repeat="category in model.restaurant.categories"> {{category[0]}}{{$last ? '' : ','}}</span>
+            </h4>
+        </div>
+    </div>
+</div>
+
+
 <div>
-    <h2 >{{model.restaurant}}</h2>
+<!--    <h2 >{{model.restaurant}}</h2>-->
 </div>
