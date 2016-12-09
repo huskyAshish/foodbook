@@ -4982,3 +4982,9 @@ Advanced search
 .header-intro-title {
     font-size: 36px;
 }
+
+.panel-group .panel-heading {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}

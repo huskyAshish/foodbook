@@ -81,31 +81,28 @@
     <div class="container">
         <div class="panel-group">
             <div ng-repeat="restaurant in model.restaurants" class="panel panel-info">
-                <div class="panel-heading"><h3>{{restaurant.name}}</h3></div>
-                <ul class="list-group panel-body">
-                    <div class="row container text-center">
-                        <div class="col-sm-3">
-                            <img class="img-responsive center-block" src="{{restaurant.image_url}}">
+                <a href="#/home/{{restaurant.id}}">
+                    <div class="panel-heading"><h3>{{restaurant.name}}</h3></div>
+                    <ul class="list-group panel-body">
+                        <div class="row container text-center">
+                            <div class="col-sm-3">
+                                <img class="img-responsive center-block" src="{{restaurant.image_url}}">
+                            </div>
+                            <div class="col-sm-3">
+                                <h4>Rating:</h4>
+                                <img class="img-responsive center-block" src="{{restaurant.rating_img_url}}">
+                            </div>
+                            <div class="col-sm-3">
+                                <h4>Address:</h4>
+                                <h5>{{restaurant.location.address[0]}}</h5>
+                            </div>
+                            <div class="col-sm-3">
+                                <h4>Contact:</h4>
+                                <h5>{{restaurant.phone}}</h5>
+                            </div>
                         </div>
-                        <div class="col-sm-3">
-                            <h4>Rating:</h4>
-                            <img class="img-responsive center-block" src="{{restaurant.rating_img_url}}">
-                        </div>
-                        <div class="col-sm-3">
-                            <h4>Address:</h4>
-                            <h5>{{restaurant.location.address[0]}}</h5>
-                        </div>
-                        <div class="col-sm-3">
-                            <h4>Contact:</h4>
-                            <h5>{{restaurant.phone}}</h5>
-                        </div>
-                    </div>
-                    <!--<li class="list-group-item">
-                        <h3>{{restaurant.rating}}</h3>
-                        <h3>{{restaurant.phone}}</h3>
-                        <img src="{{restaurant.image_url}}">
-                    </li>-->
-                </ul>
+                    </ul>
+                </a>
             </div>
         </div>
     </div>
