@@ -19,7 +19,7 @@ module.exports = function (app, Models) {
         var params;
 
         if (cuisine == undefined || cuisine == null) {
-            cuisine = "restaurants,All"
+            cuisine = "All"
         }
         if (search_location == undefined || search_location == null)
         {
@@ -38,7 +38,8 @@ module.exports = function (app, Models) {
                 oauth_signature_method: "HMAC-SHA1",
                 oauth_timestamp: new Date().getTime(),
                 oauth_nonce: n(),
-                term: keyword
+                term: keyword,
+                category_filter: 'restaurants'
             };
 
         var consumerSecret = process.env.YELP_CONSUMER_SECRET;
@@ -52,8 +53,9 @@ module.exports = function (app, Models) {
         var paramUrl = qs.stringify(params);
 
         var finalUrl = url+'&'+ qs.stringify(params);
+
         console.log(finalUrl);
-        
+
         request(finalUrl,
             function(error, response, body){
             if (error) {
@@ -61,6 +63,7 @@ module.exports = function (app, Models) {
                 return;
             }
             var data = JSON.parse(body);
+                console.log(data)
             //console.log(data.businesses);
             res.send(data.businesses);
             }
