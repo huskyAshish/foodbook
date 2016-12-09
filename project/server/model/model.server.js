@@ -11,7 +11,7 @@ module.exports = function () {
     };
 
     userModel.setModels(models);
-    reviewModel.setModels(mdoels);
+    reviewModel.setModels(models);
     restaurantModel.setModels(models);
 
     return models;

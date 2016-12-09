@@ -2,7 +2,7 @@ module.exports = function () {
 
     var models = {};
     var mongoose = require("mongoose");
-    var RestaurantSchema = require("./review.schema.server")();
+    var RestaurantSchema = require("./restaurant.schema.server")();
     var RestaurantModel = mongoose.model("RestaurantModel", RestaurantSchema);
 
     var api = {
