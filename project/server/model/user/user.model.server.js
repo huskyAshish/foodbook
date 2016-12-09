@@ -3,10 +3,12 @@ module.exports = function () {
     var models = {};
     var mongoose = require("mongoose");
     var UserSchema = require("./user.schema.server")();
-    var User = mongoose.model("User", UserSchema);
+    var UserModel = mongoose.model("UserModel", UserSchema);
 
     var api = {
         setModels: setModels,
+
+        // User
         createUser: createUser,
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
@@ -15,50 +17,141 @@ module.exports = function () {
         findUserByGoogleId: findUserByGoogleId,
         updateUser: updateUser,
         deleteUser: deleteUser,
-        findAllUsers: findAllUsers
+
+        // Reviews
+        findAllReviewsForUser: findAllReviewsForUser,
+
+        // Favorites
+        addFavoriteRestaurant: addFavoriteRestaurant,
+        findAllFavoritesForUser: findAllFavoritesForUser,
+        removeFavoriteRestaurant: removeFavoriteRestaurant,
+
+        // Community
+        findAllUsers: findAllUsers,
+        findFollowing: findFollowing,
+        findFollowers: findFollowers,
+        addFollowing: addFollowing,
+        removeFollowing: removeFollowing
     };
     return api;
 
     function createUser(user) {
-        return User.create(user);
+        return UserModel.create(user);
     }
 
     function findUserById(userId) {
-        return User.findById(userId);
+        return UserModel.findById(userId);
     }
 
     function findUserByUsername(username) {
-        return User.findOne({username: username});
+        return UserModel.findOne({username: username});
     }
 
     function findUserByCredentials(username, password) {
-        return User.findOne({username: username, password: password});
+        return UserModel.findOne({username: username, password: password});
     }
 
     function findUserByFacebookId(facebookId) {
-        return User.findOne({'facebook.id': facebookId});
+        return UserModel.findOne({'facebook.id': facebookId});
     }
 
     function findUserByGoogleId(googleId) {
-        return User.findOne({'google.id': googleId});
+        return UserModel.findOne({'google.id': googleId});
     }
 
     function updateUser(userId, user) {
-        return User.update(
-            {_id: userId},
-            {$set: user}
+        return UserModel.update(
+            {
+                _id: userId
+            },
+            {
+                $set: user
+            }
         );
     }
 
     function deleteUser(userId) {
-        return User.remove({_id: userId});
+        return UserModel.remove({_id: userId});
     }
 
     function setModels(_models) {
         models = _models;
     }
 
+    function findAllReviewsForUser(userId) {
+        return UserModel
+            .findById(userId)
+            .populate("reviews")
+            .exec();
+    }
+    
+    function addFavoriteRestaurant(userId, restaurant) {
+        return new Promise(function (success, err) {
+            UserModel
+                .findById(userId)
+                .then(function (user) {
+                    user.favorites.push(restaurant);
+                    user.save();
+                    success(user);
+                }, function (error) {
+                    err(error);
+                });
+        });
+    }
+
+    function findAllFavoritesForUser(userId) {
+        return UserModel
+            .findById(userId)
+            .populate("favorites")
+            .exec();
+    }
+
+    function removeFavoriteRestaurant(userId, restaurantId) {
+        return UserModel.update(
+            {
+                _id: userId
+            },
+            {
+                $pull: {favorites: restaurantId}
+            });
+    }
+
     function findAllUsers() {
-        return User.find();
+        return UserModel.find();
+    }
+
+    function findFollowing(userId) {
+        return UserModel
+            .findById(userId)
+            .populate("following")
+            .exec();
+    }
+
+    function findFollowers(userId) {
+        return UserModel.find({following: userId});
+    }
+
+    function addFollowing(userId, followingId) {
+        return new Promise(function (success, err) {
+            UserModel
+                .findById(userId)
+                .then(function (user) {
+                    user.following.push(followingId);
+                    user.save();
+                    success(user);
+                }, function (error) {
+                    err(error);
+                });
+        });
+    }
+
+    function removeFollowing(userId, followingId) {
+        return UserModel.update(
+            {
+                _id: userId
+            },
+            {
+                $pull: {following: followingId}
+            });
     }
 };
