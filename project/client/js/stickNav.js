@@ -19,7 +19,7 @@ jQuery(function($) {
     });
 
     $(document).ready(function () {
-        $(document).on("scroll", onScroll);
+        //$(document).on("scroll", onScroll);
 
         //smoothscroll
         $('a[href^="#"]').on('click', function (e) {
@@ -34,12 +34,12 @@ jQuery(function($) {
             var target = this.hash,
                 menu = target;
             $target = $(target);
-            $('html, body').stop().animate({
-                'scrollTop': $target.offset().top + 2
-            }, 500, 'swing', function () {
-                window.location.hash = target;
-                $(document).on("scroll", onScroll);
-            });
+            //$('html, body').stop().animate({
+            //    'scrollTop': $target.offset().top + 2
+            //}, 500, 'swing', function () {
+            //    window.location.hash = target;
+               // $(document).on("scroll", onScroll);
+            //});
         });
     });
 

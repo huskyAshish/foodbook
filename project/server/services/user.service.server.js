@@ -21,8 +21,8 @@ module.exports = function (app, Models) {
     };
 
     passport.use(new LocalStrategy(localStrategy));
-    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
-    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+    //passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    //passport.use(new GoogleStrategy(googleConfig, googleStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
