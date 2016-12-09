@@ -51,7 +51,6 @@ module.exports = function (app, Models) {
     }
 
     function searchRestaurants(req, res) {
-        var cuisine = req.query.cuisine;
         var search_location = req.query.location;
         var keyword = req.query.keyword;
 
@@ -64,9 +63,6 @@ module.exports = function (app, Models) {
         var url = "http://api.yelp.com/v2/search?";
         var params;
 
-        if (cuisine == undefined || cuisine == null) {
-            cuisine = "All"
-        }
         if (search_location == undefined || search_location == null)
         {
             search_location = "";
