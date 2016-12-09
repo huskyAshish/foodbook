@@ -32,7 +32,7 @@ module.exports = function (app, models) {
     // Saving image with extension
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, __dirname+'/../../public/project/uploads')
+            cb(null, __dirname+'/../../client/project/uploads')
         },
         filename: function (req, file, cb) {
             cb(null, file.fieldname + '-' + Date.now() + '.' + mime.extension(file.mimetype));
