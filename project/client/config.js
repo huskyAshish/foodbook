@@ -53,13 +53,12 @@
                 redirectTo: "/home"
             });
 
-        function checkLoggedin($q, UserService, $location, $rootScope) {
+        function checkLoggedin($q, UserService, $location) {
             var deferred = $q.defer();
             UserService
                 .checkLoggedin()
                 .success(function (user) {
                     if(user != '0') {
-                        $rootScope.currentUser = user;
                         deferred.resolve();
                     } else {
                         deferred.reject();
