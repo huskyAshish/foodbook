@@ -27,7 +27,7 @@ module.exports = function () {
         removeFavoriteRestaurant: removeFavoriteRestaurant,
 
         // Community
-        findAllUsers: findAllUsers,
+        findSuggestedUsers: findSuggestedUsers,
         findFollowing: findFollowing,
         findFollowers: findFollowers,
         addFollowing: addFollowing,
@@ -116,8 +116,27 @@ module.exports = function () {
             });
     }
 
-    function findAllUsers() {
-        return UserModel.find();
+    function findSuggestedUsers(userId) {
+        return new Promise(function (success, err) {
+            UserModel
+                .findById(userId)
+                .then(
+                    function (user) {
+                        UserModel
+                            .find({ $and: [ { _id: { $ne: userId } }, { _id: { $nin: user.following } } ] })
+                            .then(
+                                function (users) {
+                                    success(users);
+                                }, function (error) {
+                                    err(error);
+                                }
+                            )
+                    }, function (error) {
+                        err(error);
+                    }
+                );
+            }
+        );
     }
 
     function findFollowing(userId) {
@@ -131,12 +150,12 @@ module.exports = function () {
         return UserModel.find({following: userId});
     }
 
-    function addFollowing(userId, followingId) {
+    function addFollowing(userId, following) {
         return new Promise(function (success, err) {
             UserModel
                 .findById(userId)
                 .then(function (user) {
-                    user.following.push(followingId);
+                    user.following.push(following);
                     user.save();
                     success(user);
                 }, function (error) {
