@@ -5025,3 +5025,12 @@ footer p {
 .restaurant-rating {
     max-width: 100px;
 }
+
+.fixed-pos {
+    position: fixed !important;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
