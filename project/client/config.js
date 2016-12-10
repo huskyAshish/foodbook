@@ -15,7 +15,12 @@
                 controller: "LandingController",
                 controllerAs: "model"
             })
-            .when("/home/:restaurantId/:loc/:key", {
+            .when("/restaurant/:restaurantId/key/:key", {
+                templateUrl: "views/restaurant/restaurant.view.client.html",
+                controller: "RestaurantController",
+                controllerAs: "model"
+            })
+            .when("/restaurant/:restaurantId/loc/:loc/key/:key", {
                 templateUrl: "views/restaurant/restaurant.view.client.html",
                 controller: "RestaurantController",
                 controllerAs: "model"

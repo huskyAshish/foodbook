@@ -3,7 +3,7 @@
         .module("FoodbookApp")
         .controller("LandingController", LandingController);
 
-    function LandingController(SearchService, $routeParams) {
+    function LandingController(SearchService, $routeParams, $rootScope) {
         var vm = this;
 
         vm.search = search;
@@ -13,7 +13,6 @@
         var key = $routeParams.key;
 
         function init() {
-
             if(loc && key){
                 console.log("Came back and searching by " + loc + "," + key);
                 SearchService
@@ -53,9 +52,11 @@
                             });
 
                         }, function(){
-                            $rootScope.apiResponse = 1;
+                            /*$rootScope.apiResponse = 1;
                             $rootScope.$apply();
-                        },{maximumAge:0,enableHighAccuracy:true}
+                        },{maximumAge:0,enableHighAccuracy:true}*/
+                            console.log("Error finding location");
+                        }
                     );
                 }
 

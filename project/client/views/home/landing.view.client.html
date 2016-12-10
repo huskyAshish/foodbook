@@ -7,7 +7,7 @@
                 <p class="sub-title">The ultimate guide to best restaurant recommendations for foodies</p>
 
                 <div class="form-group">
-                    <input type="text" ng-model="model.location" class="form-control" id="location" placeholder="Location: Boston, New York">
+                    <input type="text" ng-model="model.searchLocation" class="form-control" id="location" placeholder="Location: Boston, New York">
                 </div>
                 <div class="form-group">
                     <input type="text" ng-model="model.searchKeyword" class="form-control" id="keyword" placeholder="Food Keyword (Optional): sushi, pizza, burger...">
@@ -21,11 +21,14 @@
     </div>
 </section>
 <br>
-<section id="search-result">
+<section ng-if = "model.searchLocation" id="search-result">
     <div class="container">
         <div class="panel-group">
+            {{model.searchLocation}}
+            {{model.searchKeyword}}
             <div ng-repeat="restaurant in model.restaurants" class="panel panel-info">
-                <a href="#/home/{{restaurant.id}}/{{model.searchLocation}}/{{model.searchKeyword}}">
+                <a ng-if = "(model.searchLocation) && (model.searchKeyword)"
+                   href="#/restaurant/{{restaurant.id}}/loc/{{model.searchLocation}}/key/{{model.searchKeyword}}">
                     <div class="panel-heading"><h3>{{restaurant.name}}</h3></div>
                     <ul class="list-group panel-body">
                         <div class="row container text-center">
@@ -47,6 +50,31 @@
                         </div>
                     </ul>
                 </a>
+
+                <a ng-if = "(model.searchLocation) && !(model.searchKeyword)"
+                   href="#/restaurant/{{restaurant.id}}/loc/{{model.searchLocation}}">
+                    <div class="panel-heading"><h3>{{restaurant.name}}</h3></div>
+                    <ul class="list-group panel-body">
+                        <div class="row container text-center">
+                            <div class="col-sm-3">
+                                <img class="img-responsive center-block" src="{{restaurant.image_url}}">
+                            </div>
+                            <div class="col-sm-3">
+                                <h4>Rating:</h4>
+                                <img class="img-responsive center-block" src="{{restaurant.rating_img_url}}">
+                            </div>
+                            <div class="col-sm-3">
+                                <h4>Address:</h4>
+                                <h5>{{restaurant.location.address[0]}}</h5>
+                            </div>
+                            <div class="col-sm-3">
+                                <h4>Contact:</h4>
+                                <h5>{{restaurant.display_phone}}</h5>
+                            </div>
+                        </div>
+                    </ul>
+                </a>
+
             </div>
         </div>
     </div>
