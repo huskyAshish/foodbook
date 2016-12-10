@@ -40,7 +40,7 @@ module.exports = function (app, Models) {
         request(finalUrl,
             function(error, response, body){
             if (error) {
-                res.statusCode(400).send(error);
+                res.sendStatus(400).send(error);
                 return;
             }
             try {
@@ -107,7 +107,7 @@ module.exports = function (app, Models) {
         request(finalUrl,
             function(error, response, body){
                 if (error) {
-                    res.statusCode(400).send(error);
+                    res.sendStatus(400).send(error);
                     return;
                 }
                 try {

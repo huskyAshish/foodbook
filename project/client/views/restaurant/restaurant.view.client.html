@@ -1,9 +1,8 @@
 <!-- Header Section End -->
-
+<a href="#/home/{{model.loc}}/{{model.key}}">
+    <span class="glyphicon glyphicon-chevron-left" style="position: fixed; margin-bottom: -10px; z-index: 9999 "></span>
+</a>
 <div class="">
-    <a href="#/home/{{model.loc}}/{{model.key}}">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
     <ng-map class="map-prop"
             center="[{{model.restaurant.location.coordinate.latitude}}, {{model.restaurant.location.coordinate.longitude}}]" >
         <marker position="[{{model.restaurant.location.coordinate.latitude}}, {{model.restaurant.location.coordinate.longitude}}]"
@@ -11,7 +10,7 @@
     </ng-map>
 </div>
 
-<div id="restaurant-page" class="border-restaurant">
+<div id="" class="border-restaurant">
     <div class="row">
         <div class="col-md-6 polaroid">
             <img class="container img-responsive center-block"

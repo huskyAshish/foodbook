@@ -5035,3 +5035,26 @@ body {
     padding-bottom: 70px;
     overflow-y: scroll;
 }
+
+.pad-left-foodbook
+{
+  margin-left: 40px;
+}
+
+.glyphicon {
+    position: fixed;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.community-font {
+  color: #3b5998;
+}
+
+.bg-community {
+  background-color: #333;
+  background: url("../img/bluebg.jpg");
+  background-size: auto;
+  background-position: center center;
+  background-attachment: fixed;
+}
