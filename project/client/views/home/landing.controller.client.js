@@ -3,18 +3,19 @@
         .module("FoodbookApp")
         .controller("LandingController", LandingController);
 
-    function LandingController(SearchService, $routeParams, $rootScope) {
+    function LandingController(SearchService, $routeParams) {
         var vm = this;
 
         vm.search = search;
-        vm.searchLocation = "";
-        vm.searchKeyword = "";
+        vm.searchLocation = $routeParams.loc;
+        vm.searchKeyword = $routeParams.key;
         var loc = $routeParams.loc;
         var key = $routeParams.key;
 
         function init() {
+
             if(loc && key){
-                console.log("Came back and searching by " + loc + "," + key);
+                /*console.log("Came back and searching by " + loc + "," + key);
                 SearchService
                     .getSearchResults(loc, key)
                     .success(function (response) {
@@ -24,7 +25,7 @@
                     .error(function (err) {
                             console.log(err);
                         }
-                    )
+                    )*/
             }else{
                 var lat = "";
                 var lng = "";
@@ -43,6 +44,7 @@
                                 if (status === 'OK') {
                                     if (results[1]) {
                                         vm.searchLocation = results[1].formatted_address;
+                                        vm.search();
                                     } else {
                                         window.alert('No results found');
                                     }
@@ -69,6 +71,7 @@
                     vm.searchLocation = autocomplete.getPlace().formatted_address;
                 });
             }
+            vm.search();
         }
 
         init();

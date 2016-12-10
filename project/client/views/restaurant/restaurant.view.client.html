@@ -1,5 +1,9 @@
 <!-- Header Section End -->
-<a href="#/home/{{model.loc}}/{{model.key}}">
+<a ng-if="(model.key) && (model.loc)" href="#/home/loc/{{model.loc}}/key/{{model.key}}">
+    <!--<span class="glyphicon glyphicon-chevron-left" style="position: fixed; margin-bottom: -10px; z-index: 9999 "></span>-->
+    <i class="stick-arrow fa fa-arrow-left"></i>
+</a>
+<a ng-if="!(model.key) && (model.loc)" href="#/home/loc/{{model.loc}}">
     <!--<span class="glyphicon glyphicon-chevron-left" style="position: fixed; margin-bottom: -10px; z-index: 9999 "></span>-->
     <i class="stick-arrow fa fa-arrow-left"></i>
 </a>
