@@ -23,6 +23,9 @@
 <br>
 
 <section ng-if="(model.searchLocation)" id="search-result">
+    <div ng-if="model.restaurants.length == 0 && model.searchLocation.length >= 3">
+        <h2 class="text-center">No results yet. Please refine your search query.</h2>
+    </div>
     <div class="container">
         <div class="panel-group">
             <div ng-repeat="restaurant in model.restaurants" class="panel panel-info">
