@@ -3,12 +3,13 @@
         .module("FoodbookApp")
         .controller("LandingController", LandingController);
 
-    function LandingController(SearchService, $routeParams) {
+    function LandingController(SearchService, $routeParams, $rootScope) {
         var vm = this;
 
         vm.search = search;
         vm.searchLocation = $routeParams.loc;
         vm.searchKeyword = $routeParams.key;
+
         var loc = $routeParams.loc;
         var key = $routeParams.key;
 
@@ -43,8 +44,10 @@
                             geocoder.geocode({'location': latlng}, function(results, status) {
                                 if (status === 'OK') {
                                     if (results[1]) {
-                                        vm.searchLocation = results[1].formatted_address;
-                                        vm.search();
+                                        if (vm.searchLocation == undefined || vm.searchLocation == null || vm.searchLocation == "") {
+                                            vm.searchLocation = results[1].formatted_address;
+                                            vm.search();
+                                        }
                                     } else {
                                         window.alert('No results found');
                                     }
@@ -54,11 +57,9 @@
                             });
 
                         }, function(){
-                            /*$rootScope.apiResponse = 1;
+                            $rootScope.apiResponse = 1;
                             $rootScope.$apply();
-                        },{maximumAge:0,enableHighAccuracy:true}*/
-                            console.log("Error finding location");
-                        }
+                        },{maximumAge:0,enableHighAccuracy:true}
                     );
                 }
 

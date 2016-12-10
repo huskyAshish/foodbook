@@ -7,10 +7,10 @@
                 <p class="sub-title">The ultimate guide to best restaurant recommendations for foodies</p>
 
                 <div class="form-group">
-                    <input type="text" ng-model="model.searchLocation" class="form-control" id="location" placeholder="Location: Boston, New York">
+                    <input type="text" ng-model="model.searchLocation" ng-change="model.search()" class="form-control" id="location" placeholder="Location: Boston, New York">
                 </div>
                 <div class="form-group">
-                    <input type="text" ng-model="model.searchKeyword" class="form-control" id="keyword" placeholder="Food Keyword (Optional): sushi, pizza, burger...">
+                    <input type="text" ng-model="model.searchKeyword" ng-change="model.search()" class="form-control" id="keyword" placeholder="Food Keyword (Optional): sushi, pizza, burger...">
                 </div>
 
                 <div class="form-group">
@@ -21,11 +21,10 @@
     </div>
 </section>
 <br>
-<section ng-if = "model.searchLocation" id="search-result">
+
+<section ng-if="(model.searchLocation)" id="search-result">
     <div class="container">
         <div class="panel-group">
-            {{model.searchLocation}}
-            {{model.searchKeyword}}
             <div ng-repeat="restaurant in model.restaurants" class="panel panel-info">
                 <a ng-if = "(model.searchLocation) && (model.searchKeyword)"
                    href="#/restaurant/{{restaurant.id}}/loc/{{model.searchLocation}}/key/{{model.searchKeyword}}">
@@ -41,7 +40,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <h4>Address:</h4>
-                                <h5>{{restaurant.location.address[0]}}</h5>
+                                <h5><span ng-repeat="address in restaurant.location.display_address">{{address}}{{$last ? '' : ','}} </span></h5>
                             </div>
                             <div class="col-sm-3">
                                 <h4>Contact:</h4>
@@ -65,7 +64,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <h4>Address:</h4>
-                                <h5>{{restaurant.location.address[0]}}</h5>
+                                <h5><span ng-repeat="address in restaurant.location.display_address">{{address}}{{$last ? '' : ','}} </span></h5>
                             </div>
                             <div class="col-sm-3">
                                 <h4>Contact:</h4>
