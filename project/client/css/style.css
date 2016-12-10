@@ -1871,7 +1871,6 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 .navbar {
   font-size: 16px;
   min-height: 60px;
-  max-height: 60px;
   border: none;
   border-radius: 6px;
 }
@@ -1945,6 +1944,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   border-width: 0;
 }
 .navbar-fixed-bottom {
+  max-height: 60px;
   margin-bottom: 0;
   border-width: 0;
 }
