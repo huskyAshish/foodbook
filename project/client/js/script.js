@@ -68,9 +68,9 @@ $(document).ready(function() {
 	});
 
 
-	/*$(window).on('hashchange', function () {
-			$(".navbar-collapse").collapse('hide');
-	});*/
+	$(window).on('hashchange', function () {
+		$(".navbar-collapse:visible").collapse('hide');
+	});
 
 
 	/*$('.navbar-collapse ul .fold a').click(function() {
