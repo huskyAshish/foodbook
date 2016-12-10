@@ -46,6 +46,7 @@
                                     if (results[1]) {
                                         if (vm.searchLocation == undefined || vm.searchLocation == null || vm.searchLocation == "") {
                                             vm.searchLocation = results[1].formatted_address;
+                                            console.log("Search location in:" + vm.searchLocation);
                                             vm.search();
                                         }
                                     } else {
@@ -70,9 +71,14 @@
 
                 autocomplete.addListener('place_changed', function () {
                     vm.searchLocation = autocomplete.getPlace().formatted_address;
+                    vm.search();
                 });
             }
-            vm.search();
+            if (!(vm.searchLocation == undefined || vm.searchLocation == null || vm.searchLocation == "")) {
+                vm.search();
+            }
+
+            console.log("Search location out:" + vm.searchLocation);
         }
 
         init();
