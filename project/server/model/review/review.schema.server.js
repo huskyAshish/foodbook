@@ -7,7 +7,8 @@ module.exports = function () {
         rating: Number,
         image_url: String,
         dateCreated: {type: Date, default: Date.now},
-        dateUpdated: {type: Date, default: Date.now}
+        dateUpdated: Date
+        // dateUpdated: {type: Date, default: Date.now}
     }, {collection: 'review'});
 
     return ReviewSchema;

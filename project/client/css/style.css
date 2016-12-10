@@ -4990,22 +4990,23 @@ footer p {
 
 
 .polaroid {
-    margin-top: -30px;
+    margin-top: -60px;
     margin-bottom: 20px;
     margin-left: 20px;
     margin-right: 20px;
     position: relative;
-    width: 500px;
+    width: 400px;
     max-width: 90vw;
 }
 
 .polaroid img {
     padding: 0px 0px;
     border: 15px solid #fff;
-    border-bottom: 45px solid #fff;
+    border-bottom: 15px solid #fff;
     -webkit-box-shadow: 3px 3px 3px #777;
     -moz-box-shadow: 3px 3px 3px #777;
     box-shadow: 3px 3px 3px #777;
+    max-height: 300px;
 }
 
 .polaroid h2 {
@@ -5033,4 +5034,15 @@ footer p {
 body {
     padding-top: 60px;
     padding-bottom: 70px;
+}
+
+.review img {
+  float: left;
+  width: 100px;
+  height: 108px;
+  margin: 0 5px 0 0;
+}
+
+.review textarea {
+  width: 80%;
 }

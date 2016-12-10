@@ -7,7 +7,7 @@
         var vm = this;
 
         vm.addFollowing = addFollowing;
-        vm.removeFriend = removeFriend;
+        vm.removeFollowing = removeFollowing;
 
         function init() {
 
@@ -70,7 +70,7 @@
                 );
         }
 
-        function removeFriend(following){
+        function removeFollowing(following){
             UserService
                 .removeFollowing(vm.currentUserId, following._id)
                 .then(

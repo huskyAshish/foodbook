@@ -25,6 +25,14 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/user/reviews", {
+                templateUrl: "views/user/reviews.view.client.html",
+                controller: "ReviewController",
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            })
             .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",

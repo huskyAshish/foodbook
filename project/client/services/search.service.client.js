@@ -6,7 +6,10 @@
     function SearchService($http){
         var api = {
             getSearchResults : getSearchResults,
-            getRestaurantById : getRestaurantById
+            getRestaurantById : getRestaurantById,
+         //   findCurrentUser : findCurrentUser,
+            createRestaurant: createRestaurant,
+          //  findAllReviewsForRestaurant: findAllReviewsForRestaurant,
         };
 
         return api;
@@ -18,6 +21,12 @@
         function getRestaurantById(restaurantId) {
             console.log(restaurantId)
             return $http.get("/api/project/search/" + restaurantId);
+        }
+
+        function createRestaurant(_restaurant) {
+            var url = '/api/foodbook/restaurant';
+            var restaurant = _restaurant;
+            return $http.post(url, restaurant);
         }
     }
 })();

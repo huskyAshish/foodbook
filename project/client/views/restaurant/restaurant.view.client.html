@@ -1,6 +1,4 @@
-<!-- Header Section End -->
-
-<div class="">
+<div>
     <ng-map class="map-prop"
             center="[{{model.restaurant.location.coordinate.latitude}}, {{model.restaurant.location.coordinate.longitude}}]" >
         <marker position="[{{model.restaurant.location.coordinate.latitude}}, {{model.restaurant.location.coordinate.longitude}}]"
@@ -15,19 +13,65 @@
                  src="{{model.restaurant.image_url}}">
         </div>
         <div class="col-md-6 container-fluid restaurant-font">
-            <h3>{{model.restaurant.name}}</h3>
-            <img class="image-responsive restaurant-rating"
-                 src="{{model.restaurant.rating_img_url}}">
+            <h3>
+                {{model.restaurant.name}}
+                <img class="image-responsive restaurant-rating pull-right"
+                     src="{{model.restaurant.rating_img_url}}"
+                     alt="Image currently unavailable">
+            </h3>
             <h4><u>Rating:</u> {{model.restaurant.rating}}</h4>
             <h4><u>Contact:</u> {{model.restaurant.display_phone}}</h4>
-            <h4><u>Address:</u> {{model.restaurant.location.address[0]}}</h4>
-            <h4><u>Categories:</u><span ng-repeat="category in model.restaurant.categories"> {{category[0]}}{{$last ? '' : ','}}</span>
+            <h4><u>Address:</u><span ng-repeat="address in model.restaurant.location.display_address"> {{address}}{{$last ? '' : ','}}</span></h4>
+            <h4><u>Cuisines:</u><span ng-repeat="category in model.restaurant.categories"> {{category[0]}}{{$last ? '' : ','}}</span>
+            </h4>
+            <h4 ng-if="model.currentUser">
+                <u>Favorite this Restaurant?:</u>&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-info"
+                        ng-click="model.updateFavorite(model.restaurant)" ng-if ="model.currentUser">
+                    <span ng-show="model.isFavorite == 'true'" class="glyphicon glyphicon-star"></span>
+                    <span ng-show="!model.currentUser || !model.currentUser.favorites || model.isFavorite == 'false'"
+                          class="glyphicon glyphicon-star-empty"></span>
+                </button>
             </h4>
         </div>
     </div>
 </div>
 
+<div class="container-fluid">
+    <div class="row">
+            <div class="col-md-6">
+                <div>
+                    <form class="form-horizontal ng-pristine ng-valid">
+                        <div class="review">
+                            <img ng-src="{{user.profile_pic_url}}">
+                            <textarea placeholder="Write a review..." class="form-control review-textarea ng-pristine ng-valid ng-touched" name="name" rows="4" cols="20"
+                                      ng-model="model.review.review" ng-focus="focused = true"></textarea>
+                        </div>
+                        <div ng-show="focused">
+                            <label>Rating: </label>
+                            <uib-rating ng-model="model.review.rating"  max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
+                                        on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating">
 
-<div>
-<!--    <h2 >{{model.restaurant}}</h2>-->
+                            </uib-rating>
+                            <a class="btn btn-primary form-control"
+                               ng-if="model.currentUser" ng-click="model.createReview(model.review)">Submit Review</a>
+                            <a class="btn btn-primary form-control" href="#/login"
+                               ng-if="!model.currentUser">Login to rewrite review </a>
+                        </div>
+                    </form>
+                </div>
+                <div ng-repeat = "review in model.reviews" class = "container-fluid">
+                    <div class = "container-fluid ">
+                        <uib-rating ng-model="review.rating"  max="5" read-only="true"  titles="['one','two','three']" aria-labelledby="default-rating">
+
+                        </uib-rating>
+                        <h4> <i>{{review.review}} </i></h4>
+                    </div>
+                    <hr>
+                </div>
+                <div ng-if = "model.reviews.length < 1" class="text-center more-button" >
+                    Be the first foodie to write a review for {{model.restaurant..name}}!
+                </div>
+            </div>
+    </div>
 </div>

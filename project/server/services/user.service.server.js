@@ -267,6 +267,7 @@ module.exports = function (app, models) {
         }else if(query.username) {
             findUserByUsername(req, res);
         } else {
+            console.log(req.user);
             res.json(req.user);
         }
     }
@@ -400,17 +401,17 @@ module.exports = function (app, models) {
 
     function addFavoriteRestaurant(req, res) {
         var userId = req.params.userId;
-        var restaurant = req.body;
+        var _restaurant = req.body;
 
         models
             .restaurantModel
-            .findById(restaurant._id)
+            .findRestaurantById(_restaurant._id)
             .then(
                 function (restaurant) {
                     if (!restaurant) {
                         models
                             .restaurantModel
-                            .createRestaurant(restaurant)
+                            .createRestaurant(_restaurant)
                             .then(
                                 function (newRestaurant) {
                                     models
@@ -423,17 +424,19 @@ module.exports = function (app, models) {
                                             },
                                             function (error) {
                                                 res.sendStatus(400).send(error);
+                                                console.log(error);
                                             }
                                         );
                                 },
                                 function (error) {
                                     res.sendStatus(400).send(error);
+                                    console.log(error);
                                 }
                             )
                     } else {
                         models
                             .userModel
-                            .addFavoriteRestaurant(userId, newRestaurant)
+                            .addFavoriteRestaurant(userId, _restaurant)
                             .then(
                                 function (user) {
                                     res.send(user);
@@ -447,6 +450,7 @@ module.exports = function (app, models) {
                 },
                 function (error) {
                     res.sendStatus(400).send(error);
+                    console.log(error);
                 }
             );
     }

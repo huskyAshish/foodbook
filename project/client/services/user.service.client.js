@@ -21,7 +21,11 @@
             findFollowing: findFollowing,
             findFollowers: findFollowers,
             removeFollowing: removeFollowing,
-            findSuggestedUsers: findSuggestedUsers
+            findSuggestedUsers: findSuggestedUsers,
+            addFavoriteRestaurant: addFavoriteRestaurant,
+            removeFavoriteRestaurant: removeFavoriteRestaurant,
+            findAllFavoritesForUser: findAllFavoritesForUser,
+            findAllReviewsForUser: findAllReviewsForUser
         };
 
         return api;
@@ -101,6 +105,26 @@
         function  removeFollowing(userId, followingId) {
             var url = "/api/foodbook/user/" + userId + "/following/" + followingId;
             return $http.delete(url);
+        }
+
+        function addFavoriteRestaurant(userId, restaurant) {
+            var url = "/api/foodbook/user/" + userId + "/fav/new";
+            return $http.post(url, restaurant);
+        }
+        
+        function removeFavoriteRestaurant(userId, restaurantId) {
+            var url = "/api/foodbook/user/" + userId + "/fav/" + restaurantId;
+            return $http.delete(url);
+        }
+
+        function findAllFavoritesForUser(userId) {
+            var url = "/api/foodbook/user/" + userId + "/fav";
+            return $http.get(url);
+        }
+        
+        function findAllReviewsForUser(userId) {
+            var url = "/api/foodbook/user/" + userId + "/review";
+            return $http.get(url);
         }
     }
 })();

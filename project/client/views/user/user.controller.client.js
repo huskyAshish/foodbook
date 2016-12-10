@@ -3,7 +3,8 @@
         .module("FoodbookApp")
         .controller("LoginController", LoginController)
         .controller("RegisterController", RegisterController)
-        .controller("ProfileController", ProfileController);
+        .controller("ProfileController", ProfileController)
+        .controller("ReviewController", ReviewController);
 
     function LoginController($location, UserService) {
         var vm = this;
@@ -114,5 +115,58 @@
                     console.error(error);
                 });
         }
+    }
+
+    function ReviewController($location, UserService) {
+        var vm = this;
+      //  vm.updateUser = updateUser;
+      //  vm.deleteUser = deleteUser;
+      //  vm.logout = logout;
+
+        function init() {
+            UserService
+                .findCurrentUser()
+                .success(function (user) {
+                    if(user !== '0'){
+                        vm.user = user;
+                        vm.userId = user._id;
+                    }
+                })
+                .error(function (error) {
+                    console.log(error);
+                });
+        }
+        init();
+
+        /*function updateUser(user) {
+            if (user.username) {
+                UserService.updateUser(vm.userId, user);
+            } else {
+                vm.error = "Username cannot be empty!";
+            }
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .success(function () {
+                    $location.url("/login");
+                })
+                .error(function (err) {
+                    console.log("Error logging out user");
+                    console.log(err);
+                });
+        }
+
+        function deleteUser() {
+            UserService
+                .deleteUser(vm.userId)
+                .success(function () {
+                    $location.url("/login");
+                })
+                .error(function (error) {
+                    console.error(error);
+                });
+        }*/
     }
 })();
