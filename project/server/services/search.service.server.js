@@ -40,12 +40,18 @@ module.exports = function (app, Models) {
         request(finalUrl,
             function(error, response, body){
             if (error) {
-                res.statusCode(400).send(error);
+                res.sendStatus(400).send(error);
                 return;
             }
-            var data = JSON.parse(body);
-                console.log(body);
-                res.send(data);
+            try {
+                var data = JSON.parse(body);
+            }
+            catch (e) {
+                console.log("Not JSON");
+                return;
+            }
+            console.log(body);
+            res.send(data);
             }
         );
     }
@@ -75,8 +81,8 @@ module.exports = function (app, Models) {
         params = {
             location: search_location,
             limit: 20,
-            oauth_consumer_key: process.env.YELP_OAUTH_CONSUMER_KEY,
-            oauth_token: process.env.YELP_OAUTH_TOKEN,
+            oauth_consumer_key: 'al-DnXVWzpugqfxphl5zEQ',//process.env.YELP_OAUTH_CONSUMER_KEY,
+            oauth_token: 'SKPHSCIYvPKMn0ElmBN4cNgCBy2Xns6n',//process.env.YELP_OAUTH_TOKEN,
             oauth_signature_method: "HMAC-SHA1",
             oauth_timestamp: new Date().getTime(),
             oauth_nonce: n(),
@@ -84,8 +90,8 @@ module.exports = function (app, Models) {
             category_filter: 'restaurants'
         };
 
-        var consumerSecret = process.env.YELP_CONSUMER_SECRET;
-        var tokenSecret = process.env.YELP_TOKEN_SECRET;
+        var consumerSecret = '8tVLlMcJ0CNoxBQRTSrCCaUE08c';//process.env.YELP_CONSUMER_SECRET;
+        var tokenSecret = 'kok6T6na3J9OnTGk7yWRVa-ORqA';//process.env.YELP_TOKEN_SECRET;
         var signature = oauthSignature.generate(method, url, params, consumerSecret, tokenSecret, {
             encodeSignature: false
         });
@@ -101,10 +107,16 @@ module.exports = function (app, Models) {
         request(finalUrl,
             function(error, response, body){
                 if (error) {
-                    res.statusCode(400).send(error);
+                    res.sendStatus(400).send(error);
                     return;
                 }
-                var data = JSON.parse(body);
+                try {
+                    var data = JSON.parse(body);
+                }
+                catch (e) {
+                    console.log("Not JSON");
+                    return;
+                }
                 res.send(data.businesses);
             }
         );

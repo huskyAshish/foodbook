@@ -1,12 +1,12 @@
-<div class="screen-min">
+<div class="container screen-min">
     <div ng-show="model.message" class="alert alert-success" role="alert">
         {{model.message}}
     </div>
     <div ng-show="model.error" class="alert alert-danger" role="alert">
         {{model.error}}
     </div>
-    <div>
-        <h2>Suggested People</h2>
+    <div class="community-font text-center center-block">
+        <h2><u>Suggested People</u></h2>
         <h3 ng-if = "model.suggestedUsers.length >= 1">
             Hey {{currentUser.firstName ? currentUser.firstName : currentUser.username}}, make some new friends here:
         </h3>
@@ -16,7 +16,7 @@
                 <div class="thumbnail">
                     <a href="#">
                         <img ng-src="{{user.profile_pic_url}}" width="120px" height="120px">
-                        <h4><p align="center">{{user.firstName ? user.firstName : user.username}}</p></h4>
+                        <h3><p align="center">{{user.firstName ? user.firstName : user.username}}</p></h3>
                     </a>
                     <a ng-click="model.addFollowing(user)" width="100%"
                        class="btn btn-primary btn-block" role="button">
@@ -26,15 +26,15 @@
             </li>
         </ul>
         <div ng-if = "(model.suggestedUsers.length < 1) && (model.following.length < 1)" class="text-center more-button" >
-            <h3>No other users yet :(</h3>
+            <h3 class="community-font text-center">No other users yet :(</h3>
         </div>
         <div ng-if = "(model.suggestedUsers.length < 1) && (model.following.length >= 1)" class="text-center more-button" >
-            <h3>No new users to make friends yet :)</h3>
+            <h3 class="community-font text-center">No new users to make friends yet <i class="fa fa-smile-o" aria-hidden="true"></i></h3>
         </div>
         <br>
     </div>
-    <div>
-        <h2>You are Following:</h2>
+    <div class="community-font text-center center-block">
+        <h2><u>You are Following</u></h2>
         <br>
         <ul class="thumbnails list-inline">
             <li ng-repeat="f in model.following">
@@ -54,12 +54,12 @@
         </ul>
 
         <div ng-if = "model.following.length < 1" class="text-center more-button" >
-            <h3>Uh ho! You don't have any friends yet :(</h3>
+            <h3>Uh ho! You don't have any friends yet <i class="fa fa-frown-o" aria-hidden="true"></i></h3>
         </div>
         <br>
     </div>
-    <div>
-        <h2>Your Followers:</h2>
+    <div class="community-font text-center center-block">
+        <h2><u>Your Followers</u></h2>
         <br>
         <ul class="thumbnails list-inline">
             <li ng-repeat="follower in model.followers">
@@ -72,7 +72,7 @@
         </ul>
 
         <div ng-if = "model.followers.length < 1" class="text-center more-button" >
-            <h3>No Follower's yet :(</h3>
+            <h3 class="community-font text-center">No Follower's yet <i class="fa fa-frown-o" aria-hidden="true"></i></h3>
         </div>
     </div>
     <br>

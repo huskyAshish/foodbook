@@ -5034,6 +5034,7 @@ footer p {
 body {
     padding-top: 60px;
     padding-bottom: 70px;
+    overflow-y: scroll;
 }
 
 .review img {
@@ -5045,4 +5046,28 @@ body {
 
 .review textarea {
   width: 80%;
+}
+
+.pad-left-foodbook
+{
+  margin-left: 40px;
+}
+
+.stick-arrow {
+    position: fixed;
+    margin-top: -40px;
+    margin-left: 15px;
+    z-index: 1200;
+}
+
+.community-font {
+  color: #3b5998;
+}
+
+.bg-community {
+  background-color: #333;
+  background: url("../img/bluebg.jpg");
+  background-size: auto;
+  background-position: center center;
+  background-attachment: fixed;
 }

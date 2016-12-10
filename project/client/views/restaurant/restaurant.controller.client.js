@@ -3,11 +3,13 @@
         .module("FoodbookApp")
         .controller("RestaurantController", RestaurantController);
 
-    function RestaurantController($routeParams, SearchService, UserService) {
+    function RestaurantController($routeParams, $location, SearchService, UserService) {
         var vm = this;
         vm.search = search;
         vm.updateFavorite = updateFavorite;
         vm.restaurantId = $routeParams['restaurantId'];
+        vm.loc = $routeParams['loc'];
+        vm.key = $routeParams['key'];
 
         function init() {
             UserService
@@ -23,6 +25,7 @@
                     console.log(error);
                 });
             search(vm.restaurantId);
+            vm.isDetailsPage = true;
         }
 
         init();

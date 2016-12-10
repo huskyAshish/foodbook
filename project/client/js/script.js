@@ -67,11 +67,19 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.navbar-collapse ul .fold a').click(function() {
-		$('.navbar-toggle:visible').click();
+
+	$(window).on('hashchange', function () {
+		$(".navbar-collapse:visible").collapse('hide');
+	});
+
+
+	/*$('.navbar-collapse ul .fold a').click(function() {
+		//$('.navbar-toggle:visible').click();
+		$(".navbar-collapse").collapse('hide');
 	});
 
     $('.dropdown-menu li a').click(function() {
-        $('.navbar-toggle:visible').click();
-    });
+        //$('.navbar-toggle:visible').click();
+		$(".navbar-collapse").collapse('hide');
+    });*/
 });

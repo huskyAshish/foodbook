@@ -10,7 +10,22 @@
                 controller: "LandingController",
                 controllerAs: "model"
             })
-            .when("/home/:restaurantId", {
+            .when("/home/loc/:loc/key/:key", {
+                templateUrl: "views/home/landing.view.client.html",
+                controller: "LandingController",
+                controllerAs: "model"
+            })
+            .when("/home/loc/:loc", {
+                templateUrl: "views/home/landing.view.client.html",
+                controller: "LandingController",
+                controllerAs: "model"
+            })
+            .when("/restaurant/:restaurantId/loc/:loc", {
+                templateUrl: "views/restaurant/restaurant.view.client.html",
+                controller: "RestaurantController",
+                controllerAs: "model"
+            })
+            .when("/restaurant/:restaurantId/loc/:loc/key/:key", {
                 templateUrl: "views/restaurant/restaurant.view.client.html",
                 controller: "RestaurantController",
                 controllerAs: "model"
