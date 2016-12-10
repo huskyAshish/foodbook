@@ -67,6 +67,33 @@ $(document).ready(function() {
 		}
 	});
 
+	$(window).on('hashchange', function() {
+			$(".navbar-collapse").collapse('hide');
+			/*$('.navbar-collapse').collapse({
+				toggle: true
+			});*/
+
+		/*if (! ($('.navbar-collapse').hidden)) {
+			$('.navbar-toggle').click();
+		}*/
+	});
+
+		//$('.navbar-toggle:visible').click();
+		//if ($("#restaurant-page").get(0)){
+		/*if ($("#restaurant-page").get(0)){
+			//$("#lblUpdateStatus").click(function () { ... });
+			$('.back-button').css({'visibility': 'visible'});
+		}
+		else{
+			$('.back-button').css({'visibility': 'hidden'});
+		}*/
+		/*if ($( "body" ).has( '#restaurant-page' )) {
+			//back-button.css( "visible", "false" );
+			$('.navbar-toggle:visible').click();
+		}*/
+		//.. work ..
+	/*});*/
+
 	$('.navbar-collapse ul .fold a').click(function() {
 		$('.navbar-toggle:visible').click();
 	});

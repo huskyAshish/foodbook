@@ -43,9 +43,15 @@ module.exports = function (app, Models) {
                 res.statusCode(400).send(error);
                 return;
             }
-            var data = JSON.parse(body);
-                console.log(body);
-                res.send(data);
+            try {
+                var data = JSON.parse(body);
+            }
+            catch (e) {
+                console.log("Not JSON");
+                return;
+            }
+            console.log(body);
+            res.send(data);
             }
         );
     }
@@ -104,7 +110,13 @@ module.exports = function (app, Models) {
                     res.statusCode(400).send(error);
                     return;
                 }
-                var data = JSON.parse(body);
+                try {
+                    var data = JSON.parse(body);
+                }
+                catch (e) {
+                    console.log("Not JSON");
+                    return;
+                }
                 res.send(data.businesses);
             }
         );

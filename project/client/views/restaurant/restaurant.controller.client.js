@@ -3,7 +3,7 @@
         .module("FoodbookApp")
         .controller("RestaurantController", RestaurantController);
 
-    function RestaurantController($routeParams, SearchService) {
+    function RestaurantController($routeParams, $location, SearchService) {
         var vm = this;
         vm.restaurantId = $routeParams['restaurantId'];
         vm.loc = $routeParams['loc'];
@@ -11,6 +11,7 @@
 
         function init() {
             search(vm.restaurantId);
+            vm.isDetailsPage = true;
         }
 
         init();
