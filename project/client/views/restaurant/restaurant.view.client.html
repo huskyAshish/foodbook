@@ -1,6 +1,9 @@
 <!-- Header Section End -->
 
 <div class="">
+    <a href="#/home/{{model.loc}}/{{model.key}}">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
     <ng-map class="map-prop"
             center="[{{model.restaurant.location.coordinate.latitude}}, {{model.restaurant.location.coordinate.longitude}}]" >
         <marker position="[{{model.restaurant.location.coordinate.latitude}}, {{model.restaurant.location.coordinate.longitude}}]"

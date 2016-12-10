@@ -75,8 +75,8 @@ module.exports = function (app, Models) {
         params = {
             location: search_location,
             limit: 20,
-            oauth_consumer_key: process.env.YELP_OAUTH_CONSUMER_KEY,
-            oauth_token: process.env.YELP_OAUTH_TOKEN,
+            oauth_consumer_key: 'al-DnXVWzpugqfxphl5zEQ',//process.env.YELP_OAUTH_CONSUMER_KEY,
+            oauth_token: 'SKPHSCIYvPKMn0ElmBN4cNgCBy2Xns6n',//process.env.YELP_OAUTH_TOKEN,
             oauth_signature_method: "HMAC-SHA1",
             oauth_timestamp: new Date().getTime(),
             oauth_nonce: n(),
@@ -84,8 +84,8 @@ module.exports = function (app, Models) {
             category_filter: 'restaurants'
         };
 
-        var consumerSecret = process.env.YELP_CONSUMER_SECRET;
-        var tokenSecret = process.env.YELP_TOKEN_SECRET;
+        var consumerSecret = '8tVLlMcJ0CNoxBQRTSrCCaUE08c';//process.env.YELP_CONSUMER_SECRET;
+        var tokenSecret = 'kok6T6na3J9OnTGk7yWRVa-ORqA';//process.env.YELP_TOKEN_SECRET;
         var signature = oauthSignature.generate(method, url, params, consumerSecret, tokenSecret, {
             encodeSignature: false
         });

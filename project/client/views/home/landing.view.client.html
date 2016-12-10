@@ -25,7 +25,7 @@
     <div class="container">
         <div class="panel-group">
             <div ng-repeat="restaurant in model.restaurants" class="panel panel-info">
-                <a href="#/home/{{restaurant.id}}">
+                <a href="#/home/{{restaurant.id}}/{{model.searchLocation}}/{{model.searchKeyword}}">
                     <div class="panel-heading"><h3>{{restaurant.name}}</h3></div>
                     <ul class="list-group panel-body">
                         <div class="row container text-center">

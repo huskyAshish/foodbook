@@ -6,6 +6,8 @@
     function RestaurantController($routeParams, SearchService) {
         var vm = this;
         vm.restaurantId = $routeParams['restaurantId'];
+        vm.loc = $routeParams['loc'];
+        vm.key = $routeParams['key'];
 
         function init() {
             search(vm.restaurantId);
