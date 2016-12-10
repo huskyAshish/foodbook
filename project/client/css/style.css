@@ -5041,10 +5041,11 @@ body {
   margin-left: 40px;
 }
 
-.glyphicon {
+.stick-arrow {
     position: fixed;
-    margin-top: 20px;
+    margin-top: -40px;
     margin-left: 15px;
+    z-index: 1200;
 }
 
 .community-font {
