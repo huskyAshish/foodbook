@@ -5039,13 +5039,17 @@ body {
 
 .review img {
   float: left;
-  width: 100px;
-  height: 108px;
-  margin: 0 5px 0 0;
+  max-width: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  /*padding-bottom: -moz-calc((100px - 20%) / 2); /* Firefox -> 100vh - padding top - padding bottom*/
+  /*padding-bottom: -webkit-calc((100px - 20%) / 2); /* Chrome, Safari -> 100vh - padding top - padding bottom*/
+  /*margin-bottom: -moz-calc((100px - 20%) / 2); /* Firefox -> 100vh - padding top - padding bottom*/
+  /*margin-bottom: -webkit-calc((100px - 20%) / 2); /* Chrome, Safari -> 100vh - padding top - padding bottom*/
 }
 
 .review textarea {
-  width: 80%;
+  width: 68%;
 }
 
 .pad-left-foodbook
