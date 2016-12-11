@@ -9,6 +9,7 @@
             getRestaurantById : getRestaurantById,
          //   findCurrentUser : findCurrentUser,
             createRestaurant: createRestaurant,
+            createReviewForRestaurant: createReviewForRestaurant
           //  findAllReviewsForRestaurant: findAllReviewsForRestaurant,
         };
 
@@ -24,9 +25,18 @@
         }
 
         function createRestaurant(_restaurant) {
-            var url = '/api/foodbook/restaurant';
+            var url = "/api/foodbook/restaurant";
             var restaurant = _restaurant;
             return $http.post(url, restaurant);
+        }
+        
+        function createReviewForRestaurant(_review, _restaurant) {
+            var url = "/api/foodbook/restaurant/" + _restaurant._id + "/review";
+            var body = {
+                restaurant : _restaurant,
+                review: _review
+            };
+            return $http.post(url, body);
         }
     }
 })();

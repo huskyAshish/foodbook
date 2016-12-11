@@ -7,6 +7,8 @@
         var vm = this;
         vm.search = search;
         vm.updateFavorite = updateFavorite;
+        vm.createReview = createReview;
+        vm.reviews = [];
         vm.restaurantId = $routeParams['restaurantId'];
         vm.loc = $routeParams['loc'];
         vm.key = $routeParams['key'];
@@ -83,6 +85,31 @@
                         }
                     );
             }
+        }
+        
+        function createReview(review) {
+
+            var _restaurant = {
+                _id: vm.restaurant.id,
+                name: vm.restaurant.name,
+                location: vm.restaurant.location.city,
+                image: vm.restaurant.image_url,
+                rating: vm.restaurant.rating
+                // reviews
+            }
+            review._user = vm.currentUser;
+            review._restaurant = _restaurant;
+            SearchService
+                .createReviewForRestaurant(review, _restaurant)
+                .then(
+                    function (newReview) {
+                        vm.reviews.push(newReview.data);
+                        swal("Congratulations!", "You successfully submitted review!", success);
+                    },
+                    function (error) {
+                        console.log(error);
+                    }
+                )
         }
     }
 })();
