@@ -98,6 +98,7 @@
             UserService
                 .logout()
                 .success(function () {
+                    $rootScope.loggedInUser = null;
                     $location.url("/login");
                 })
                 .error(function (err) {

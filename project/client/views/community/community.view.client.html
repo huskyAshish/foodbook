@@ -14,7 +14,7 @@
                     </a>
                     <a ng-click="model.addFollowing(user)" width="100%"
                        class="btn btn-primary btn-block" role="button">
-                        Add Friend
+                        Follow
                     </a>
                 </div>
             </li>
@@ -23,7 +23,7 @@
             <h3 class="community-font text-center">No other users yet :(</h3>
         </div>
         <div ng-if = "(model.suggestedUsers.length < 1) && (model.following.length >= 1)" class="text-center more-button" >
-            <h3 class="community-font text-center">No new users to make friends yet <i class="fa fa-smile-o" aria-hidden="true"></i></h3>
+            <h3 class="community-font text-center">No new users to follow yet <i class="fa fa-smile-o" aria-hidden="true"></i></h3>
         </div>
         <br>
     </div>
@@ -41,14 +41,14 @@
                     </a>
                     <a ng-click = "model.removeFollowing(f)" width="100%"
                        class="btn btn-primary btn-block" role="button">
-                        Remove friend
+                        Stop Following
                     </a>
                 </div>
             </li>
         </ul>
 
         <div ng-if = "model.following.length < 1" class="text-center more-button" >
-            <h3>Uh ho! You don't have any friends yet <i class="fa fa-frown-o" aria-hidden="true"></i></h3>
+            <h3>Uh ho! You don't follow anyone yet <i class="fa fa-frown-o" aria-hidden="true"></i></h3>
         </div>
         <br>
     </div>
