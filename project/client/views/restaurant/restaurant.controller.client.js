@@ -12,7 +12,8 @@
         vm.restaurantId = $routeParams['restaurantId'];
         vm.loc = $routeParams['loc'];
         vm.key = $routeParams['key'];
-        
+        vm.sender = $routeParams['sender'];
+
         function init() {
             UserService
                 .findCurrentUser()
@@ -43,8 +44,6 @@
         init();
 
         function search(restaurantId) {
-
-            console.log("Restaurant Id " + restaurantId);
 
             SearchService
                 .getRestaurantById(restaurantId)

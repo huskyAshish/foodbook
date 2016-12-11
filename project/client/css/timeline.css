@@ -152,6 +152,17 @@ img { border: 0; max-width: 100%; }
     color: #c25b4e;
 }
 
+.tl-heading h4 a {
+    margin: 0;
+    color: #c25b4e;
+}
+
+.tl-heading h4 a:hover {
+    margin: 0;
+    color: #1995dc;
+    text-decoration: underline;
+}
+
 .tl-body p, .tl-body ul {
     margin-bottom: 0;
 }

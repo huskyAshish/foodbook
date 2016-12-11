@@ -14,7 +14,7 @@
                 </div>
                 <div class="timeline-panel">
                     <div class="tl-heading">
-                        <h4>{{review._restaurant.name}}</h4>
+                        <h4><a href="#/restaurant/{{review._restaurant._id}}/review/self">{{review._restaurant.name}}</a></h4>
                         <strong>{{review._restaurant.location}}</strong>
                     </div>
                     <uib-rating ng-model="review.rating" max="5" read-only="true"  titles="['one','two','three']"

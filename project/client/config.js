@@ -30,6 +30,11 @@
                 controller: "RestaurantController",
                 controllerAs: "model"
             })
+            .when("/restaurant/:restaurantId/review/:sender", {
+                templateUrl: "views/restaurant/restaurant.view.client.html",
+                controller: "RestaurantController",
+                controllerAs: "model"
+            })
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
                 controller: "LoginController",
