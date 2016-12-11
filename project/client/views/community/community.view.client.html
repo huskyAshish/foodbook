@@ -2,15 +2,15 @@
     <div class="community-font text-center center-block">
         <h2><u>Suggested People</u></h2>
         <h3 ng-if = "model.suggestedUsers.length >= 1">
-            Hey {{currentUser.firstName ? currentUser.firstName : currentUser.username}}, make some new friends here:
+            Hey {{model.currentUser.firstName ? model.currentUser.firstName : model.currentUser.username}}, make some new friends here:
         </h3>
         <br>
         <ul class="thumbnails list-inline">
             <li ng-repeat="user in model.suggestedUsers">
                 <div class="thumbnail">
                     <a href="#">
-                        <img ng-src="{{user.profile_pic_url}}" width="120px" height="120px">
-                        <h3><p align="center">{{user.firstName ? user.firstName : user.username}}</p></h3>
+                        <img ng-src="{{user.profile_pic_url}}" class="community-img">
+                        <h4><p align="center">{{user.firstName ? user.firstName : user.username}}</p></h4>
                     </a>
                     <a ng-click="model.addFollowing(user)" width="100%"
                        class="btn btn-info btn-block" role="button">
@@ -33,7 +33,7 @@
         <ul class="thumbnails list-inline">
             <li ng-repeat="f in model.following">
                 <div class="thumbnail ">
-                    <img ng-src="{{f.profile_pic_url}}">
+                    <img class="community-img" ng-src="{{f.profile_pic_url}}">
                     <a href="#">
                         <h4>
                             <p align="center">{{f.firstName ? f.firstName : f.username}}</p>
@@ -59,7 +59,7 @@
             <li ng-repeat="follower in model.followers">
                 <div class="thumbnail">
                     <a href = "#">
-                        <img ng-src="{{follower.profile_pic_url}}">
+                        <img class="community-img" ng-src="{{follower.profile_pic_url}}">
                         <h4><p align="center">{{follower.firstName ? follower.firstName : follower.username}}</p></h4></a>
                 </div>
             </li>

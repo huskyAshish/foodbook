@@ -5,7 +5,8 @@
         .controller("RegisterController", RegisterController)
         .controller("ProfileController", ProfileController)
         .controller("ReviewController", ReviewController)
-        .controller("AdminController", AdminController);
+        .controller("AdminController", AdminController)
+        .controller("FavoritesController", FavoritesController);
 
     function LoginController($location, UserService) {
         var vm = this;
@@ -174,5 +175,34 @@
                     console.error(error);
                 });
         }
+    }
+    
+    function FavoritesController(UserService) {
+        var vm = this;
+
+        function init() {
+
+            UserService
+                .findCurrentUser()
+                .success(function (user) {
+                    if(user !== '0'){
+                        vm.currentUser = user;
+                        vm.currentUserId = user._id;
+
+                        UserService
+                            .findAllFavoritesForUser(vm.currentUserId)
+                            .success(function (favorites) {
+                                vm.favorites = favorites;
+                            })
+                            .error(function (err) {
+                                console.log(err);
+                            });
+                    }
+                })
+                .error(function (error) {
+                    console.log(error);
+                });
+        }
+        init();
     }
 })();

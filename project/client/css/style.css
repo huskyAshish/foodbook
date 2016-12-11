@@ -4735,7 +4735,7 @@ footer p {
 
 /* All Mobile Sizes (devices and browser) */
 	@media only screen and (max-width: 767px) {
-		p{text-align: center;}
+		/*p{text-align: center;}*/
 		
 		h1, .h1 {
 			font-size: 50px;
@@ -5065,7 +5065,7 @@ body {
 }
 
 .community-font {
-  color: #3b5998;
+  color: #1995dc;
 }
 
 .bg-community {
@@ -5085,4 +5085,13 @@ body {
   max-width: 50px;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.favorite-img {
+  max-width: 100px !important;
+}
+
+.community-img {
+  max-width: 150px !important;
+  min-width: 150px !important;
 }

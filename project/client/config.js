@@ -30,7 +30,7 @@
                 controller: "RestaurantController",
                 controllerAs: "model"
             })
-            .when("/restaurant/:restaurantId/review/:sender", {
+            .when("/restaurant/:restaurantId/:page/:sender", {
                 templateUrl: "views/restaurant/restaurant.view.client.html",
                 controller: "RestaurantController",
                 controllerAs: "model"
@@ -48,6 +48,14 @@
             .when("/user/reviews", {
                 templateUrl: "views/user/reviews.view.client.html",
                 controller: "ReviewController",
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            })
+            .when("/user/favorites", {
+                templateUrl: "views/user/favorites.view.client.html",
+                controller: "FavoritesController",
                 controllerAs: "model",
                 resolve: {
                     loggedin: checkLoggedin
@@ -80,7 +88,10 @@
             .when("/admin", {
                 templateUrl: "views/user/admin.view.client.html",
                 controller: "AdminController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkAdminLoggedin
+                }
             })
             .otherwise({
                 redirectTo: "/home"
@@ -92,6 +103,23 @@
                 .checkLoggedin()
                 .success(function (user) {
                     if(user != '0') {
+                        $rootScope.loggedInUser = user.username;
+                        deferred.resolve();
+                    } else {
+                        $rootScope.loggedInUser = null;
+                        deferred.reject();
+                        $location.url("/login");
+                    }
+                });
+            return deferred.promise;
+        }
+
+        function checkAdminLoggedin($q, UserService, $location, $rootScope) {
+            var deferred = $q.defer();
+            UserService
+                .checkLoggedin()
+                .success(function (user) {
+                    if(user != '0' && user.role === 'ADMIN') {
                         $rootScope.loggedInUser = user.username;
                         deferred.resolve();
                     } else {

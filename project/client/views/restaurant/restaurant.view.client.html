@@ -6,7 +6,11 @@
     <!--<span class="glyphicon glyphicon-chevron-left" style="position: fixed; margin-bottom: -10px; z-index: 9999 "></span>-->
     <i class="stick-arrow fa fa-arrow-left"></i>
 </a>
-<a ng-if="(model.sender == 'self')" href="#/user/reviews">
+<a ng-if="(model.sender == 'self') && (model.page == 'review')" href="#/user/reviews">
+    <!--<span class="glyphicon glyphicon-chevron-left" style="position: fixed; margin-bottom: -10px; z-index: 9999 "></span>-->
+    <i class="stick-arrow fa fa-arrow-left"></i>
+</a>
+<a ng-if="(model.sender == 'self') && (model.page == 'favorite')" href="#/user/favorites">
     <!--<span class="glyphicon glyphicon-chevron-left" style="position: fixed; margin-bottom: -10px; z-index: 9999 "></span>-->
     <i class="stick-arrow fa fa-arrow-left"></i>
 </a>

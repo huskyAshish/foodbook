@@ -13,6 +13,7 @@
         vm.loc = $routeParams['loc'];
         vm.key = $routeParams['key'];
         vm.sender = $routeParams['sender'];
+        vm.page = $routeParams['page'];
 
         function init() {
             UserService
@@ -64,8 +65,8 @@
                 var newRestaurant = {
                     _id: _restaurant.id,
                     name: _restaurant.name,
-                    location: _restaurant.location.city,
-                    image: _restaurant.image_url,
+                    location: _restaurant.location.city + ", " + _restaurant.location.state_code,
+                    thumbnail_url: _restaurant.image_url,
                     rating: _restaurant.rating
                     // reviews
                 }
@@ -101,8 +102,8 @@
             var _restaurant = {
                 _id: vm.restaurant.id,
                 name: vm.restaurant.name,
-                location: vm.restaurant.location.city,
-                image: vm.restaurant.image_url,
+                location: vm.restaurant.location.city + ", " + vm.restaurant.location.state_code,
+                thumbnail_url: vm.restaurant.image_url,
                 rating: vm.restaurant.rating
                 // reviews
             }
