@@ -76,14 +76,16 @@
                 redirectTo: "/home"
             });
 
-        function checkLoggedin($q, UserService, $location) {
+        function checkLoggedin($q, UserService, $location, $rootScope) {
             var deferred = $q.defer();
             UserService
                 .checkLoggedin()
                 .success(function (user) {
                     if(user != '0') {
+                        $rootScope.loggedInUser = user.username;
                         deferred.resolve();
                     } else {
+                        $rootScope.loggedInUser = null;
                         deferred.reject();
                         $location.url("/login");
                     }
