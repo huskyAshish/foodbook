@@ -25,11 +25,17 @@ module.exports = function () {
     }
 
     function findAllReviewsForUser(userId) {
-        return models.userModel.findAllReviewsForUser(userId);
+        return ReviewModel.find({ _user: userId})
+            .populate("_restaurant")
+            .exec();
+        //return models.userModel.findAllReviewsForUser(userId);
     }
 
     function findAllReviewsForRestaurant(restaurantId) {
-        return models.restaurantModel.findAllReviewsForRestaurant(restaurantId);
+        return ReviewModel.find({ _restaurant: restaurantId})
+            .populate("_user")
+            .exec();
+        //return models.restaurantModel.findAllReviewsForRestaurant(restaurantId);
     }
 
     function findReviewById(reviewId) {

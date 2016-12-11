@@ -9,8 +9,8 @@
             getRestaurantById : getRestaurantById,
          //   findCurrentUser : findCurrentUser,
             createRestaurant: createRestaurant,
-            createReviewForRestaurant: createReviewForRestaurant
-          //  findAllReviewsForRestaurant: findAllReviewsForRestaurant,
+            createReviewForRestaurant: createReviewForRestaurant,
+            findAllReviewsForRestaurant: findAllReviewsForRestaurant,
         };
 
         return api;
@@ -37,6 +37,12 @@
                 review: _review
             };
             return $http.post(url, body);
+        }
+
+        function findAllReviewsForRestaurant(restaurantId) {
+            console.log(restaurantId + " printing out in find revss" )
+            var url = "/api/foodbook/restaurant/" + restaurantId + "/review";
+            return $http.get(url);
         }
     }
 })();

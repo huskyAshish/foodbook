@@ -62,7 +62,7 @@ module.exports = function (app, models) {
     }
 
     function findAllReviewsForRestaurant(req, res) {
-        var restaurantId = req.query.restaurantId;
+        var restaurantId = req.params.restaurantId;
 
         models
             .reviewModel
