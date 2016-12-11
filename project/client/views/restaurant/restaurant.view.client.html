@@ -25,19 +25,19 @@
             <img ng-if="!model.restaurant.image_url" class="container img-responsive center-block"
                  src="http://placehold.it/600x400">
             <img ng-if="model.restaurant.image_url" class="container img-responsive center-block"
-                 src="{{model.restaurant.image_url}}">
+                 ng-src="{{model.restaurant.image_url}}">
         </div>
         <div class="col-md-6 container-fluid restaurant-font">
             <h3>
                 {{model.restaurant.name}}
                 <img class="image-responsive restaurant-rating pull-right mam"
-                     src="{{model.restaurant.rating_img_url}}"
+                     ng-src="{{model.restaurant.rating_img_url}}"
                      alt="Image currently unavailable">
             </h3>
-            <h4><u>Rating:</u> {{model.restaurant.rating}}</h4>
+            <h4><u>Rating:</u> &nbsp; {{model.restaurant.rating}}</h4>
             <h4 ng-if="model.restaurant.display_phone"><u>Contact:</u> {{model.restaurant.display_phone}}</h4>
-            <h4><u>Address:</u><span ng-repeat="address in model.restaurant.location.display_address"> {{address}}{{$last ? '' : ','}}</span></h4>
-            <h4><u>Cuisines:</u><span ng-repeat="category in model.restaurant.categories"> {{category[0]}}{{$last ? '' : ','}}</span>
+            <h4><u>Address:</u> &nbsp; <span ng-repeat="address in model.restaurant.location.display_address"> {{address}}{{$last ? '' : ','}}</span></h4>
+            <h4><u>Cuisines:</u> &nbsp; <span ng-repeat="category in model.restaurant.categories"> {{category[0]}}{{$last ? '' : ','}}</span>
             </h4>
             <h4 ng-if="model.currentUser">
                 <u>Favorite this Restaurant?</u>&nbsp;&nbsp;&nbsp;
@@ -83,7 +83,7 @@
                         <div class="panel-heading user">
                                 <span>
                                     <img ng-if="!review._user.profile_pic_url" src="http://placehold.it/50x50">
-                                    <img ng-if="review._user.profile_pic_url" src={{review._user.profile_pic_url}}>
+                                    <img ng-if="review._user.profile_pic_url" ng-src={{review._user.profile_pic_url}}>
                                     <uib-rating class="pull-right" ng-model="review.rating" max="5" read-only="true"  titles="['one','two','three']"
                                                 aria-labelledby="default-rating"></uib-rating>
                                     <h4>{{review._user.username}}</h4>
