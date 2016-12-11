@@ -1,23 +1,25 @@
-<div ng-if="model.user.reviews.length < 1">
+<div ng-if="model.reviews.length < 1">
     <h5>You have not submitted any reviews yet <span class="fa fa-frown-o"></span></h5>
 </div>
-<div ng-if="model.user.reviews.length >= 1" class="content-section-a" id="timeline">
+<div ng-if="model.reviews.length >= 1" class="content-section-a" id="timeline">
+    <header class="page-header">
+        <h1 class="timeline-header-color">Your Reviews</h1>
+    </header>
     <div class="container">
-        <header class="page-header">
-            <h1 class="timeline-header-color">Your Reviews</h1>
-        </header>
-
-        <ul>
-            <li ng-repeat="review in model.user.reviews" ng-class-odd="timeline" ng-class-even="timeline-inverted">
-                <div class="tldate">{{review.dateCreated}}</div>
+        <ul ng-repeat="review in model.reviews" class="timeline">
+            <li><div class="tldate">{{review.dateCreated| date:'MM/dd/yyyy hh:mm'}}</div></li>
+            <li ng-class-even="'timeline-inverted'">
                 <div class="tl-circ">
                     <img class="rotate" src="img/circ.png" alt="Generic placeholder image">
                 </div>
                 <div class="timeline-panel">
                     <div class="tl-heading">
-                        <h4>{{review._rest.name}}</h4>
-                        <strong>{{review._rest.location.city}}</strong>
+                        <h4>{{review._restaurant.name}}</h4>
+                        <strong>{{review._restaurant.location}}</strong>
                     </div>
+                    <uib-rating ng-model="review.rating" max="5" read-only="true"  titles="['one','two','three']"
+                                aria-labelledby="default-rating">
+                    </uib-rating>
                     <br>
                     <div class="tl-body">
                         <p>{{review.review}}</p>

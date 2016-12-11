@@ -6,7 +6,6 @@ img { border: 0; max-width: 100%; }
     font-size: 3.26em;
     text-align: center;
     color: #efefef;
-    text-shadow: 1px 1px 0 #000;
 }
 
 /** timeline box structure **/
@@ -29,13 +28,15 @@ img { border: 0; max-width: 100%; }
 
 .tldate {
     display: block;
-    width: 200px;
-    background: #414141;
-    border: 3px solid #212121;
-    color: #ededed;
+    width: 280px;
+    background: ghostwhite;
+    border: 3px solid #2390bb;
+    color: #2390bb;
     margin: 0 auto;
     padding: 3px 0;
-    font-weight: bold;
+    font-size: medium;
+    border-radius: 15px;
+    font-weight: bolder;
     text-align: center;
     -webkit-box-shadow: 0 0 11px rgba(0,0,0,0.35);
 }
@@ -173,7 +174,7 @@ img { border: 0; max-width: 100%; }
         left: 40px;
     }
 
-    .tldate { width: 140px; }
+    .tldate { width: 180px; }
 
     ul.timeline li .timeline-panel {
         width: calc(100% - 90px);

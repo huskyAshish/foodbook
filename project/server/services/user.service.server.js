@@ -404,11 +404,11 @@ module.exports = function (app, models) {
     function findAllReviewsForUser(req, res) {
         var userId = req.params.userId;
         models
-            .userModel
+            .reviewModel
             .findAllReviewsForUser(userId)
             .then(
-                function (user) {
-                    res.send(user.reviews);
+                function (reviews) {
+                    res.send(reviews);
                 },
                 function(err) {
                     res.statusCode(400).send(err);
