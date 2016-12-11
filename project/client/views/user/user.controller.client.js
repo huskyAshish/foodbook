@@ -190,11 +190,11 @@
                 )
         }
 
-        function deleteUserByUsername(userId) {
+        function deleteUserByUsername(user) {
             UserService
-                .deleteUser(userId)
+                .deleteUser(user._id)
                 .success(function () {
-                    //$location.url("/login");
+                    vm.users.splice(vm.users.indexOf(user), 1);
                 })
                 .error(function (error) {
                     console.error(error);
