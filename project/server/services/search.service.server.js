@@ -2,8 +2,8 @@ module.exports = function (app, Models) {
 
     var UserModel = Models.userModel;
 
-    app.get('/api/project/search', searchRestaurants);
-    app.get('/api/project/search/:restaurantId', searchRestaurantById);
+    app.get('/api/foodbook/search', searchRestaurants);
+    app.get('/api/foodbook/search/:restaurantId', searchRestaurantById);
 
     function searchRestaurantById(req, res) {
         var restaurantId = req.params.restaurantId;

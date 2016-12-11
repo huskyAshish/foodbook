@@ -24,7 +24,7 @@
                     if (user === '0') {
                         vm.error = "Unable to login!";
                     } else {
-                        $location.url("/user/" + user._id);
+                        $location.url("/user");
                     }
                 })
                 .error(function (error) {
@@ -52,7 +52,7 @@
                     UserService
                         .register(user)
                         .success(function (user) {
-                            $location.url("/user/" + user._id);
+                            $location.url("/user");
                         })
                         .error(function (error) {
                             console.log(error);

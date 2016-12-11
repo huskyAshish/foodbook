@@ -5088,10 +5088,13 @@ body {
 }
 
 .favorite-img {
-  max-width: 100px !important;
+  width: 100px !important;
+  height: 100px; /* Firefox -> 100vh - padding top - padding bottom*/
+  overflow: hidden;
 }
 
 .community-img {
-  max-width: 150px !important;
-  min-width: 150px !important;
+  width: 150px !important;
+  height: 150px !important;
+  overflow: hidden;
 }

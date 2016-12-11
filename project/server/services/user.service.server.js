@@ -32,7 +32,7 @@ module.exports = function (app, models) {
     // Saving image with extension
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, __dirname+'/../../client/project/uploads')
+            cb(null, __dirname+'/../../client/foodbook/uploads')
         },
         filename: function (req, file, cb) {
             cb(null, file.fieldname + '-' + Date.now() + '.' + mime.extension(file.mimetype));
@@ -63,15 +63,15 @@ module.exports = function (app, models) {
     app.delete("/api/foodbook/user/:userId/following/:followingId", removeFollowing);
     app.get("/api/foodbook/user/:userId/community", findSuggestedUsers);
 
-    app.get('/project/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-    app.get('/project/auth/facebook/callback',
+    app.get('/foodbook/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get('/foodbook/auth/facebook/callback',
         passport.authenticate('facebook', {
             successRedirect: '/#/user',
             failureRedirect: '/#/login'
         }));
 
-    app.get('/project/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-    app.get('/project/auth/google/callback',
+    app.get('/foodbook/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/foodbook/auth/google/callback',
         passport.authenticate('google', {
             successRedirect: '/#/user',
             failureRedirect: '/#/login'
@@ -383,7 +383,7 @@ module.exports = function (app, models) {
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
 
-        var url = "/project/uploads/" + filename;
+        var url = "/foodbook/uploads/" + filename;
 
         var user = {};
         user._id = userId;

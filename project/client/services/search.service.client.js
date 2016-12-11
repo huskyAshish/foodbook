@@ -16,12 +16,12 @@
         return api;
 
         function getSearchResults(location, keyword) {
-            return $http.get("/api/project/search?location=" + location + "&keyword=" + keyword);
+            return $http.get("/api/foodbook/search?location=" + location + "&keyword=" + keyword);
         }
 
         function getRestaurantById(restaurantId) {
             console.log(restaurantId);
-            return $http.get("/api/project/search/" + restaurantId);
+            return $http.get("/api/foodbook/search/" + restaurantId);
         }
 
         function createRestaurant(_restaurant) {
