@@ -12,7 +12,7 @@
         vm.restaurantId = $routeParams['restaurantId'];
         vm.loc = $routeParams['loc'];
         vm.key = $routeParams['key'];
-
+        
         function init() {
             UserService
                 .findCurrentUser()
@@ -20,7 +20,7 @@
                     if (user !== '0' && user !== "") {
                         vm.currentUser = user;
                         vm.currentUserId = user._id;
-                        vm.isFavorite = vm.currentUser.favorites.indexOf(vm.restaurantId) == -1 ? 'false' : 'true';
+                        vm.isFavorite = (vm.currentUser.favorites.indexOf(vm.restaurantId) == -1) ? 'false' : 'true';
                     }
                 })
                 .error(function (error) {
@@ -28,6 +28,16 @@
                 });
             search(vm.restaurantId);
             vm.isDetailsPage = true;
+
+            SearchService
+                .findAllReviewsForRestaurant(vm.restaurantId)
+                .success(function (reviews) {
+                    vm.reviews = reviews;
+                })
+                .error (function(err) {
+                        console.log(err);
+                    }
+                );
         }
 
         init();
