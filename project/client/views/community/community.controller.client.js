@@ -60,11 +60,19 @@
                 .addFollowing(vm.currentUserId, following)
                 .then(
                     function (user) {
-                        vm.message = "Started following: " + following.username;
+                        swal({
+                            title: "Yippee!",
+                            text: "You are now following " + (following.firstName ? following.firstName : following.username) + "! <i class='fa fa-smile-o'></i>",
+                            html: true
+                         });
                         init();
                     },
                     function(err){
-                        vm.error = "Aww Snap! Some error occurred :( Could not follow " + following.username + "user."
+                        swal({
+                            title: "Aww Snap!",
+                            text: "Some error occurred. Could not follow " + (following.firstName ? following.firstName : following.username) + ". <i class='fa fa-frown-o'></i>",
+                            html: true
+                        });
                         console.log(err);
                     }
                 );
@@ -75,11 +83,19 @@
                 .removeFollowing(vm.currentUserId, following._id)
                 .then(
                     function (user) {
-                        vm.message = "Stopped following: " + following.username;
+                        swal({
+                            title: "No more a follower!",
+                            text: "You have unfollowed " + (following.firstName ? following.firstName : following.username) + "! <i class='fa fa-frown-o'></i>",
+                            html: true
+                        });
                         init();
                     },
                     function (err) {
-                        vm.error = "Aww Snap! Some error occurred :( Couldn't stop following " + following.username + "user."
+                        swal({
+                            title: "Aww Snap!",
+                            text: "Some error occurred. Could not stop following " + (following.firstName ? following.firstName : following.username) + ". <i class='fa fa-frown-o'></i>",
+                            html: true
+                        });
                         console.log(err);
                     }
                 );

@@ -64,7 +64,7 @@
                     .then(
                         function (restaurant) {
                             vm.isFavorite = 'true';
-                            alert("Favorite added");
+                            swal("Yayy!", "You have a new favorite!", "success")
                         },
                         function(err){
                             console.log(err);
@@ -76,7 +76,7 @@
                     .then(
                         function (user) {
                             vm.isFavorite = 'false';
-                            alert("Removed from favorites");
+                            swal("Sorry!", "We are sorry that you lost a favorite!", "success")
                         },
                         function (err) {
                             console.log(err);
