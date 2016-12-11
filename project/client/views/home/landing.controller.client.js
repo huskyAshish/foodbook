@@ -46,7 +46,6 @@
                                     if (results[1]) {
                                         if (vm.searchLocation == undefined || vm.searchLocation == null || vm.searchLocation == "") {
                                             vm.searchLocation = results[1].formatted_address;
-                                            console.log("Search location in:" + vm.searchLocation);
                                             vm.search();
                                         }
                                     } else {
@@ -77,8 +76,6 @@
             if (!(vm.searchLocation == undefined || vm.searchLocation == null || vm.searchLocation == "")) {
                 vm.search();
             }
-
-            console.log("Search location out:" + vm.searchLocation);
         }
 
         init();

@@ -68,7 +68,6 @@ $(document).ready(function() {
 		}
 	});
 
-
 	$(window).on('hashchange', function () {
 		$(".navbar-collapse:visible").collapse('hide');
 	});
@@ -76,7 +75,7 @@ $(document).ready(function() {
 
 	/*$('.navbar-collapse ul .fold a').click(function() {
 		//$('.navbar-toggle:visible').click();
-		$(".navbar-collapse").collapse('hide');
+	 $(".navbar-collapse:visible").collapse('hide');
 	});
 
     $('.dropdown-menu li a').click(function() {

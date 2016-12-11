@@ -13,10 +13,10 @@
         </div>
         <div class="navbar-collapse collapse navbar-right" id="navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li class="menuItem fold"><a href="#/login">Login</a>
-                <li class="menuItem fold"><a href="#/register">Register</a>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">User
+                <li ng-if="!(loggedInUser)" class="menuItem fold"><a href="#/login">Login</a>
+                <li ng-if="!(loggedInUser)" class="menuItem fold"><a href="#/register">Register</a>
+                <li ng-if="(loggedInUser)" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{loggedInUser}}
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Profile</a></li>
@@ -26,27 +26,10 @@
                     </ul>
                 </li>
                 </li>
-                <li class="menuItem fold"><a href="#">Logout</a></li>
+                <li ng-if="(loggedInUser)"  class="menuItem fold"><a href="#">Logout</a></li>
             </ul>
         </div>
     </div>
 </nav>
-
-<div id="home">
-
-</div>
-<!--<script src="js/jquery-1.10.2.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/owl.carousel.js"></script>
-<script type="text/javascript" src="js/jquery.corner.js"></script>
-<script src="js/wow.min.js"></script>
-<script>
-    new WOW().init();
-</script>
-<script src="js/classie.js"></script>
-<script src="js/uiMorphingButton_inflow.js"></script>
-<script src="js/jquery.magnific-popup.js"></script>-->
-
+<!-- For animated shake, this script is needed here -->
 <script src="js/script.js"></script>
-<!-- StikyMenu -->
-<script src="js/stickNav.js"></script>
