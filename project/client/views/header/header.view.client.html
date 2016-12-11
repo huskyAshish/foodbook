@@ -1,4 +1,4 @@
-<nav id="myNav" class="navbar navbar-default navbar-fixed-top fixed-pos">
+<nav id="myNav" class="navbar navbar-default navbar-fixed-top fixed-pos" ng-controller="HeaderController as model">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-ex1-collapse">
@@ -16,7 +16,7 @@
                 <li ng-if="!(loggedInUser)" class="menuItem fold"><a href="#/login">Login</a>
                 <li ng-if="!(loggedInUser)" class="menuItem fold"><a href="#/register">Register</a>
                 <li ng-if="(loggedInUser)" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{loggedInUser}}
+                    <a class="dropdown-toggle" data-toggle="dropdown">{{loggedInUser}}
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Profile</a></li>
@@ -26,7 +26,7 @@
                     </ul>
                 </li>
                 </li>
-                <li ng-if="(loggedInUser)"  class="menuItem fold"><a href="#">Logout</a></li>
+                <li ng-if="(loggedInUser)"  class="menuItem fold"><a ng-click="model.logout()">Logout</a></li>
             </ul>
         </div>
     </div>

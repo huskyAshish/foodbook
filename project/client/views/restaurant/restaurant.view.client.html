@@ -34,7 +34,7 @@
             <h4><u>Cuisines:</u><span ng-repeat="category in model.restaurant.categories"> {{category[0]}}{{$last ? '' : ','}}</span>
             </h4>
             <h4 ng-if="model.currentUser">
-                <u>Favorite this Restaurant?:</u>&nbsp;&nbsp;&nbsp;
+                <u>Favorite this Restaurant?</u>&nbsp;&nbsp;&nbsp;
                 <button class="btn btn-info"
                         ng-click="model.updateFavorite(model.restaurant)" ng-if ="model.currentUser">
                     <span ng-show="model.isFavorite == 'true'" class="glyphicon glyphicon-star"></span>
