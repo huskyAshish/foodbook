@@ -57,4 +57,9 @@
     <a class="btn btn-warning btn-block"
        ng-click="model.deleteUser()">Unregister</a>
     <br>
+    <br>
+    <a ng-if="model.user.role == 'ADMIN'"
+       class="btn btn-primary btn-block"
+       href="#/admin">Admin</a>
+    <br>
 </div>

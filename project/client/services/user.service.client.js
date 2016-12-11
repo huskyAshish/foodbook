@@ -10,6 +10,7 @@
             findUserById : findUserById,
             findUserByUsername : findUserByUsername,
             findUserByCredentials : findUserByCredentials,
+            findUsersByKey: findUsersByKey,
             updateUser : updateUser,
             deleteUser : deleteUser,
             login: login,
@@ -48,6 +49,11 @@
 
         function  findUserByCredentials(username, password) {
             var url = '/api/foodbook/user?username=' + username + "&password=" + password;
+            return $http.get(url);
+        }
+
+        function findUsersByKey(usernameKey) {
+            var url = '/api/foodbook/admin/search?usernamekey=' + usernameKey;
             return $http.get(url);
         }
 

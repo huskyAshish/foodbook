@@ -4,7 +4,8 @@
         .controller("LoginController", LoginController)
         .controller("RegisterController", RegisterController)
         .controller("ProfileController", ProfileController)
-        .controller("ReviewController", ReviewController);
+        .controller("ReviewController", ReviewController)
+        .controller("AdminController", AdminController);
 
     function LoginController($location, UserService) {
         var vm = this;
@@ -168,5 +169,35 @@
                     console.error(error);
                 });
         }*/
+    }
+
+    function AdminController(UserService) {
+        var vm = this;
+        vm.deleteUserByUsername = deleteUserByUsername;
+        vm.searchByUsernameKey = searchByUsernameKey;
+
+        function searchByUsernameKey(usernameKey) {
+            UserService
+                .findUsersByKey(usernameKey)
+                .success(function (response) {
+                        vm.users = response;
+                    }
+                )
+                .error(function (err) {
+                        console.log(err);
+                    }
+                )
+        }
+
+        function deleteUserByUsername(userId) {
+            UserService
+                .deleteUser(userId)
+                .success(function () {
+                    //$location.url("/login");
+                })
+                .error(function (error) {
+                    console.error(error);
+                });
+        }
     }
 })();

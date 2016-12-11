@@ -72,6 +72,11 @@
                     loggedin: checkLoggedin
                 }
             })
+            .when("/admin", {
+                templateUrl: "views/user/admin.view.client.html",
+                controller: "AdminController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/home"
             });

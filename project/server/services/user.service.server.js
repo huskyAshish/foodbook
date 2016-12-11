@@ -21,8 +21,8 @@ module.exports = function (app, models) {
     };
 
     passport.use(new LocalStrategy(localStrategy));
-    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
-    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+    //passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    //passport.use(new GoogleStrategy(googleConfig, googleStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
@@ -63,7 +63,6 @@ module.exports = function (app, models) {
     app.delete("/api/foodbook/user/:userId/following/:followingId", removeFollowing);
     app.get("/api/foodbook/user/:userId/community", findSuggestedUsers);
 
-
     app.get('/project/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/project/auth/facebook/callback',
         passport.authenticate('facebook', {
@@ -77,6 +76,7 @@ module.exports = function (app, models) {
             successRedirect: '/#/user',
             failureRedirect: '/#/login'
         }));
+    app.get('/api/foodbook/admin/search', findUsersByKey);
 
 
     function localStrategy(username, password, done) {
@@ -285,6 +285,21 @@ module.exports = function (app, models) {
                     res.statusCode(404).send(error);
                 }
             )
+    }
+
+    function findUsersByKey(req, res) {
+        var usernamekey = req.query.usernamekey;
+
+        UserModel
+            .findUsersByKey(usernamekey)
+            .then(
+                function (users) {
+                    res.send(users);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
+                }
+            );
     }
 
     function findUserByCredentials(req, res) {

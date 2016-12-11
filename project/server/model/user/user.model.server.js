@@ -18,6 +18,9 @@ module.exports = function () {
         updateUser: updateUser,
         deleteUser: deleteUser,
 
+        // Admin
+        findUsersByKey: findUsersByKey,
+
         // Reviews
         findAllReviewsForUser: findAllReviewsForUser,
 
@@ -140,6 +143,10 @@ module.exports = function () {
                 );
             }
         );
+    }
+
+    function findUsersByKey(usernameKey) {
+        return UserModel.find({username: usernameKey});
     }
 
     function findFollowing(userId) {

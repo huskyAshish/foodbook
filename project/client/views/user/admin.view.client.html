@@ -1,0 +1,49 @@
+<!-- Header Section End -->
+<section id="intro" class="section-intro">
+    <div class="overlay">
+        <div class="container">
+            <div class="main-text">
+                <div class="form-group">
+                    <input type="text" ng-model="model.searchUser" ng-change="model.search(model.searchUser)" class="form-control" id="user" placeholder="User: Alice">
+                </div>
+                <div class="form-group">
+                    <button ng-click="model.searchByUsernameKey(model.searchUser)" class="btn btn-primary btn-block"><strong>Search</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+
+<section ng-if="(model.searchUser)" id="search-result">
+    <div ng-if="model.users.length == 0">
+        <h2 class="text-center">No results yet. Please refine your search query.</h2>
+    </div>
+    <div class="container">
+        <div class="panel-group">
+            <div ng-repeat="user in model.users" class="panel panel-info">
+                <a ng-if = "(model.searchUser)">
+                    <div class="panel-heading"><h3>{{user.username}}</h3></div>
+                    <ul class="list-group panel-body">
+                        <div class="row container text-center">
+                            <div class="col-sm-3">
+                                <img class="img-responsive center-block" src="{{user.image_url}}">
+                            </div>
+                            <div class="col-sm-3">
+                                <h4>First Name:</h4>
+                                <h5>{{user.firstName}}</h5>
+                            </div>
+                            <div class="col-sm-3">
+                                <h4>Last Name:</h4>
+                                <h5>{{user.lastName}}</h5>
+                            </div>
+                            <div class="col-sm-3">
+                                <button ng-click="model.deleteUserByUsername(user._id)" class="btn btn-danger btn-block"><strong>Delete</strong></button>
+                            </div>
+                        </div>
+                    </ul>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
