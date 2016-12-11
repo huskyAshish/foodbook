@@ -3,7 +3,7 @@
         .module("FoodbookApp")
         .controller("RestaurantController", RestaurantController);
 
-    function RestaurantController($routeParams, $location, SearchService, UserService) {
+    function RestaurantController($routeParams, $route, SearchService, UserService) {
         var vm = this;
         vm.search = search;
         vm.updateFavorite = updateFavorite;
@@ -113,8 +113,10 @@
                 .createReviewForRestaurant(review, _restaurant)
                 .then(
                     function (newReview) {
-                        vm.reviews.push(newReview.data);
-                        swal("Congratulations!", "You successfully submitted review!", success);
+                        swal("Congratulations!", "You successfully submitted review!", "success");
+                        //vm.reviews.push(review);
+                        //init();
+                        $route.reload();
                     },
                     function (error) {
                         console.log(error);

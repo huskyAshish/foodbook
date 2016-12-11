@@ -26,7 +26,7 @@
         <div class="col-md-6 container-fluid restaurant-font">
             <h3>
                 {{model.restaurant.name}}
-                <img class="image-responsive restaurant-rating pull-right"
+                <img class="image-responsive restaurant-rating pull-right mam"
                      src="{{model.restaurant.rating_img_url}}"
                      alt="Image currently unavailable">
             </h3>
@@ -48,11 +48,11 @@
     </div>
 </div>
 
-<div class="container center-block text-center">
+<div class="container">
     <br>
     <div class=container"">
         <div>
-            <div class="img-responsive review center-block text-center">
+            <div class="img-responsive review">
                 <span><img ng-if="!model.currentUser" src="http://placehold.it/100x100">
                 <img ng-if="model.currentUser" ng-src="{{model.currentUser.profile_pic_url}}">
                 <textarea placeholder="Write a review..." class="form-control review-textarea ng-pristine ng-valid ng-touched" name="name" rows="4" cols="20"
@@ -64,24 +64,30 @@
                     <label>Rating: </label>
                     <uib-rating ng-model="model.review.rating"  max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
                                 on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating">
-
                     </uib-rating>
-                    <a class="btn btn-primary form-control"
+                    <a class="btn btn-info form-control"
                        ng-if="model.currentUser" ng-click="model.createReview(model.review)">Submit Review</a>
-                    <a class="btn btn-primary form-control" href="#/login"
+                    <a class="btn btn-info form-control" href="#/login"
                        ng-if="!model.currentUser">Login to rewrite review </a>
                 </div>
             </form>
-
             </div>
+            <br class="pal">
             <div class="container-fluid">
                 <div class="panel-group">
                     <div ng-repeat="review in model.reviews" class="panel panel-info">
-                        <div class = "panel-body">
-                        <h4> <i>{{review}}</i></h4>
-                         <uib-rating ng-model="review.rating"  max="5" read-only="true"  titles="['one','two','three']"
-                                    aria-labelledby="default-rating">
-                        </uib-rating>
+                        <div class="panel-heading user">
+                                <span>
+                                    <img ng-if="!review._user.profile_pic_url" src="http://placehold.it/50x50">
+                                    <img ng-if="review._user.profile_pic_url" src={{review._user.profile_pic_url}}>
+                                    <uib-rating class="pull-right" ng-model="review.rating" max="5" read-only="true"  titles="['one','two','three']"
+                                                aria-labelledby="default-rating"></uib-rating>
+                                    <h4>{{review._user.username}}</h4>
+                                 </span>
+                        </div>
+                        <div class="panel-body">
+                            <h5>{{review.dateCreated.toDateString()}}</h5>
+                            <h5>{{review.review}}</h5>
                         </div>
                     </div>
                 </div>
@@ -93,3 +99,4 @@
         </div>
     </div>
 </div>
+<br class="pal">

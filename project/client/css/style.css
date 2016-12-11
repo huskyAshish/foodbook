@@ -4711,6 +4711,7 @@ footer p {
 .screen-max {
     height: -moz-calc(100vh - 110px); /* Firefox -> 100vh - padding top - padding bottom*/
     height: -webkit-calc(100vh - 110px); /* Chrome, Safari -> 100vh - padding top - padding bottom*/
+    overflow-x: hidden;
     /*overflow-y: scroll;*/
 }
 
@@ -4741,8 +4742,6 @@ footer p {
 		}
 		
 		h3, .h3 {
-			font-size: 20px;
-			text-align:center
 		}
 		.col-sm-4 {margin-bottom: 120px; text-align:center;}
 		.col-sm-4 > i{text-align:center;}
@@ -5050,7 +5049,7 @@ body {
 }
 
 .review textarea {
-  width: 68%;
+  width: 60%;
 }
 
 .pad-left-foodbook
@@ -5079,4 +5078,11 @@ body {
 
 .stick-arrow {
   color: #FFFFFF;
+}
+
+.user img {
+  float: left;
+  max-width: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
