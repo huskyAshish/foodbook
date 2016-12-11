@@ -46,20 +46,16 @@
         <form action="/api/foodbook/user/upload" method="post" enctype="multipart/form-data">
             <input name="myFile" type="file" class="form-control"/>
             <input name="userId" value="{{model.user._id}}" style="display: none"/>
-            <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+            <button type="submit" class="btn btn-block btn-info">Upload Image</button>
         </form>
     </div>
 
-    <a class="btn btn-primary btn-block"
-       href="#">Bucketlist</a>
-    <a class="btn btn-danger  btn-block"
-       ng-click="model.logout()">Logout</a>
     <a class="btn btn-warning btn-block"
        ng-click="model.deleteUser()">Unregister</a>
     <br>
     <br>
     <a ng-if="model.user.role == 'ADMIN'"
-       class="btn btn-primary btn-block"
+       class="btn btn-info btn-block"
        href="#/admin">Admin</a>
     <br>
 </div>
