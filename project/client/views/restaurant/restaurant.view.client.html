@@ -26,7 +26,7 @@
         <div class="col-md-6 container-fluid restaurant-font">
             <h3>
                 {{model.restaurant.name}}
-                <img class="image-responsive restaurant-rating pull-right"
+                <img class="image-responsive restaurant-rating pull-right mam"
                      src="{{model.restaurant.rating_img_url}}"
                      alt="Image currently unavailable">
             </h3>
@@ -65,9 +65,9 @@
                                     on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating">
 
                         </uib-rating>
-                        <a class="btn btn-primary form-control"
+                        <a class="btn btn-info form-control"
                            ng-if="model.currentUser" ng-click="model.createReview(model.review)">Submit Review</a>
-                        <a class="btn btn-primary form-control" href="#/login"
+                        <a class="btn btn-info form-control" href="#/login"
                            ng-if="!model.currentUser">Login to rewrite review </a>
                     </div>
                 </form>
