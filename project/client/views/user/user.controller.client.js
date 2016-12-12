@@ -211,6 +211,19 @@
         var vm = this;
         vm.userId = $routeParams['uid'];
 
+        if (!vm.userId || vm.userId == "") {
+            UserService
+                .findCurrentUser()
+                .success(function (user) {
+                    if(user !== '0'){
+                        vm.userId = user._id;
+                    }
+                })
+                .error(function (error) {
+                    console.log(error);
+                });
+        }
+
         function init() {
             UserService
                 .findUserById(vm.userId)
