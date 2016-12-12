@@ -61,9 +61,17 @@
                     loggedin: checkLoggedin
                 }
             })
-            .when("/user", {
+            .when("/user/edit", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            })
+            .when("/user/:uid", {
+                templateUrl: "views/user/public-profile.view.client.html",
+                controller: "PublicProfileController",
                 controllerAs: "model",
                 resolve: {
                     loggedin: checkLoggedin
@@ -104,6 +112,7 @@
                 .success(function (user) {
                     if(user != '0') {
                         $rootScope.loggedInUser = user.username;
+                        $rootScope.loggedInUserId = user._id;
                         deferred.resolve();
                     } else {
                         $rootScope.loggedInUser = null;

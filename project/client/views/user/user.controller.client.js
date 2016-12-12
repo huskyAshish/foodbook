@@ -25,7 +25,7 @@
                     if (user === '0') {
                         vm.error = "Unable to login!";
                     } else {
-                        $location.url("/user");
+                        $location.url("/user/" + user._id);
                     }
                 })
                 .error(function (error) {
@@ -53,7 +53,7 @@
                     UserService
                         .register(user)
                         .success(function (user) {
-                            $location.url("/user");
+                            $location.url("/user/edit");
                         })
                         .error(function (error) {
                             console.log(error);
@@ -211,20 +211,8 @@
         var vm = this;
         vm.userId = $routeParams['uid'];
 
-        if (!vm.userId || vm.userId == "") {
-            UserService
-                .findCurrentUser()
-                .success(function (user) {
-                    if(user !== '0'){
-                        vm.userId = user._id;
-                    }
-                })
-                .error(function (error) {
-                    console.log(error);
-                });
-        }
-
         function init() {
+
             UserService
                 .findUserById(vm.userId)
                 .success(function (user) {
