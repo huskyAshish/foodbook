@@ -4817,6 +4817,7 @@ footer p {
     text-align: center;
 }
 .section-intro .overlay {
+    margin-top: -5px;
     background: rgba(0, 0, 0, 0.5) repeat;
     width: 100%;
     height: 100%;
