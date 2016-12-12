@@ -5067,6 +5067,11 @@ body {
 
 .community-font {
     color: #1995dc;
+    font-size: 54px;
+    font-family: arvo;
+    letter-spacing: 2px;
+    font-weight: 300;
+    margin: 0.67em 0;
 }
 
 .bg-community {

@@ -1,36 +1,40 @@
 <div class="container">
-    <div ng-show="model.error" class="alert alert-danger" role="alert">
-        {{model.error}}
-    </div>
+    <div class="container">
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
 
-    <h1 class="text-center">Login</h1>
-    <div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text"
-                   ng-model="model.user.username"
-                   class="form-control"
-                   id="username"
-                   placeholder="Username"/>
+        <div class="text-center center-block">
+            <h2 class="community-font timeline-header-color">Login</h2>
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password"
-                   ng-model="model.user.password"
-                   class="form-control"
-                   id="password"
-                   placeholder="Password"/>
+        <div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text"
+                       ng-model="model.user.username"
+                       class="form-control"
+                       id="username"
+                       placeholder="Username"/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password"
+                       ng-model="model.user.password"
+                       class="form-control"
+                       id="password"
+                       placeholder="Password"/>
+            </div>
+            <a ng-click="model.login(model.user)" class="btn btn-info btn-block">Login</a>
+            <a href="/foodbook/auth/google" class="btn btn-danger btn-block">
+                <span class="fa fa-google-plus"></span>
+                Google
+            </a>
+            <a href="/foodbook/auth/facebook" class="btn btn-info btn-block">
+                <span class="fa fa-facebook"></span>
+                Facebook
+            </a>
+            <a class="btn btn-success btn-block" href="#/register">Register</a>
+            <br>
         </div>
-        <a ng-click="model.login(model.user)" class="btn btn-info btn-block">Login</a>
-        <a href="/foodbook/auth/google" class="btn btn-danger btn-block">
-            <span class="fa fa-google-plus"></span>
-            Google
-        </a>
-        <a href="/foodbook/auth/facebook" class="btn btn-info btn-block">
-            <span class="fa fa-facebook"></span>
-            Facebook
-        </a>
-        <a class="btn btn-success btn-block" href="#/register">Register</a>
-        <br>
     </div>
 </div>
