@@ -65,17 +65,18 @@ module.exports = function (app, models) {
 
     app.get('/foodbook/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/foodbook/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect: '/#/user',
-            failureRedirect: '/#/login'
-        }));
+        passport.authenticate('facebook', { failureRedirect: '/#/login' }),
+        function (req, res) {
+            res.redirect('/#/user/' + req.user._id);
+        });
 
     app.get('/foodbook/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/foodbook/auth/google/callback',
-        passport.authenticate('google', {
-            successRedirect: '/#/user',
-            failureRedirect: '/#/login'
-        }));
+        passport.authenticate('google', { failureRedirect: '/#/login' }),
+        function (req, res) {
+            res.redirect('/#/user/' + req.user._id);
+        }
+    );
     app.get('/api/foodbook/admin/search', findUsersByKey);
 
 
