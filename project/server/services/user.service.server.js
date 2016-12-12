@@ -67,14 +67,22 @@ module.exports = function (app, models) {
     app.get('/foodbook/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/#/login' }),
         function (req, res) {
-            res.redirect('/#/user/' + req.user._id);
+            if (req.authInfo.new) {
+                res.redirect('/#/user/edit');
+            } else {
+                res.redirect('/#/user/' + req.user._id);
+            }
         });
 
     app.get('/foodbook/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/foodbook/auth/google/callback',
         passport.authenticate('google', { failureRedirect: '/#/login' }),
         function (req, res) {
-            res.redirect('/#/user/' + req.user._id);
+            if (req.authInfo.new) {
+                res.redirect('/#/user/edit');
+            } else {
+                res.redirect('/#/user/' + req.user._id);
+            }
         }
     );
     app.get('/api/foodbook/admin/search', findUsersByKey);
@@ -157,7 +165,7 @@ module.exports = function (app, models) {
             .then(
                 function (user) {
                     if (user) {
-                        return done(null, user);
+                        return done(null, user, {new: false});
                     } else {
                         var names = profile.displayName.split(" ");
                         var newFacebookUser = {
@@ -174,23 +182,13 @@ module.exports = function (app, models) {
                             .createUser(newFacebookUser)
                             .then(
                                 function (user) {
-                                    return done(null, user);
+                                    return done(null, user, {new: true});
                                 },
                                 function (err) {
                                     return done(err);
                                 }
                             )
                     }
-                },
-                function (err) {
-                    if (err) {
-                        return done(err);
-                    }
-                }
-            )
-            .then(
-                function (user) {
-                    return done(null, user);
                 },
                 function (err) {
                     if (err) {
@@ -206,7 +204,7 @@ module.exports = function (app, models) {
             .then(
                 function (user) {
                     if (user) {
-                        return done(null, user);
+                        return done(null, user, {new: false});
                     } else {
                         var newGoogleUser = {
                             username: profile.name.givenName,
@@ -222,7 +220,7 @@ module.exports = function (app, models) {
                             .createUser(newGoogleUser)
                             .then(
                                 function (user) {
-                                    return done(null, user);
+                                    return done(null, user, {new: true});
                                 },
                                 function (err) {
                                     return done(err);
@@ -231,16 +229,6 @@ module.exports = function (app, models) {
                     }
                 },
                 function(err) {
-                    if (err) {
-                        return done(err);
-                    }
-                }
-            )
-            .then(
-                function(user){
-                    return done(null, user);
-                },
-                function(err){
                     if (err) {
                         return done(err);
                     }
