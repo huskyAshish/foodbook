@@ -6,7 +6,8 @@
         .controller("ProfileController", ProfileController)
         .controller("ReviewController", ReviewController)
         .controller("AdminController", AdminController)
-        .controller("FavoritesController", FavoritesController);
+        .controller("FavoritesController", FavoritesController)
+        .controller("PublicProfileController", PublicProfileController);
 
     function LoginController($location, UserService) {
         var vm = this;
@@ -191,6 +192,41 @@
 
                         UserService
                             .findAllFavoritesForUser(vm.currentUserId)
+                            .success(function (favorites) {
+                                vm.favorites = favorites;
+                            })
+                            .error(function (err) {
+                                console.log(err);
+                            });
+                    }
+                })
+                .error(function (error) {
+                    console.log(error);
+                });
+        }
+        init();
+    }
+
+    function PublicProfileController($routeParams, UserService) {
+        var vm = this;
+        vm.userId = $routeParams['uid'];
+
+        function init() {
+            UserService
+                .findUserById(vm.userId)
+                .success(function (user) {
+                    if (user !== '0') {
+                        vm.user = user;
+                        UserService
+                            .findAllReviewsForUser(vm.userId)
+                            .success(function (reviews) {
+                                vm.reviews = reviews;
+                            })
+                            .error(function (err) {
+                                console.log(err);
+                            });
+                        UserService
+                            .findAllFavoritesForUser(vm.userId)
                             .success(function (favorites) {
                                 vm.favorites = favorites;
                             })

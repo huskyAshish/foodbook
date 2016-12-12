@@ -30,7 +30,7 @@
                 controller: "RestaurantController",
                 controllerAs: "model"
             })
-            .when("/restaurant/:restaurantId/:page/:sender", {
+            .when("/restaurant/:restaurantId/:page/:dest", {
                 templateUrl: "views/restaurant/restaurant.view.client.html",
                 controller: "RestaurantController",
                 controllerAs: "model"
@@ -68,6 +68,14 @@
                 resolve: {
                     loggedin: checkLoggedin
                 }
+            })
+            .when("/user/profile/:uid", {
+                templateUrl: "views/user/public_profile.view.client.html",
+                controller: "PublicProfileController",
+                controllerAs: "model",
+                //resolve: {
+                //    loggedin: checkLoggedin
+                //}
             })
             .when("/community", {
                 templateUrl: "views/community/community.view.client.html",

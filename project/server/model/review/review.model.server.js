@@ -25,7 +25,6 @@ module.exports = function () {
     }
 
     function findAllReviewsForUser(userId) {
-        console.log(userId);
         return ReviewModel.find({ _user: userId})
             .sort({dateCreated: 'desc'})
             .populate("_restaurant")

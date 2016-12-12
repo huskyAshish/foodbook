@@ -5038,10 +5038,10 @@ body {
 }
 
 .review img {
-  float: left;
-  max-width: 100px;
-  margin-left: 10px;
-  margin-right: 10px;
+    float: left;
+    max-width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
   /*padding-bottom: -moz-calc((100px - 20%) / 2); /* Firefox -> 100vh - padding top - padding bottom*/
   /*padding-bottom: -webkit-calc((100px - 20%) / 2); /* Chrome, Safari -> 100vh - padding top - padding bottom*/
   /*margin-bottom: -moz-calc((100px - 20%) / 2); /* Firefox -> 100vh - padding top - padding bottom*/
@@ -5049,12 +5049,12 @@ body {
 }
 
 .review textarea {
-  width: 60%;
+    width: 60%;
 }
 
 .pad-left-foodbook
 {
-  margin-left: 40px;
+    margin-left: 40px;
 }
 
 .stick-arrow {
@@ -5065,36 +5065,79 @@ body {
 }
 
 .community-font {
-  color: #1995dc;
+    color: #1995dc;
 }
 
 .bg-community {
-  background-color: #333;
-  background: url("../img/bluebg.jpg");
-  background-size: auto;
-  background-position: center center;
-  background-attachment: fixed;
+    background-color: #333;
+    background: url("../img/bluebg.jpg");
+    background-size: auto;
+    background-position: center center;
+    background-attachment: fixed;
 }
 
 .stick-arrow {
-  color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 .user img {
-  float: left;
-  max-width: 50px;
-  margin-left: 10px;
-  margin-right: 10px;
+    float: left;
+    max-width: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .favorite-img {
-  width: 100px !important;
-  height: 100px; /* Firefox -> 100vh - padding top - padding bottom*/
-  overflow: hidden;
+    width: 100px !important;
+    height: 100px; /* Firefox -> 100vh - padding top - padding bottom*/
+    overflow: hidden;
 }
 
 .community-img {
-  width: 150px !important;
-  height: 150px !important;
-  overflow: hidden;
+    width: 150px !important;
+    height: 150px !important;
+    overflow: hidden;
+}
+
+.user-hover a {
+    color: #428bca;
+}
+.user-hover a:hover {
+    text-decoration: underline;
+}
+
+.profile-polaroid {
+  margin-top: 50px;
+  position: relative;
+  max-width: 300px;
+}
+
+.profile-polaroid img {
+  border: 10px solid #fff;
+  border-bottom: 45px solid #fff;
+  -webkit-box-shadow: 3px 3px 3px #777;
+  -moz-box-shadow: 3px 3px 3px #777;
+  box-shadow: 3px 3px 3px #777;
+}
+
+.profile-polaroid h2 {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 0px;
+  font-size: 28px;
+  color: #2390bb;
+}
+
+.public-prof-img {
+  border: 10px solid #fff;
+  border-bottom: 45px solid #fff;
+  -webkit-box-shadow: 3px 3px 3px #777;
+  -moz-box-shadow: 3px 3px 3px #777;
+  box-shadow: 3px 3px 3px #777;
+  margin-top: 50px;
+  position: relative;
+  max-width: 300px;
+
+
 }

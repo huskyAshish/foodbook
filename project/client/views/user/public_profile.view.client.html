@@ -1,0 +1,102 @@
+<br class="pal">
+<div class="container">
+    <div class="center-block text-center img-responsive">
+        <!--<img ng-if="!{{model.user.profile.pic_url}}.contains(placehold)" src="{{model.user.profile_pic_url}}">
+        <img ng-if="{{model.user.profile.pic_url}}.contains(placehold)" src="http://placehold.it/300x300">-->
+        <img class="public-prof-img" src="{{model.user.profile_pic_url}}">
+        <header class="page-header">
+            <h1 class="timeline-header-color">
+                <u>{{model.user.firstName ? model.user.firstName + (model.user.lastName ? " " + model.user.lastName : "") : model.user.username}}</u>
+            </h1>
+        </header>
+    </div>
+</div>
+<header class="page-header">
+    <h1 class="timeline-header-color">Reviews</h1>
+</header>
+<div ng-if="model.reviews.length < 1">
+    <header class="text-center container-fluid">
+        <h3 class="timeline-header-color">{{model.user.username}} has not submitted any reviews yet<span class="fa fa-frown-o"></span></h3>
+    </header>
+</div>
+<div ng-if="model.reviews.length >= 1" id="timeline">
+    <div class="container">
+        <ul ng-repeat="review in model.reviews | limitTo: 5" class="timeline">
+            <li><div class="tldate">{{review.dateCreated| date:'MM/dd/yyyy hh:mm'}}</div></li>
+            <li ng-class-even="'timeline-inverted'">
+                <div class="tl-circ">
+                    <img class="rotate" src="img/circ.png" alt="Generic placeholder image">
+                </div>
+                <div class="timeline-panel">
+                    <div class="tl-heading">
+                        <h4><a href="#/restaurant/{{review._restaurant._id}}/profile/{{model.userId}}">{{review._restaurant.name}}</a></h4>
+                        <strong>{{review._restaurant.location}}</strong>
+                    </div>
+                    <uib-rating ng-model="review.rating" max="5" read-only="true"  titles="['one','two','three']"
+                                aria-labelledby="default-rating">
+                    </uib-rating>
+                    <br>
+                    <div class="tl-body">
+                        <p>{{review.review}}</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--<div ng-if="model.reviews.length >= 1">
+    <div class="container">
+        <ul ng-repeat="review in model.reviews | limitTo: 5" class="timeline">
+            <li><div class="tldate">{{review.dateCreated| date:'MM/dd/yyyy hh:mm'}}</div></li>
+            <li ng-class-even="'timeline-inverted'">
+                <div class="tl-circ">
+                    <img class="rotate" src="img/circ.png" alt="Generic placeholder image">
+                </div>
+                <div class="timeline-panel">
+                    <div class="tl-heading">
+                        <h4><a href="#/restaurant/{{review._restaurant._id}}/profile/{{model.userId}}">{{review._restaurant.name}}</a></h4>
+                        <strong>{{review._restaurant.location}}</strong>
+                    </div>
+                    <uib-rating ng-model="review.rating" max="5" read-only="true"  titles="['one','two','three']"
+                                aria-labelledby="default-rating">
+                    </uib-rating>
+                    <br>
+                    <div class="tl-body">
+                        <p>{{review.review}}</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>-->
+
+<header class="page-header">
+    <h1 class="timeline-header-color">Favorites</h1>
+</header>
+<div class="container panel-group">
+    <div ng-repeat="favorite in model.favorites | limitTo: 5" class="panel panel-info">
+        <a href="#/restaurant/{{favorite._id}}/profile/{{model.userId}}">
+            <div class="panel-heading"><h3>{{favorite.name}}</h3></div>
+            <ul class="list-group panel-body">
+                <div class="row container text-center">
+                    <div class="col-sm-3">
+                        <img class="img-responsive center-block favorite-img" ng-src="{{favorite.thumbnail_url}}">
+                    </div>
+                    <div class="col-sm-3">
+                        <h4>Rating:</h4>
+                        <uib-rating ng-model="favorite.rating" max="5" read-only="true"  titles="['one','two','three']"
+                                    aria-labelledby="default-rating"></uib-rating>
+                    </div>
+                    <div class="col-sm-3">
+                        <h4>Location:</h4>
+                        <h5>{{favorite.location}}</h5>
+                    </div>
+                    <div class="col-sm-3" ng-if="favorite.dateCreated">
+                        <h4>Favorite Since:</h4>
+                        <h5>{{favorite.dateCreated| date: 'MM/dd/yyyy'}}</h5>
+                    </div>
+                </div>
+            </ul>
+        </a>
+    </div>
+</div>

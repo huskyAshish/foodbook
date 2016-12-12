@@ -12,7 +12,7 @@
         vm.restaurantId = $routeParams['restaurantId'];
         vm.loc = $routeParams['loc'];
         vm.key = $routeParams['key'];
-        vm.sender = $routeParams['sender'];
+        vm.dest = $routeParams['dest'];
         vm.page = $routeParams['page'];
 
         function init() {

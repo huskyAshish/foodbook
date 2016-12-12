@@ -93,9 +93,6 @@ module.exports = function () {
             UserModel
                 .findById(userId)
                 .then(function (user) {
-                    console.log(restaurant);
-                   // restaurant.save();
-                    console.log(user.favorites);
                     user.favorites.push(restaurant);
                     user.save();
                     success(user);
