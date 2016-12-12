@@ -70,7 +70,7 @@
                 }
             })
             .when("/user/profile/:uid", {
-                templateUrl: "views/user/public_profile.view.client.html",
+                templateUrl: "views/user/public-profile.view.client.html",
                 controller: "PublicProfileController",
                 controllerAs: "model",
                 //resolve: {
