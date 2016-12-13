@@ -162,7 +162,12 @@
             UserService
                 .findUsersByKey(usernameKey)
                 .success(function (response) {
-                        vm.users = response;
+                        vm.users = [];
+                        for (var u in response) {
+                            if (response[u].role != "ADMIN") {
+                                vm.users.push(response[u]);
+                            }
+                        }
                     }
                 )
                 .error(function (err) {

@@ -4,10 +4,7 @@
         <div class="container">
             <div class="main-text">
                 <div class="form-group">
-                    <input type="text" ng-model="model.searchUser" ng-change="model.search(model.searchUser)" class="form-control" id="user" placeholder="User: Alice">
-                </div>
-                <div class="form-group">
-                    <button ng-click="model.searchByUsernameKey(model.searchUser)" class="btn btn-info btn-block"><strong>Search</strong></button>
+                    <input type="text" ng-model="model.searchUser" ng-change="model.searchByUsernameKey(model.searchUser)" class="form-control" id="user" placeholder="User: Alice">
                 </div>
             </div>
         </div>
@@ -27,7 +24,7 @@
                     <ul class="list-group panel-body">
                         <div class="row container text-center">
                             <div class="col-sm-3">
-                                <img class="img-responsive center-block" src="{{user.image_url}}">
+                                <img class="img-responsive center-block favorite-img" src="{{user.profile_pic_url}}">
                             </div>
                             <div class="col-sm-3">
                                 <h4>First Name:</h4>
@@ -38,7 +35,11 @@
                                 <h5>{{user.lastName}}</h5>
                             </div>
                             <div class="col-sm-3">
-                                <button ng-click="model.deleteUserByUsername(user)" class="btn btn-danger btn-block"><strong>Delete</strong></button>
+                                <div class="pal">
+                                    <a ng-click="model.deleteUserByUsername(user)" class="btn btn-danger">
+                                        Delete
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </ul>

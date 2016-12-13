@@ -113,6 +113,7 @@
                     if(user != '0') {
                         $rootScope.loggedInUser = user.username;
                         $rootScope.loggedInUserId = user._id;
+                        $rootScope.foodBooker = user;
                         deferred.resolve();
                     } else {
                         $rootScope.loggedInUser = null;
@@ -130,6 +131,8 @@
                 .success(function (user) {
                     if(user != '0' && user.role === 'ADMIN') {
                         $rootScope.loggedInUser = user.username;
+                        $rootScope.loggedInUserId = user._id;
+                        $rootScope.foodBooker = user;
                         deferred.resolve();
                     } else {
                         $rootScope.loggedInUser = null;

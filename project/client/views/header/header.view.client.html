@@ -19,6 +19,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown">{{loggedInUser}}
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <li ng-if="foodBooker.role == 'ADMIN'"><a href="#/admin">Admin Console</a></li>
                         <li><a href="#/user/{{loggedInUserId}}">Profile</a></li>
                         <li><a href="#/user/edit">Edit Profile</a></li>
                         <li><a href="#/user/favorites">Favourites</a></li>
