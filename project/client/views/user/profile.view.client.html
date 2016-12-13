@@ -54,8 +54,12 @@
             </form>
         </div>
 
-        <a class="btn btn-warning btn-block"
-           ng-click="model.deleteUser()">Unregister</a>
+        <a class="btn btn-success btn-block" ng-click="model.updateUser(model.user)">
+            Update
+        </a>
+        <a class="btn btn-warning btn-block" ng-click="model.deleteUser()">
+            Unregister
+        </a>
         <br>
         <br>
         <a ng-if="model.user.role == 'ADMIN'"
