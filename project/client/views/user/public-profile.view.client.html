@@ -1,20 +1,34 @@
 <div class="container">
     <div class="center-block text-center img-responsive">
         <img class="public-prof-img" src="{{model.user.profile_pic_url}}">
-        <header class="page-header">
             <div class="text-center center-block">
-                <h2 class="community-font timeline-header-color">
+                <h4 class="community-font timeline-header-color">
                     <u>{{model.user.firstName ? model.user.firstName + (model.user.lastName ? " " + model.user.lastName : "") : model.user.username}}</u>
-                </h2>
+                </h4>
+                <h3 class="timeline-header-color">
+                    Location: {{model.user.location ? model.user.location : "Not Disclosed" }}
+                </h3>
+                <h3 class="timeline-header-color">
+                    Email: {{model.user.email ? model.user.email : "Not Disclosed" }}
+                </h3>
+                <h3 class="timeline-header-color">
+                    Follows: {{model.user.following.length}} {{model.user.following.length == 1 ? "person" : "people"}}
+                </h3>
+                <br>
+                <a ng-click="model.addFollowing(model.user)" ng-if="model.followId" class="btn btn-info btn-lg">
+                    Follow {{model.user.firstName ? model.user.firstName : model.user.username}}
+                </a>
+                <a ng-click="model.removeFollowing(model.user)" ng-if="model.removeId" class="btn btn-info btn-lg">
+                    Unfollow {{model.user.firstName ? model.user.firstName : model.user.username}}
+                </a>
             </div>
-        </header>
     </div>
 </div>
 <header class="page-header">
     <div class="text-center center-block">
-        <h2 class="community-font timeline-header-color">
+        <h3 class="community-font timeline-header-color">
             Recent Reviews
-        </h2>
+        </h3>
     </div>
 </header>
 <div ng-if="model.reviews.length < 1">
@@ -49,9 +63,9 @@
 </div>
 <header class="page-header">
     <div class="text-center center-block">
-        <h2 class="community-font timeline-header-color">
+        <h3 class="community-font timeline-header-color">
             Recent Favorites
-        </h2>
+        </h3>
     </div>
 </header>
 

@@ -102,7 +102,7 @@
                                 type: "success",
                                 timer: 1500,
                                 confirmButtonColor: "#1995DC",
-                                confirmButtonText: "Proceed to public profile",
+                                confirmButtonText: "Proceed to public profile"
                             });
                             $location.url("/user/" + vm.userId);
                         },
@@ -235,6 +235,8 @@
     function PublicProfileController($routeParams, UserService) {
         var vm = this;
         vm.userId = $routeParams['uid'];
+        vm.addFollowing = addFollowing;
+        vm.removeFollowing = removeFollowing;
 
         function init() {
 
@@ -264,7 +266,74 @@
                 .error(function (error) {
                     console.log(error);
                 });
+
+            UserService
+                .findCurrentUser()
+                .success(function (currentUser) {
+                    if (currentUser && currentUser != "" && currentUser._id != vm.userId) {
+                        vm.followId = vm.userId;
+                        vm.removeId = null;
+                        vm.currentUserId = currentUser._id;
+
+                        for (var f in currentUser.following) {
+                            if (currentUser.following[f] == vm.followId) {
+                                vm.removeId = vm.followId;
+                                vm.followId = null;
+                                break;
+                            }
+                        }
+                    }
+                })
+                .error(function (err) {
+                    console.log(err);
+                });
         }
         init();
+
+        function addFollowing(following) {
+            UserService
+                .addFollowing(vm.currentUserId, following)
+                .then(
+                    function (user) {
+                        swal({
+                            title: "Yippee!",
+                            text: "You are now following " + (following.firstName ? following.firstName : following.username) + "! <i class='fa fa-smile-o'></i>",
+                            html: true
+                        });
+                        init();
+                    },
+                    function(err){
+                        swal({
+                            title: "Aww Snap!",
+                            text: "Some error occurred. Could not follow " + (following.firstName ? following.firstName : following.username) + ". <i class='fa fa-frown-o'></i>",
+                            html: true
+                        });
+                        console.log(err);
+                    }
+                );
+        }
+
+        function removeFollowing(following){
+            UserService
+                .removeFollowing(vm.currentUserId, following._id)
+                .then(
+                    function (user) {
+                        swal({
+                            title: "No more a follower!",
+                            text: "You have unfollowed " + (following.firstName ? following.firstName : following.username) + "! <i class='fa fa-frown-o'></i>",
+                            html: true
+                        });
+                        init();
+                    },
+                    function (err) {
+                        swal({
+                            title: "Aww Snap!",
+                            text: "Some error occurred. Could not stop following " + (following.firstName ? following.firstName : following.username) + ". <i class='fa fa-frown-o'></i>",
+                            html: true
+                        });
+                        console.log(err);
+                    }
+                );
+        }
     }
 })();

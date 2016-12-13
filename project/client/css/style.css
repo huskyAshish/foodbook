@@ -5074,9 +5074,9 @@ body {
     margin: 0.67em 0;
 }
 
-.bg-community {
+.bg-timeline {
     background-color: #333;
-    background: url("../img/bluebg.jpg");
+    background: url("../img/timeline.jpg");
     background-size: auto;
     background-position: center center;
     background-attachment: fixed;
@@ -5136,14 +5136,15 @@ body {
 }
 
 .public-prof-img {
-  border: 10px solid #fff;
-  border-bottom: 45px solid #fff;
+  border: 2px solid #fff;
+  border-bottom: 10px solid #fff;
   -webkit-box-shadow: 3px 3px 3px #777;
   -moz-box-shadow: 3px 3px 3px #777;
   box-shadow: 3px 3px 3px #777;
   margin-top: 50px;
   position: relative;
-  max-width: 300px;
+  width: 25vw;
+  max-width: 200px;
 }
 
 .form-control[readonly] {

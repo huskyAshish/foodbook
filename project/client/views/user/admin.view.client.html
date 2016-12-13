@@ -19,7 +19,7 @@
     <div class="container">
         <div class="panel-group">
             <div ng-repeat="user in model.users" class="panel panel-info">
-                <a ng-if = "(model.searchUser)">
+                <a ng-if = "(model.searchUser)" href="#/user/profile/{{user._id}}">
                     <div class="panel-heading"><h3>{{user.username}}</h3></div>
                     <ul class="list-group panel-body">
                         <div class="row container text-center">

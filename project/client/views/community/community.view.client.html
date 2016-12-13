@@ -13,7 +13,7 @@
         <ul class="thumbnails list-inline">
             <li ng-repeat="user in model.suggestedUsers">
                 <div class="thumbnail">
-                    <a href="#">
+                    <a href="#/user/profile/{{user._id}}">
                         <img ng-src="{{user.profile_pic_url}}" class="community-img">
                         <h4><p align="center" class="timeline-header-color">{{user.firstName ? user.firstName : user.username}}</p></h4>
                     </a>
@@ -25,10 +25,10 @@
             </li>
         </ul>
         <div ng-if = "(model.suggestedUsers.length < 1) && (model.following.length < 1)" class="text-center more-button" >
-            <h3 class="community-font text-center">No other users yet :(</h3>
+            <h3 class="timeline-header-color">No other users yet <i class="fa fa-frown-o"></i></h3>
         </div>
         <div ng-if = "(model.suggestedUsers.length < 1) && (model.following.length >= 1)" class="text-center more-button" >
-            <h3 class="community-font text-center">No new users to follow yet <i class="fa fa-smile-o" aria-hidden="true"></i></h3>
+            <h4 class="timeline-header-color">No new users to follow yet <i class="fa fa-smile-o" aria-hidden="true"></i></h4>
         </div>
     </div>
     <div class="community-font text-center center-block">
@@ -42,8 +42,8 @@
         <ul class="thumbnails list-inline">
             <li ng-repeat="f in model.following">
                 <div class="thumbnail ">
-                    <img class="community-img" ng-src="{{f.profile_pic_url}}">
-                    <a href="#">
+                    <a href="#/user/profile/{{f._id}}">
+                        <img class="community-img" ng-src="{{f.profile_pic_url}}">
                         <h4>
                             <p align="center" class="timeline-header-color">{{f.firstName ? f.firstName : f.username}}</p>
                         </h4>
@@ -71,7 +71,7 @@
         <ul class="thumbnails list-inline">
             <li ng-repeat="follower in model.followers">
                 <div class="thumbnail">
-                    <a href = "#">
+                    <a href = "#/user/profile/{{follower._id}}">
                         <img class="community-img" ng-src="{{follower.profile_pic_url}}">
                         <h4><p align="center" class="timeline-header-color">{{follower.firstName ? follower.firstName : follower.username}}</p></h4></a>
                 </div>
