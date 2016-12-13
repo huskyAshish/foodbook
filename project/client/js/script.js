@@ -69,7 +69,8 @@ $(document).ready(function() {
 	});
 
 	$(window).on('hashchange', function () {
-		$(".navbar-collapse:visible").collapse('hide');
+		if ($(window).width() <= 767)
+			$(".navbar-collapse:visible").collapse('hide');
 	});
 
 
