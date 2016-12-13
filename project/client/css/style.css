@@ -5113,40 +5113,45 @@ body {
 }
 
 .profile-polaroid {
-  margin-top: 50px;
-  position: relative;
-  max-width: 300px;
+    margin-top: 50px;
+    position: relative;
+    max-width: 300px;
 }
 
 .profile-polaroid img {
-  border: 10px solid #fff;
-  border-bottom: 45px solid #fff;
-  -webkit-box-shadow: 3px 3px 3px #777;
-  -moz-box-shadow: 3px 3px 3px #777;
-  box-shadow: 3px 3px 3px #777;
+    border: 10px solid #fff;
+    border-bottom: 45px solid #fff;
+    -webkit-box-shadow: 3px 3px 3px #777;
+    -moz-box-shadow: 3px 3px 3px #777;
+    box-shadow: 3px 3px 3px #777;
 }
 
 .profile-polaroid h2 {
-  position: absolute;
-  text-align: center;
-  width: 100%;
-  bottom: 0px;
-  font-size: 28px;
-  color: #2390bb;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 0px;
+    font-size: 28px;
+    color: #2390bb;
 }
 
 .public-prof-img {
-  border: 2px solid #fff;
-  border-bottom: 10px solid #fff;
-  -webkit-box-shadow: 3px 3px 3px #777;
-  -moz-box-shadow: 3px 3px 3px #777;
-  box-shadow: 3px 3px 3px #777;
-  margin-top: 50px;
-  position: relative;
-  width: 25vw;
-  max-width: 200px;
+    border: 2px solid #fff;
+    border-bottom: 10px solid #fff;
+    -webkit-box-shadow: 3px 3px 3px #777;
+    -moz-box-shadow: 3px 3px 3px #777;
+    box-shadow: 3px 3px 3px #777;
+    margin-top: 50px;
+    position: relative;
+    width: 25vw;
+    max-width: 200px;
 }
 
 .form-control[readonly] {
-  color: #000000;
+    color: #000000;
+}
+
+.search-button-community {
+    background-color: #1995dc !important;
+    color: #ffffff;
 }

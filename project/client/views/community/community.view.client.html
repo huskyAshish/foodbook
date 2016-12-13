@@ -1,4 +1,44 @@
+<br class="pal">
 <div class="container">
+    <div class="container">
+        <div class="main-text">
+            <div class="input-group">
+                <input type="text" ng-model="model.searchUser" ng-change="model.searchByUsernameKey(model.searchUser)" class="form-control" id="user" placeholder="Find someone new to follow">
+                <span class="input-group-btn">
+                    <a ng-click="model.searchByUsernameKey(model.searchUser)" class="btn btn-default search-button-community" type="button">
+                        <span class="glyphicon glyphicon-search search-button-community"></span>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="community-font text-center center-block" ng-if = "model.searchUsers.length >= 1 && model.searchUser && model.searchUser != ''">
+        <header class="page-header">
+            <div class="text-center center-block">
+                <h2 class="community-font timeline-header-color">
+                    Search Results
+                </h2>
+            </div>
+        </header>
+        <ul class="thumbnails list-inline">
+            <li ng-repeat="user in model.searchUsers | limitTo: 5">
+                <div class="thumbnail">
+                    <a href="#/user/profile/{{user._id}}">
+                        <img ng-src="{{user.profile_pic_url}}" class="community-img">
+                        <h4><p align="center" class="timeline-header-color">{{user.firstName ? user.firstName : user.username}}</p></h4>
+                    </a>
+                    <a ng-click="model.addFollowing(user)" width="100%"
+                       class="btn btn-info btn-block" role="button">
+                        Follow
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div ng-if="model.searchUsers.length == 0 && model.searchUser && model.searchUser != ''" class="community-font text-center more-button">
+        <h3 class="timeline-header-color">Sorry. No results found <i class="fa fa-frown-o" aria-hidden="true"></i></h3>
+    </div>
     <div class="community-font text-center center-block">
         <header class="page-header">
             <div class="text-center center-block">
@@ -11,7 +51,7 @@
             Hey {{model.currentUser.firstName ? model.currentUser.firstName : model.currentUser.username}}, make some new friends here:
         </h3>
         <ul class="thumbnails list-inline">
-            <li ng-repeat="user in model.suggestedUsers">
+            <li ng-repeat="user in model.suggestedUsers | limitTo: 5">
                 <div class="thumbnail">
                     <a href="#/user/profile/{{user._id}}">
                         <img ng-src="{{user.profile_pic_url}}" class="community-img">
@@ -28,7 +68,7 @@
             <h3 class="timeline-header-color">No other users yet <i class="fa fa-frown-o"></i></h3>
         </div>
         <div ng-if = "(model.suggestedUsers.length < 1) && (model.following.length >= 1)" class="text-center more-button" >
-            <h4 class="timeline-header-color">No new users to follow yet <i class="fa fa-smile-o" aria-hidden="true"></i></h4>
+            <h3 class="timeline-header-color">No new users to follow yet <i class="fa fa-smile-o" aria-hidden="true"></i></h3>
         </div>
     </div>
     <div class="community-font text-center center-block">

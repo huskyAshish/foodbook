@@ -8,6 +8,7 @@
 
         vm.addFollowing = addFollowing;
         vm.removeFollowing = removeFollowing;
+        vm.searchByUsernameKey = searchByUsernameKey;
 
         function init() {
 
@@ -99,6 +100,34 @@
                         console.log(err);
                     }
                 );
+        }
+
+        function searchByUsernameKey(usernameKey) {
+            UserService
+                .findUsersByKey(usernameKey)
+                .success(function (users) {
+                        vm.searchUsers = [];
+                        for (var u in users) {
+                            if (users[u]._id != vm.currentUserId) {
+                                var followingUser = false;
+                                for (var f in vm.following) {
+                                    if (users[u]._id == vm.following[f]._id)
+                                    {
+                                        followingUser = true;
+                                        break;
+                                    }
+                                }
+                                if (!followingUser) {
+                                    vm.searchUsers.push(users[u]);
+                                }
+                            }
+                        }
+                    }
+                )
+                .error(function (err) {
+                        console.log(err);
+                    }
+                )
         }
     }
 })();
