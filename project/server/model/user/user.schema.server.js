@@ -20,9 +20,7 @@ module.exports = function () {
         gender: {type: String, enum: ['MALE', 'FEMALE', 'UNKNOWN']},
         location: String,
         profile_pic_url: {type: String, default: "http://placehold.it/150x150"},
-        reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'ReviewModel'}],
         favorites: [{type: String, ref: 'RestaurantModel'}],
-        //favorites: [RestaurantSchema],
         following: [{type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'}],
         role: {type: String, default: "FOODIE", enum: ['ADMIN', 'FOODIE']},
         dateCreated: {type: Date, default: Date.now}

@@ -8,7 +8,6 @@ module.exports = function () {
     var api = {
         setModels: setModels,
         createRestaurant: createRestaurant,
-        findAllReviewsForRestaurant: findAllReviewsForRestaurant,
         findRestaurantById: findRestauantById,
         updateRestaurant: updateRestaurant,
         deleteRestaurant: deleteRestaurant
@@ -21,13 +20,6 @@ module.exports = function () {
 
     function createRestaurant(restaurant) {
         return RestaurantModel.create(restaurant);
-    }
-
-    function findAllReviewsForRestaurant(restaurantId) {
-        return RestaurantModel
-                .findById(restaurantId)
-                .populate("reviews")
-                .exec();
     }
 
     function findRestauantById(restaurantId) {

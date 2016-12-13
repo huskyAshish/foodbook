@@ -7,7 +7,6 @@
         var api = {
             getSearchResults : getSearchResults,
             getRestaurantById : getRestaurantById,
-         //   findCurrentUser : findCurrentUser,
             createRestaurant: createRestaurant,
             createReviewForRestaurant: createReviewForRestaurant,
             findAllReviewsForRestaurant: findAllReviewsForRestaurant,
@@ -40,7 +39,6 @@
         }
 
         function findAllReviewsForRestaurant(restaurantId) {
-            console.log(restaurantId + " printing out in find revss" )
             var url = "/api/foodbook/restaurant/" + restaurantId + "/review";
             return $http.get(url);
         }

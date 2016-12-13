@@ -51,8 +51,6 @@ module.exports = function (app, models) {
     app.delete('/api/foodbook/user/:uid', deleteUser);
     app.post ('/api/foodbook/user/upload', upload.single('myFile'), uploadImage);
 
-    app.get("/api/foodbook/user/:userId/review", findAllReviewsForUser);
-
     app.post("/api/foodbook/user/:userId/fav/new",addFavoriteRestaurant);
     app.get("/api/foodbook/user/:userId/fav",findAllFavoritesForUser);
     app.delete("/api/foodbook/user/:userId/fav/:restaurantId",removeFavoriteRestaurant);
@@ -401,21 +399,6 @@ module.exports = function (app, models) {
                 function (err) {
                     res.sendStatus(400).send(err);
                 });
-    }
-
-    function findAllReviewsForUser(req, res) {
-        var userId = req.params.userId;
-        models
-            .reviewModel
-            .findAllReviewsForUser(userId)
-            .then(
-                function (reviews) {
-                    res.send(reviews);
-                },
-                function(err) {
-                    res.statusCode(400).send(err);
-                }
-            );
     }
 
     function addFavoriteRestaurant(req, res) {

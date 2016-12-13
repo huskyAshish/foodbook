@@ -21,9 +21,6 @@ module.exports = function () {
         // Admin
         findUsersByKey: findUsersByKey,
 
-        // Reviews
-        findAllReviewsForUser: findAllReviewsForUser,
-
         // Favorites
         addFavoriteRestaurant: addFavoriteRestaurant,
         findAllFavoritesForUser: findAllFavoritesForUser,
@@ -79,13 +76,6 @@ module.exports = function () {
 
     function setModels(_models) {
         models = _models;
-    }
-
-    function findAllReviewsForUser(userId) {
-        return UserModel
-            .findById(userId)
-            .populate("reviews")
-            .exec();
     }
     
     function addFavoriteRestaurant(userId, restaurant) {

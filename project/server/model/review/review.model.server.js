@@ -29,7 +29,6 @@ module.exports = function () {
             .sort({dateCreated: 'desc'})
             .populate("_restaurant")
             .exec();
-        //return models.userModel.findAllReviewsForUser(userId);
     }
 
     function findAllReviewsForRestaurant(restaurantId) {
@@ -37,7 +36,6 @@ module.exports = function () {
             .sort({dateCreated: 'desc'})
             .populate("_user")
             .exec();
-        //return models.restaurantModel.findAllReviewsForRestaurant(restaurantId);
     }
 
     function findReviewById(reviewId) {

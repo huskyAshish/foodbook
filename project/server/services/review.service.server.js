@@ -2,6 +2,7 @@ module.exports = function (app, models) {
 
     app.post('/api/foodbook/restaurant/:restaurantId/review', createReview);
     app.get('/api/foodbook/restaurant/:restaurantId/review', findAllReviewsForRestaurant);
+    app.get("/api/foodbook/user/:userId/review", findAllReviewsForUser);
     app.get('/api/foodbook/review/:reviewId', findReviewById);
     app.put('/api/foodbook/review/:reviewId', updateReview);
     app.delete('/api/foodbook/review/:reviewId', deleteReview);
@@ -73,6 +74,21 @@ module.exports = function (app, models) {
                 },
                 function (error) {
                     res.statusCode(404).send(error);
+                }
+            );
+    }
+
+    function findAllReviewsForUser(req, res) {
+        var userId = req.params.userId;
+        models
+            .reviewModel
+            .findAllReviewsForUser(userId)
+            .then(
+                function (reviews) {
+                    res.send(reviews);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
                 }
             );
     }

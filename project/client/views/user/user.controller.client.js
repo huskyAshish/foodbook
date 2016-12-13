@@ -101,8 +101,9 @@
                                 text: "You will now be redirected to your public profile.",
                                 type: "success",
                                 timer: 1500,
-                                confirmButtonColor: "#1995DC",
-                                confirmButtonText: "Proceed to public profile"
+                                showConfirmButton: false
+                           //     confirmButtonColor: "#1995DC",
+                           //     confirmButtonText: "Proceed to public profile"
                             });
                             $location.url("/user/" + vm.userId);
                         },
