@@ -9,6 +9,7 @@
         vm.addFollowing = addFollowing;
         vm.removeFollowing = removeFollowing;
         vm.searchByUsernameKey = searchByUsernameKey;
+        vm.searchAmongFollowing = searchAmongFollowing;
 
         function init() {
 
@@ -103,6 +104,7 @@
         }
 
         function searchByUsernameKey(usernameKey) {
+            vm.searchFollowing = null;
             UserService
                 .findUsersByKey(usernameKey)
                 .success(function (users) {
@@ -119,6 +121,35 @@
                                 }
                                 if (!followingUser) {
                                     vm.searchUsers.push(users[u]);
+                                }
+                            }
+                        }
+                    }
+                )
+                .error(function (err) {
+                        console.log(err);
+                    }
+                )
+        }
+
+        function searchAmongFollowing(usernameKey) {
+            vm.searchUsers = null;
+            UserService
+                .findUsersByKey(usernameKey)
+                .success(function (users) {
+                        vm.searchFollowing = [];
+                        for (var u in users) {
+                            if (users[u]._id != vm.currentUserId) {
+                                var followingUser = false;
+                                for (var f in vm.following) {
+                                    if (users[u]._id == vm.following[f]._id)
+                                    {
+                                        followingUser = true;
+                                        break;
+                                    }
+                                }
+                                if (followingUser) {
+                                    vm.searchFollowing.push(users[u]);
                                 }
                             }
                         }

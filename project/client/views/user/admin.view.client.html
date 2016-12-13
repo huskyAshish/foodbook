@@ -2,8 +2,13 @@
     <div class="overlay">
         <div class="container">
             <div class="main-text">
-                <div class="form-group">
-                    <input type="text" ng-model="model.searchUser" ng-change="model.searchByUsernameKey(model.searchUser)" class="form-control" id="user" placeholder="User: Alice">
+                <div class="input-group">
+                    <input type="text" ng-model="model.searchUser" ng-change="model.searchByUsernameKey(model.searchUser)" class="form-control" id="user" placeholder="Find User: Alice">
+                    <span class="input-group-btn">
+                        <a ng-click="model.searchByUsernameKey(model.searchUser)" class="btn btn-default search-button-community" type="button">
+                            <span class="glyphicon glyphicon-search search-button-community"></span>
+                        </a>
+                    </span>
                 </div>
             </div>
         </div>
