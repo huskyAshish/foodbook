@@ -5145,3 +5145,7 @@ body {
   position: relative;
   max-width: 300px;
 }
+
+.form-control[readonly] {
+  color: #000000;
+}

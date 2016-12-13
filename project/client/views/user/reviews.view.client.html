@@ -5,36 +5,11 @@
 </div>
 <div ng-if="model.reviews.length >= 1" class="content-section-a" id="timeline">
     <header class="page-header">
-        <h1 class="timeline-header-color">Your Reviews</h1>
-    </header>
-    <div class="container">
-        <ul ng-repeat="review in model.reviews" class="timeline">
-            <li><div class="tldate">{{review.dateCreated| date:'MM/dd/yyyy hh:mm'}}</div></li>
-            <li ng-class-even="'timeline-inverted'">
-                <div class="tl-circ">
-                    <img class="rotate" src="img/circ.png" alt="Generic placeholder image">
-                </div>
-                <div class="timeline-panel">
-                    <div class="tl-heading">
-                        <h4><a href="#/restaurant/{{review._restaurant._id}}/review/self">{{review._restaurant.name}}</a></h4>
-                        <strong>{{review._restaurant.location}}</strong>
-                    </div>
-                    <uib-rating ng-model="review.rating" max="5" read-only="true"  titles="['one','two','three']"
-                                aria-labelledby="default-rating">
-                    </uib-rating>
-                    <br>
-                    <div class="tl-body">
-                        <p>{{review.review}}</p>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div ng-if="model.reviews.length >= 1" class="content-section-a" id="timeline">
-    <header class="page-header">
-        <h1 class="timeline-header-color">Your Reviews</h1>
+        <div class="text-center center-block">
+            <h2 class="community-font timeline-header-color">
+                Your Reviews
+            </h2>
+        </div>
     </header>
     <div class="container">
         <ul ng-repeat="review in model.reviews" class="timeline">

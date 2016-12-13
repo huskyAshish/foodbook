@@ -145,7 +145,7 @@ module.exports = function (app, models) {
             .then(
                 function(success){
                     if(success){
-                        res.status(500).send("User exists");
+                        res.status(400).send("User exists");
                     }else{
                         UserModel
                             .createUser(user)
@@ -348,7 +348,7 @@ module.exports = function (app, models) {
                     res.sendStatus(200).send(data);
                 },
                 function (error) {
-                    res.sendStatus(500).send(error);
+                    res.sendStatus(400).send(error);
                 }
             )
 
@@ -364,7 +364,7 @@ module.exports = function (app, models) {
                     res.sendStatus(200).send(data);
                 },
                 function (error) {
-                    res.statusCode(500).send(error);
+                    res.statusCode(400).send(error);
                 }
             )
     }
@@ -396,7 +396,7 @@ module.exports = function (app, models) {
             .userModel
             .updateUser(userId, user)
             .then(function (status) {
-                    res.redirect("/#/user/");
+                    res.redirect("/#/user/edit");
                 },
                 function (err) {
                     res.sendStatus(400).send(err);
