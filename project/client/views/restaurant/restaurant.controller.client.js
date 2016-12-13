@@ -68,7 +68,6 @@
                     location: _restaurant.location.city + ", " + _restaurant.location.state_code,
                     thumbnail_url: _restaurant.image_url,
                     rating: _restaurant.rating
-                    // reviews
                 }
 
                 UserService
@@ -98,6 +97,13 @@
         }
         
         function createReview(review) {
+            if (!(review && review.review && review.rating)) {
+                swal("Sorry!", "Please enter valid review comments and rating.", "error");
+                return;
+            } else if (review.review == "" && review.rating == "") {
+                swal("Sorry!", "Please enter valid review comments and rating.", "error");
+                return;
+            }
 
             var _restaurant = {
                 _id: vm.restaurant.id,
@@ -105,7 +111,6 @@
                 location: vm.restaurant.location.city + ", " + vm.restaurant.location.state_code,
                 thumbnail_url: vm.restaurant.image_url,
                 rating: vm.restaurant.rating
-                // reviews
             }
             review._user = vm.currentUser;
             review._restaurant = _restaurant;
@@ -114,8 +119,6 @@
                 .then(
                     function (newReview) {
                         swal("Congratulations!", "You successfully submitted review!", "success");
-                        //vm.reviews.push(review);
-                        //init();
                         $route.reload();
                     },
                     function (error) {

@@ -1,12 +1,16 @@
 <div ng-if="model.favorites.length < 1">
     <header class="text-center container-fluid">
-        <h3 class="timeline-header-color">You have no favorites yet <span class="fa fa-frown-o"></span></h3>
+        <h3 class="timeline-header-color">You do not have any favorites yet <span class="fa fa-frown-o"></span></h3>
     </header>
 </div>
 
 <div ng-if="model.favorites.length >= 1">
     <header class="page-header">
-        <h1 class="timeline-header-color">Your Favorites</h1>
+        <div class="text-center center-block">
+            <h2 class="community-font timeline-header-color">
+                Your Favorites
+            </h2>
+        </div>
     </header>
     <div class="container">
         <div class="panel-group">

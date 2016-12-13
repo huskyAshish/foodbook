@@ -15,7 +15,7 @@
 
         function login(user) {
             if (!(user && user.username && user.password)) {
-                vm.error = "Please enter username and password.";
+                swal("Oops..", "Please enter valid username and password.", "error");
                 return;
             }
 
@@ -23,14 +23,14 @@
                 .login(user)
                 .success(function (user) {
                     if (user === '0') {
-                        vm.error = "Unable to login!";
+                        swal("Oops..", "Login failed. Please try again.", "error");
                     } else {
                         $location.url("/user/" + user._id);
                     }
                 })
                 .error(function (error) {
                     if (error == "Unauthorized") {
-                        vm.error = "Invalid username and password combination";
+                        swal("Login failed", "Invalid username and password combination.", "error");
                     }
                     console.log(error);
                 });
@@ -43,11 +43,9 @@
 
         function register(user) {
             if (!(user && user.username)) {
-                vm.error = "Enter valid username!";
-                return;
+                swal("Oops..", "Please enter a valid username.", "error");
             } else if (!user.password) {
-                vm.error = "Enter valid password!";
-                return;
+                swal("Oops..", "Please enter a valid password.", "error");
             } else {
                 if (user.password === user.verify) {
                     UserService
@@ -57,7 +55,7 @@
                         })
                         .error(function (error) {
                             if(error == "User exists"){
-                                vm.error="We are sorry! Username '" + user.username + "' is already taken.";
+                                swal("Sorry!", "Username '" + user.username + "' is already taken.", "error");
                                 vm.user.username = "";
                                 vm.user.password = "";
                                 vm.user.verify = "";
@@ -65,8 +63,7 @@
                         });
 
                 } else {
-                    vm.error = "Passwords do not match!";
-                    return;
+                    swal("Uh ho!", "Password and verify password do not match.", "error");
                 }
             }
         }
@@ -95,9 +92,26 @@
 
         function updateUser(user) {
             if (user.username) {
-                UserService.updateUser(vm.userId, user);
+                UserService
+                    .updateUser(vm.userId, user)
+                    .then(
+                        function (status) {
+                            swal({
+                                title: "Details Updated!",
+                                text: "You will now be redirected to your public profile.",
+                                type: "success",
+                                timer: 1500,
+                                confirmButtonColor: "#1995DC",
+                                confirmButtonText: "Proceed to public profile",
+                            });
+                            $location.url("/user/" + vm.userId);
+                        },
+                        function (err) {
+                            swal("Oops..", "Update failed. Please try again.", "error");
+                        }
+                    );
             } else {
-                vm.error = "Username cannot be empty!";
+                swal("Oops..", "Please enter a valid username.", "error");
             }
         }
 
@@ -109,7 +123,7 @@
                     $location.url("/login");
                 })
                 .error(function (err) {
-                    console.log("Error logging out user");
+                    swal("Oops..", "Error logging out. Please try again.", "error");
                     console.log(err);
                 });
         }
@@ -121,6 +135,7 @@
                     $location.url("/login");
                 })
                 .error(function (error) {
+                    swal("Oops..", "De-register failed. Please try again.", "error");
                     console.error(error);
                 });
         }

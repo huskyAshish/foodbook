@@ -5,6 +5,13 @@
         </div>
         <form>
             <div class="form-group">
+                <label for="username">Username</label>
+                <input ng-model="model.user.username"
+                       class="form-control"
+                       id="username"
+                       placeholder="Username" readonly/>
+            </div>
+            <div class="form-group">
                 <label for="firstName">First Name</label>
                 <input type="text"
                        ng-model="model.user.firstName"
@@ -19,14 +26,6 @@
                        class="form-control"
                        id="lastName"
                        placeholder="Last Name"/>
-            </div>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text"
-                       ng-model="model.user.username"
-                       class="form-control"
-                       id="username"
-                       placeholder="Username"/>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -58,7 +57,7 @@
             Update
         </a>
         <a class="btn btn-warning btn-block" ng-click="model.deleteUser()">
-            Unregister
+            De-register
         </a>
         <br>
         <br>
