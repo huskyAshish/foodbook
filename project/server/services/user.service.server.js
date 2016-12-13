@@ -139,24 +139,37 @@ module.exports = function (app, models) {
     function register (req, res) {
         var user = req.body;
         user.password = bcrypt.hashSync(user.password);
+
         UserModel
-            .createUser(user)
+            .findUserByUsername(user.username)
             .then(
-                function (user){
-                    if(user){
-                        req.login(user, function(err) {
-                            if(err) {
-                                res.status(400).send(err);
-                            } else {
-                                res.json(user);
-                            }
-                        });
+                function(success){
+                    if(success){
+                        res.status(500).send("User exists");
+                    }else{
+                        UserModel
+                            .createUser(user)
+                            .then(
+                                function (user){
+                                    if(user){
+                                        req.login(user, function(err) {
+                                            if(err) {
+                                                res.status(400).send(err);
+                                            } else {
+                                                res.json(user);
+                                            }
+                                        });
+                                    }
+                                },
+                                function (err) {
+                                    res.status(400).send(err);
+                                }
+                            );
                     }
-                },
-                function (err) {
-                    res.status(400).send(err);
                 }
             );
+
+
     }
 
     function facebookStrategy(token, refreshToken, profile, done) {

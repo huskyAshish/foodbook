@@ -56,7 +56,12 @@
                             $location.url("/user/edit");
                         })
                         .error(function (error) {
-                            console.log(error);
+                            if(error == "User exists"){
+                                vm.error="We are sorry! Username '" + user.username + "' is already taken.";
+                                vm.user.username = "";
+                                vm.user.password = "";
+                                vm.user.verify = "";
+                            }
                         });
 
                 } else {
