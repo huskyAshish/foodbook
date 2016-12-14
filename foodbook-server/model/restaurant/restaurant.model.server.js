@@ -9,6 +9,7 @@ module.exports = function () {
         setModels: setModels,
         createRestaurant: createRestaurant,
         findRestaurantById: findRestauantById,
+        findAllRestaurants: findAllRestaurants,
         updateRestaurant: updateRestaurant,
         deleteRestaurant: deleteRestaurant
     };
@@ -24,6 +25,10 @@ module.exports = function () {
 
     function findRestauantById(restaurantId) {
         return RestaurantModel.findById(restaurantId);
+    }
+
+    function findAllRestaurants() {
+        return RestaurantModel.find();
     }
 
     function updateRestaurant(restaurantId, restaurant) {
