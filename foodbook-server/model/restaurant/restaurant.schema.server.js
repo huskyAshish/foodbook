@@ -4,6 +4,7 @@ module.exports = function () {
         _id: String,
         name: String,
         location: String,
+        contact: String,
         thumbnail_url: String,
         rating: Number,
         dateCreated: {type: Date, default: Date.now}

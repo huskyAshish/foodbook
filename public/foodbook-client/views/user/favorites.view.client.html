@@ -32,8 +32,8 @@
                                 <h5>{{favorite.location}}</h5>
                             </div>
                             <div class="col-sm-3" ng-if="favorite.dateCreated">
-                                <h4>Favorite Since:</h4>
-                                <h5>{{favorite.dateCreated| date: 'MM/dd/yyyy'}}</h5>
+                                <h4>Contact:</h4>
+                                <h5>{{(favorite.contact && favorite.contact != "") ? favorite.contact : "Not Disclosed"}}</h5>
                             </div>
                         </div>
                     </ul>

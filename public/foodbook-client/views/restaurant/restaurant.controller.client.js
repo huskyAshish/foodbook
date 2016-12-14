@@ -67,6 +67,7 @@
                     name: _restaurant.name,
                     location: _restaurant.location.city + ", " + _restaurant.location.state_code,
                     thumbnail_url: _restaurant.image_url,
+                    contact: _restaurant.display_phone,
                     rating: _restaurant.rating
                 }
 
@@ -110,6 +111,7 @@
                 name: vm.restaurant.name,
                 location: vm.restaurant.location.city + ", " + vm.restaurant.location.state_code,
                 thumbnail_url: vm.restaurant.image_url,
+                contact: vm.restaurant.display_phone,
                 rating: vm.restaurant.rating
             }
             review._user = vm.currentUser;
