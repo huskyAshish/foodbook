@@ -3,7 +3,8 @@
         .module("FoodbookApp")
         .controller("LandingController", LandingController);
 
-    function LandingController(SearchService, $routeParams, $rootScope) {
+    // Root Scope used only for Google Maps API
+    function LandingController(SearchService, $routeParams, $location, $window, $rootScope) {
         var vm = this;
 
         vm.search = search;
@@ -14,20 +15,7 @@
         var key = $routeParams.key;
 
         function init() {
-
-            if(loc && key){
-                /*console.log("Came back and searching by " + loc + "," + key);
-                SearchService
-                    .getSearchResults(loc, key)
-                    .success(function (response) {
-                            vm.restaurants = response;
-                        }
-                    )
-                    .error(function (err) {
-                            console.log(err);
-                        }
-                    )*/
-            }else{
+            if(!(loc && key)){
                 var lat = "";
                 var lng = "";
 
@@ -64,12 +52,15 @@
                 }
 
                 // Manually entered location can override the geolocation.
-
                 var input = document.getElementById('location');
                 var autocomplete = new google.maps.places.Autocomplete(input);
 
                 autocomplete.addListener('place_changed', function () {
-                    vm.searchLocation = autocomplete.getPlace().formatted_address;
+                    try {
+                        vm.searchLocation = autocomplete.gm_accessors_.place.Bc.formattedPrediction;
+                    } catch (err) {
+                        vm.searchLocation = autocomplete.getPlace().formatted_address;
+                    }
                     vm.search();
                 });
             }
@@ -77,8 +68,15 @@
                 vm.search();
             }
         }
-
         init();
+
+        function forceSSL() {
+            if ($location.protocol() !== 'https' && window.location.href.indexOf('localhost') === -1) {
+                $window.location.href = $location.absUrl().replace('http', 'https');
+                console.log($window.location.href);
+            }
+        }
+        forceSSL();
 
         function search() {
             SearchService
