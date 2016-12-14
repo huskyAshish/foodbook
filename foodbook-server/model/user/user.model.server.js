@@ -31,7 +31,8 @@ module.exports = function () {
         findFollowing: findFollowing,
         findFollowers: findFollowers,
         addFollowing: addFollowing,
-        removeFollowing: removeFollowing
+        removeFollowing: removeFollowing,
+        deleteFollowingReference: deleteFollowingReference
     };
     return api;
 
@@ -71,7 +72,29 @@ module.exports = function () {
     }
 
     function deleteUser(userId) {
-        return UserModel.remove({_id: userId});
+        return new Promise(function (success, err) {
+            UserModel
+                .remove({ _id: userId })
+                .then(function (status) {
+                    models
+                        .userModel
+                        .deleteFollowingReference(userId)
+                        .then(function (user) {
+                            models
+                                .reviewModel
+                                .deleteReviewsForUser(userId)
+                                .then(function (status) {
+                                    success(200);
+                                }, function (error) {
+                                    err(error);
+                                });
+                        }, function (error) {
+                            err(error);
+                        });
+                }, function (error) {
+                    err(error);
+                });
+        });
     }
 
     function setModels(_models) {
@@ -168,6 +191,14 @@ module.exports = function () {
             },
             {
                 $pull: {following: followingId}
+            });
+    }
+    
+    function deleteFollowingReference(userId) {
+        return UserModel.update(
+            { },
+            {
+                $pull: {following: userId}
             });
     }
 };

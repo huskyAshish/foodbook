@@ -12,7 +12,8 @@ module.exports = function () {
         findAllReviewsForRestaurant: findAllReviewsForRestaurant,
         findReviewById: findReviewById,
         updateReview: updateReview,
-        deleteReview: deleteReview
+        deleteReview: deleteReview,
+        deleteReviewsForUser: deleteReviewsForUser
     };
     return api;
 
@@ -55,5 +56,11 @@ module.exports = function () {
 
     function deleteReview(reviewId) {
         return ReviewModel.remove({_id: reviewId});
+    }
+    
+    function deleteReviewsForUser(userId) {
+        return ReviewModel.remove({
+            _user: userId
+        });
     }
 };
