@@ -14,8 +14,6 @@
                     if(user !== '0'){
                         vm.user = user;
                         vm.userId = user._id;
-                        $rootScope.loggedInUser = user.username;
-                        $rootScope.loggedInUserId = user._id;
                         $rootScope.foodBooker = user;
                     }
                 })
@@ -29,7 +27,7 @@
             UserService
                 .logout()
                 .success(function () {
-                    $rootScope.loggedInUser = null;
+                    $rootScope.foodBooker = null;
                     $location.url("/");
                 })
                 .error(function (err) {

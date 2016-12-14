@@ -13,14 +13,14 @@
         </div>
         <div class="navbar-collapse collapse navbar-right" id="navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li ng-if="!(loggedInUser)" class="menuItem fold"><a href="#/login">Login</a>
-                <li ng-if="!(loggedInUser)" class="menuItem fold"><a href="#/register">Register</a>
-                <li ng-if="(loggedInUser)" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">{{loggedInUser}}
+                <li ng-if="!(foodBooker)" class="menuItem fold"><a href="#/login">Login</a>
+                <li ng-if="!(foodBooker)" class="menuItem fold"><a href="#/register">Register</a>
+                <li ng-if="(foodBooker)" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">{{foodBooker.username}}
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li ng-if="foodBooker.role == 'ADMIN'"><a href="#/admin">Admin Console</a></li>
-                        <li><a href="#/user/{{loggedInUserId}}">Profile</a></li>
+                        <li><a href="#/user/{{foodBooker._id}}">Profile</a></li>
                         <li><a href="#/user/edit">Edit Profile</a></li>
                         <li><a href="#/user/favorites">Favourites</a></li>
                         <li><a href="#/user/reviews">Reviews</a></li>
@@ -28,7 +28,7 @@
                     </ul>
                 </li>
                 </li>
-                <li ng-if="(loggedInUser)"  class="menuItem fold"><a ng-click="model.logout()">Logout</a></li>
+                <li ng-if="(foodBooker)"  class="menuItem fold"><a ng-click="model.logout()">Logout</a></li>
             </ul>
         </div>
     </div>
