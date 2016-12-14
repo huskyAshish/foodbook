@@ -32,9 +32,9 @@ if(process.env.HEROKU_MONGODB_DB_PASSWORD) {
 var mongoose = require("mongoose");
 mongoose.connect(connectionString);
 
-app.use(express.static(__dirname + '/project/client'));
+app.use(express.static(__dirname + '/public/foodbook-client'));
 
-require ("./project/server/app")(app);
+require ("./foodbook-server/app")(app);
 
 app.set('ipaddress', (process.env.IP));
 app.set('port', (process.env.PORT || 5000));
