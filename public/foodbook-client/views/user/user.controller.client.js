@@ -13,14 +13,6 @@
         var vm = this;
         vm.login = login;
 
-        function init(){
-            if ($location.protocol() !== 'https' && window.location.href.indexOf('localhost') === -1) {
-                $window.location.href = $location.absUrl().replace('http', 'https');
-                console.log($window.location.href);
-            }
-        }
-        init();
-
         function login(user) {
             if (!(user && user.username && user.password)) {
                 swal("Oops..", "Please enter valid username and password.", "error");
@@ -49,15 +41,6 @@
     function RegisterController($location, UserService) {
         var vm = this;
         vm.register = register;
-
-        function init() {
-            // Force SSL
-            if ($location.protocol() !== 'https' && window.location.href.indexOf('localhost') === -1) {
-                $window.location.href = $location.absUrl().replace('http', 'https');
-                console.log($window.location.href);
-            }
-        }
-        init();
 
         function register(user) {
             if (!(user && user.username)) {
@@ -105,12 +88,6 @@
                 .error(function (error) {
                     console.log(error);
                 });
-
-            // Force SSL
-            if ($location.protocol() !== 'https' && window.location.href.indexOf('localhost') === -1) {
-                $window.location.href = $location.absUrl().replace('http', 'https');
-                console.log($window.location.href);
-            }
         }
         init();
 
@@ -190,11 +167,6 @@
                 .error(function (error) {
                     console.log(error);
                 });
-            // Force SSL
-            if ($location.protocol() !== 'https' && window.location.href.indexOf('localhost') === -1) {
-                $window.location.href = $location.absUrl().replace('http', 'https');
-                console.log($window.location.href);
-            }
         }
         init();
     }
@@ -203,15 +175,6 @@
         var vm = this;
         vm.deleteUserByUsername = deleteUserByUsername;
         vm.searchByUsernameKey = searchByUsernameKey;
-
-        function init() {
-            // Force SSL
-            if ($location.protocol() !== 'https' && window.location.href.indexOf('localhost') === -1) {
-                $window.location.href = $location.absUrl().replace('http', 'https');
-                console.log($window.location.href);
-            }
-        }
-        init();
 
         function searchByUsernameKey(usernameKey) {
             UserService
@@ -268,11 +231,6 @@
                 .error(function (error) {
                     console.log(error);
                 });
-            // Force SSL
-            if ($location.protocol() !== 'https' && window.location.href.indexOf('localhost') === -1) {
-                $window.location.href = $location.absUrl().replace('http', 'https');
-                console.log($window.location.href);
-            }
         }
         init();
     }
@@ -332,12 +290,6 @@
                 .error(function (err) {
                     console.log(err);
                 });
-
-            // Force SSL
-            if ($location.protocol() !== 'https' && window.location.href.indexOf('localhost') === -1) {
-                $window.location.href = $location.absUrl().replace('http', 'https');
-                console.log($window.location.href);
-            }
         }
         init();
 
