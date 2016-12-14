@@ -25,8 +25,8 @@
                         vm.isFavorite = (vm.currentUser.favorites.indexOf(vm.restaurantId) == -1) ? 'false' : 'true';
                     }
                 })
-                .error(function (error) {
-                    console.log(error);
+                .error(function (err) {
+                    console.log(err);
                 });
             search(vm.restaurantId);
             vm.isDetailsPage = true;
@@ -123,8 +123,8 @@
                         swal("Congratulations!", "You successfully submitted review!", "success");
                         $route.reload();
                     },
-                    function (error) {
-                        console.log(error);
+                    function (err) {
+                        console.log(err);
                     }
                 )
         }

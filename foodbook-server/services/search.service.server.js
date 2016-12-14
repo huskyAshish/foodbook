@@ -35,7 +35,7 @@ module.exports = function (app, Models) {
 
         var finalUrl = url + '?' + qs.stringify(params);
 
-        console.log(finalUrl);
+        // console.log(finalUrl);
 
         request(finalUrl,
             function(error, response, body){
@@ -47,10 +47,10 @@ module.exports = function (app, Models) {
                 var data = JSON.parse(body);
             }
             catch (e) {
-                console.log("Not JSON");
+                // console.log("Not JSON");
                 return;
             }
-            console.log(body);
+            // console.log(body);
             res.send(data);
             }
         );
@@ -102,7 +102,7 @@ module.exports = function (app, Models) {
 
         var finalUrl = url+'&'+ qs.stringify(params);
 
-        console.log(finalUrl);
+        // console.log(finalUrl);
 
         request(finalUrl,
             function(error, response, body){
@@ -114,7 +114,7 @@ module.exports = function (app, Models) {
                     var data = JSON.parse(body);
                 }
                 catch (e) {
-                    console.log("Not JSON");
+                    // console.log("Not JSON");
                     return;
                 }
                 res.send(data.businesses);

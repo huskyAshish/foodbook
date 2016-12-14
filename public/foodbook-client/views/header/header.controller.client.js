@@ -17,8 +17,8 @@
                         $rootScope.foodBooker = user;
                     }
                 })
-                .error(function (error) {
-                    console.log(error);
+                .error(function (err) {
+                    console.log(err);
                 });
         }
         init();

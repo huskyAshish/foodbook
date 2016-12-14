@@ -19,7 +19,7 @@
         }
 
         function getRestaurantById(restaurantId) {
-            console.log(restaurantId);
+            // console.log(restaurantId);
             return $http.get("/api/foodbook/search/" + restaurantId);
         }
 

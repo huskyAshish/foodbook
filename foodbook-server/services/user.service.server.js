@@ -269,7 +269,7 @@ module.exports = function (app, models) {
         }else if(query.username) {
             findUserByUsername(req, res);
         } else {
-            console.log(req.user);
+            // console.log(req.user);
             res.json(req.user);
         }
     }
