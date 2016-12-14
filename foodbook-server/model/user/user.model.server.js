@@ -156,7 +156,7 @@ module.exports = function () {
     }
 
     function findUsersByKey(usernameKey) {
-        return UserModel.find({username: new RegExp(usernameKey, 'i')});
+        return UserModel.find({firstName: new RegExp(usernameKey, 'i')});
     }
 
     function findFollowing(userId) {
