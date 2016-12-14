@@ -67,16 +67,14 @@
             if (!(vm.searchLocation == undefined || vm.searchLocation == null || vm.searchLocation == "")) {
                 vm.search();
             }
-        }
-        init();
 
-        function forceSSL() {
+            // Force SSL
             if ($location.protocol() !== 'https' && window.location.href.indexOf('localhost') === -1) {
                 $window.location.href = $location.absUrl().replace('http', 'https');
                 console.log($window.location.href);
             }
         }
-        forceSSL();
+        init();
 
         function search() {
             SearchService

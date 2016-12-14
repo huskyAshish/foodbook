@@ -40,6 +40,11 @@
                         console.log(err);
                     }
                 );
+
+            if ($location.protocol() !== 'https' && window.location.href.indexOf('localhost') === -1) {
+                $window.location.href = $location.absUrl().replace('http', 'https');
+                console.log($window.location.href);
+            }
         }
 
         init();
