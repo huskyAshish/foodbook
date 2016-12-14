@@ -7,6 +7,24 @@
         var vm = this;
         vm.logout = logout;
 
+        function init() {
+            UserService
+                .findCurrentUser()
+                .success(function (user) {
+                    if(user !== '0'){
+                        vm.user = user;
+                        vm.userId = user._id;
+                        $rootScope.loggedInUser = user.username;
+                        $rootScope.loggedInUserId = user._id;
+                        $rootScope.foodBooker = user;
+                    }
+                })
+                .error(function (error) {
+                    console.log(error);
+                });
+        }
+        init();
+
         function logout() {
             UserService
                 .logout()
