@@ -43,7 +43,7 @@
                      alt="Image currently unavailable">
             </h3>
             <h4><u>Rating:</u> &nbsp; {{model.restaurant.rating}}</h4>
-            <h4 ng-if="model.restaurant.display_phone"><u>Contact:</u> {{model.restaurant.display_phone}}</h4>
+            <h4><u>Contact:</u> {{model.restaurant.display_phone ? model.restaurant.display_phone : "Not Disclosed"}}</h4>
             <h4><u>Address:</u> &nbsp; <span ng-repeat="address in model.restaurant.location.display_address"> {{address}}{{$last ? '' : ','}}</span></h4>
             <h4><u>Cuisines:</u> &nbsp; <span ng-repeat="category in model.restaurant.categories"> {{category[0]}}{{$last ? '' : ','}}</span>
             </h4>

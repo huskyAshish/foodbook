@@ -372,7 +372,7 @@ module.exports = function (app, models) {
         var myFile        = req.file;
 
         if (!myFile) {
-            res.redirect("/#/user/");
+            res.redirect("/#/user/edit");
             return;
         }
 

@@ -45,9 +45,9 @@
                                 <h4>Address:</h4>
                                 <h5><span ng-repeat="address in restaurant.location.display_address">{{address}}{{$last ? '' : ','}} </span></h5>
                             </div>
-                            <div class="col-sm-3" ng-if="restaurant.display_phone">
+                            <div class="col-sm-3">
                                 <h4>Contact:</h4>
-                                <h5>{{restaurant.display_phone}}</h5>
+                                <h5>{{restaurant.display_phone ? restaurant.display_phone : "Not Disclosed"}}</h5>
                             </div>
                         </div>
                     </ul>
@@ -71,7 +71,7 @@
                             </div>
                             <div class="col-sm-3" ng-if="restaurant.display_phone">
                                 <h4>Contact:</h4>
-                                <h5>{{restaurant.display_phone}}</h5>
+                                <h5>{{restaurant.display_phone ? restaurant.display_phone : "Not Disclosed"}}</h5>
                             </div>
                         </div>
                     </ul>
