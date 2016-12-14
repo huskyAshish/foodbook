@@ -9,7 +9,7 @@
         .controller("FavoritesController", FavoritesController)
         .controller("PublicProfileController", PublicProfileController);
 
-    function LoginController($location, UserService) {
+    function LoginController($location, UserService, $rootScope) {
         var vm = this;
         vm.login = login;
 
@@ -25,6 +25,7 @@
                     if (user === '0') {
                         swal("Oops..", "Login failed. Please try again.", "error");
                     } else {
+                        $rootScope.foodBooker = user;
                         $location.url("/user/" + user._id);
                     }
                 })
@@ -69,7 +70,7 @@
         }
     }
 
-    function ProfileController($location, UserService) {
+    function ProfileController($location, UserService, $rootScope) {
         var vm = this;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
@@ -120,7 +121,7 @@
             UserService
                 .logout()
                 .success(function () {
-                    $rootScope.loggedInUser = null;
+                    $rootScope.foodBooker = null;
                     $location.url("/login");
                 })
                 .error(function (err) {
@@ -133,6 +134,7 @@
             UserService
                 .deleteUser(vm.userId)
                 .success(function () {
+                    $rootScope.foodBooker = null;
                     $location.url("/login");
                 })
                 .error(function (error) {
